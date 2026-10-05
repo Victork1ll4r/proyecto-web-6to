@@ -1,7 +1,21 @@
-import './App.css'
+import { ExplorarCanchas } from './pages/ExplorarCanchas.jsx'
+import { StyleGuide } from './pages/StyleGuide.jsx'
+import { useRuta } from './lib/rutas.js'
 
-function App() {
-  return <h1>Hola Mundo</h1>
+/**
+ * Punto de entrada de la aplicación.
+ *
+ * El mapa ruta → vista vive en lib/rutas.js; aquí solo se resuelve cuál se
+ * muestra. Cada vista es responsable de sus propios datos y estilos.
+ */
+const VISTAS = {
+  '/': ExplorarCanchas,
+  '/estilo': StyleGuide,
 }
 
-export default App
+export default function App() {
+  const ruta = useRuta()
+  const Vista = VISTAS[ruta]
+
+  return <Vista />
+}

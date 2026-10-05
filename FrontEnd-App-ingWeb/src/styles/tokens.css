@@ -1,0 +1,447 @@
+/* ==========================================================================
+   SISTEMA DE DISEÑO — SISTEMA CANCHAS
+   Capa de tokens (Design Tokens) — v1.0
+
+   Este archivo es la única fuente de verdad de valores visuales.
+   Cualquier componente DEBE consumir estas variables, nunca hex sueltos.
+
+   Uso:
+     1) Importar después de index.css
+        import './styles/tokens.css'
+     2) Alternar tema oscuro en <html data-theme="dark">
+
+   Índice:
+     1. Primitivas de color
+     2. Color semántico
+     3. Tipografía
+     4. Espaciado
+     5. Radios
+     6. Sombras
+     7. Movimiento
+     8. Layout / breakpoints
+     9. Capas (z-index)
+    10. Tokens de componente
+   ========================================================================== */
+
+@layer tokens {
+  /* ======================================================================
+     1. PRIMITIVAS DE COLOR
+     Escala de 50 a 950. Solo se usan mediante tokens semánticos (§2),
+     salvo en ilustraciones, gráficos y superficies de marca.
+     ====================================================================== */
+
+  :root {
+    /* Verde Energía — color de marca */
+    --c-primary-50: #eafbf3;
+    --c-primary-100: #cff5e2;
+    --c-primary-200: #a3ecc9;
+    --c-primary-300: #6fdcac;
+    --c-primary-400: #3fc98c;
+    --c-primary-500: #00b86b; /* color de marca puro */
+    --c-primary-600: #009a5a;
+    --c-primary-700: #027a49; /* texto/links sobre blanco */
+    --c-primary-800: #04603a;
+    --c-primary-900: #054d31;
+    --c-primary-950: #022c1c;
+
+    /* Lima — acento deportivo, solo sobre superficies oscuras */
+    --c-accent-300: #dcf58c;
+    --c-accent-400: #c8ee4b;
+    --c-accent-500: #aeda2e;
+    --c-accent-600: #94b81f;
+
+    /* Neutros — Carbón (ligeramente verde, evita el gris muerto) */
+    --c-neutral-0: #ffffff;
+    --c-neutral-25: #fbfcfb;
+    --c-neutral-50: #f5f7f6;
+    --c-neutral-100: #edf0ef;
+    --c-neutral-200: #e1e6e4;
+    --c-neutral-300: #cbd2d0;
+    --c-neutral-400: #9ba5a2;
+    --c-neutral-500: #6e7a77;
+    --c-neutral-600: #55605d;
+    --c-neutral-700: #3b4442;
+    --c-neutral-800: #262d2b;
+    --c-neutral-900: #171d1b;
+    --c-neutral-950: #0d1211;
+
+    /* Semánticos crudos */
+    --c-info-100: #eaf1fe;
+    --c-info-500: #2563eb;
+    --c-info-700: #1d4ed8;
+    --c-success-100: #eafbf3;
+    --c-success-500: #00b86b;
+    --c-success-700: #027a49;
+    --c-warning-100: #fef4e2;
+    --c-warning-500: #f5a524;
+    --c-warning-700: #b45309;
+    --c-danger-100: #fdecec;
+    --c-danger-500: #e5484d;
+    --c-danger-700: #c93a3f;
+
+    /* Deportes — chips e iconografía por disciplina */
+    --c-sport-futbol: #00b86b;
+    --c-sport-voley: #2563eb;
+    --c-sport-basquet: #f5a524;
+    --c-sport-tenis: #8b5cf6;
+    --c-sport-padel: #14b8a6;
+  }
+
+  /* ======================================================================
+     2. COLOR SEMÁNTICO
+     Única capa que los componentes deben referenciar.
+     ====================================================================== */
+  :root {
+    /* Superficies */
+    --bg-canvas: var(--c-neutral-25);
+    --bg-surface: var(--c-neutral-0);
+    --bg-surface-raised: var(--c-neutral-0);
+    --bg-sunken: var(--c-neutral-50);
+    --bg-inverse: var(--c-neutral-950);
+    --bg-overlay: rgb(13 18 17 / 56%);
+
+    /* Texto */
+    --text-primary: var(--c-neutral-900); /* 15.9:1 sobre blanco */
+    --text-secondary: var(--c-neutral-600); /*  6.5:1 sobre blanco */
+    --text-tertiary: var(--c-neutral-500); /*  4.5:1 — decorativo/placeholder */
+    --text-disabled: var(--c-neutral-400);
+    --text-on-primary: var(--c-neutral-950); /*  7.3:1 sobre verde 500 */
+    --text-on-inverse: var(--c-neutral-0);
+    --text-link: var(--c-primary-700); /*  5.4:1 sobre blanco */
+
+    /* Bordes */
+    --border-subtle: var(--c-neutral-100);
+    --border-default: var(--c-neutral-200);
+    --border-strong: var(--c-neutral-300);
+    --border-inverse: rgb(255 255 255 / 14%);
+
+    /* Marca */
+    --brand: var(--c-primary-500);
+    --brand-strong: var(--c-primary-600);
+    --brand-ink: var(--c-primary-700);
+    --brand-surface: var(--c-primary-50);
+    --brand-border: var(--c-primary-200);
+    --accent: var(--c-accent-500);
+
+    /* Acciones */
+    --action-primary-bg: var(--c-primary-500);
+    --action-primary-bg-hover: var(--c-primary-600);
+    --action-primary-bg-active: var(--c-primary-700);
+    --action-secondary-bg: var(--c-neutral-0);
+    --action-secondary-bg-hover: var(--c-neutral-50);
+    --action-ghost-hover: var(--c-neutral-100);
+    --action-danger-bg: var(--c-danger-700);
+    --action-danger-bg-hover: #a92f34;
+
+    /* Feedback */
+    --feedback-success-bg: var(--c-success-100);
+    --feedback-success-fg: var(--c-success-700);
+    --feedback-warning-bg: var(--c-warning-100);
+    --feedback-warning-fg: var(--c-warning-700);
+    --feedback-danger-bg: var(--c-danger-100);
+    --feedback-danger-fg: var(--c-danger-700);
+    --feedback-info-bg: var(--c-info-100);
+    --feedback-info-fg: var(--c-info-700);
+
+    /* Estados de reserva / cancha */
+    --state-disponible-bg: var(--c-success-100);
+    --state-disponible-fg: var(--c-success-700);
+    --state-ocupado-bg: var(--c-danger-100);
+    --state-ocupado-fg: var(--c-danger-700);
+    --state-pendiente-bg: var(--c-warning-100);
+    --state-pendiente-fg: var(--c-warning-700);
+
+    /* Foco */
+    --focus-ring: 0 0 0 3px rgb(0 184 107 / 30%);
+    --focus-ring-danger: 0 0 0 3px rgb(229 72 77 / 28%);
+  }
+
+  /* Tema oscuro */
+  :root[data-theme='dark'] {
+    --bg-canvas: var(--c-neutral-950);
+    --bg-surface: var(--c-neutral-900);
+    --bg-surface-raised: var(--c-neutral-800);
+    --bg-sunken: #111614;
+    --bg-inverse: var(--c-neutral-0);
+    --bg-overlay: rgb(0 0 0 / 68%);
+
+    --text-primary: var(--c-neutral-50); /*  9.5:1 sobre neutral-950 */
+    --text-secondary: var(--c-neutral-400); /*  7.4:1 sobre neutral-900 */
+    --text-tertiary: var(--c-neutral-500);
+    --text-disabled: var(--c-neutral-600);
+    --text-on-primary: var(--c-neutral-950);
+    --text-on-inverse: var(--c-neutral-950);
+    --text-link: var(--c-primary-300);
+
+    --border-subtle: var(--c-neutral-800);
+    --border-default: var(--c-neutral-800);
+    --border-strong: var(--c-neutral-700);
+    --border-inverse: rgb(0 0 0 / 14%);
+
+    --brand: var(--c-primary-400);
+    --brand-strong: var(--c-primary-300);
+    --brand-ink: var(--c-primary-300);
+    --brand-surface: rgb(0 184 107 / 12%);
+    --brand-border: rgb(0 184 107 / 28%);
+    --accent: var(--c-accent-400);
+
+    --action-primary-bg: var(--c-primary-400);
+    --action-primary-bg-hover: var(--c-primary-300);
+    --action-primary-bg-active: var(--c-primary-500);
+    --action-secondary-bg: var(--c-neutral-800);
+    --action-secondary-bg-hover: var(--c-neutral-700);
+    --action-ghost-hover: var(--c-neutral-800);
+    --action-danger-bg: var(--c-danger-500);
+    --action-danger-bg-hover: var(--c-danger-700);
+
+    --focus-ring: 0 0 0 3px rgb(63 201 140 / 34%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg-canvas: var(--c-neutral-950);
+      --bg-surface: var(--c-neutral-900);
+      --bg-surface-raised: var(--c-neutral-800);
+      --bg-sunken: #111614;
+      --bg-inverse: var(--c-neutral-0);
+      --bg-overlay: rgb(0 0 0 / 68%);
+
+      --text-primary: var(--c-neutral-50);
+      --text-secondary: var(--c-neutral-400);
+      --text-tertiary: var(--c-neutral-500);
+      --text-disabled: var(--c-neutral-600);
+      --text-on-primary: var(--c-neutral-950);
+      --text-on-inverse: var(--c-neutral-950);
+      --text-link: var(--c-primary-300);
+
+      --border-subtle: var(--c-neutral-800);
+      --border-default: var(--c-neutral-800);
+      --border-strong: var(--c-neutral-700);
+      --border-inverse: rgb(0 0 0 / 14%);
+
+      --brand: var(--c-primary-400);
+      --brand-strong: var(--c-primary-300);
+      --brand-ink: var(--c-primary-300);
+      --brand-surface: rgb(0 184 107 / 12%);
+      --brand-border: rgb(0 184 107 / 28%);
+      --accent: var(--c-accent-400);
+
+      --action-primary-bg: var(--c-primary-400);
+      --action-primary-bg-hover: var(--c-primary-300);
+      --action-primary-bg-active: var(--c-primary-500);
+      --action-secondary-bg: var(--c-neutral-800);
+      --action-secondary-bg-hover: var(--c-neutral-700);
+      --action-ghost-hover: var(--c-neutral-800);
+      --action-danger-bg: var(--c-danger-500);
+      --action-danger-bg-hover: var(--c-danger-700);
+
+      --focus-ring: 0 0 0 3px rgb(63 201 140 / 34%);
+    }
+  }
+
+  /* ======================================================================
+     3. TIPOGRAFÍA
+     Sora = títulos (geométrica, carácter deportivo)
+     Inter  = texto e interfaz
+     JetBrains Mono = códigos e identificadores
+     ====================================================================== */
+  :root {
+    --font-display: 'Sora', 'Segoe UI', system-ui, sans-serif;
+    --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+    /* Escala */
+    --fs-display-1: 3rem; /* 48 */
+    --fs-display-2: 2.5rem; /* 40 */
+    --fs-h1: 2rem; /* 32 */
+    --fs-h2: 1.5rem; /* 24 */
+    --fs-h3: 1.25rem; /* 20 */
+    --fs-h4: 1.0625rem; /* 17 */
+    --fs-body-lg: 1.0625rem; /* 17 */
+    --fs-body: 1rem; /* 16 */
+    --fs-body-sm: 0.875rem; /* 14 */
+    --fs-caption: 0.8125rem; /* 13 */
+    --fs-label: 0.75rem; /* 12 */
+    --fs-overline: 0.6875rem; /* 11 */
+
+    /* Altura de línea */
+    --lh-tight: 1.1;
+    --lh-snug: 1.25;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.65;
+
+    /* Peso */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-extrabold: 800;
+
+    /* Tracking */
+    --tracking-tight: -0.022em;
+    --tracking-snug: -0.014em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.01em;
+    --tracking-label: 0.06em;
+    --tracking-overline: 0.09em;
+  }
+
+  /* ======================================================================
+     4. ESPACIADO — base 4px
+     ====================================================================== */
+  :root {
+    --sp-0: 0;
+    --sp-1: 0.25rem; /*  4 */
+    --sp-2: 0.5rem; /*  8 */
+    --sp-3: 0.75rem; /* 12 */
+    --sp-4: 1rem; /* 16 */
+    --sp-5: 1.25rem; /* 20 */
+    --sp-6: 1.5rem; /* 24 */
+    --sp-7: 2rem; /* 32 */
+    --sp-8: 2.5rem; /* 40 */
+    --sp-9: 3rem; /* 48 */
+    --sp-10: 4rem; /* 64 */
+    --sp-11: 5rem; /* 80 */
+    --sp-12: 6rem; /* 96 */
+    --sp-13: 8rem; /* 128 */
+  }
+
+  /* ======================================================================
+     5. RADIOS
+     ====================================================================== */
+  :root {
+    --r-xs: 6px;
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --r-xl: 20px;
+    --r-2xl: 28px;
+    --r-3xl: 36px;
+    --r-full: 999px;
+  }
+
+  /* ======================================================================
+     6. SOMBRAS — verde-tinted, nunca negro puro
+     ====================================================================== */
+  :root {
+    --sh-xs: 0 1px 2px rgb(13 18 17 / 6%);
+    --sh-sm: 0 1px 3px rgb(13 18 17 / 8%), 0 1px 2px rgb(13 18 17 / 4%);
+    --sh-md: 0 4px 12px rgb(13 18 17 / 8%), 0 2px 4px rgb(13 18 17 / 4%);
+    --sh-lg: 0 12px 28px rgb(13 18 17 / 10%), 0 4px 8px rgb(13 18 17 / 4%);
+    --sh-xl: 0 24px 48px rgb(13 18 17 / 12%);
+    --sh-inset: inset 0 1px 0 rgb(255 255 255 / 60%);
+  }
+
+  :root[data-theme='dark'] {
+    --sh-xs: 0 1px 2px rgb(0 0 0 / 40%);
+    --sh-sm: 0 1px 3px rgb(0 0 0 / 48%), 0 1px 2px rgb(0 0 0 / 32%);
+    --sh-md: 0 4px 12px rgb(0 0 0 / 52%), 0 2px 4px rgb(0 0 0 / 32%);
+    --sh-lg: 0 12px 28px rgb(0 0 0 / 58%), 0 4px 8px rgb(0 0 0 / 36%);
+    --sh-xl: 0 24px 48px rgb(0 0 0 / 62%);
+    --sh-inset: inset 0 1px 0 rgb(255 255 255 / 6%);
+  }
+
+  /* ======================================================================
+     7. MOVIMIENTO
+     ====================================================================== */
+  :root {
+    --dur-instant: 80ms;
+    --dur-fast: 140ms;
+    --dur-base: 200ms;
+    --dur-slow: 320ms;
+
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* entradas */
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* trayectos */
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* confirmación */
+  }
+
+  /* ======================================================================
+     8. LAYOUT
+     ====================================================================== */
+  :root {
+    --container-sm: 640px;
+    --container-md: 880px;
+    --container-lg: 1120px;
+    --container-xl: 1280px;
+    --container-prose: 68ch;
+
+    --gutter: var(--sp-4); /* 16 móvil */
+    --grid-columns: 4;
+    --grid-gap: var(--sp-4);
+
+    --nav-height: 64px;
+    --nav-height-desktop: 72px;
+    --sidebar-width: 248px;
+    --tabbar-height: 68px;
+
+    /* Objetivos táctiles */
+    --target-min: 44px;
+    --target-icon: 40px;
+
+    --bp-sm: 480px;
+    --bp-md: 768px;
+    --bp-lg: 1024px;
+    --bp-xl: 1280px;
+    --bp-2xl: 1536px;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --gutter: var(--sp-6);
+      --grid-columns: 8;
+      --grid-gap: var(--sp-5);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --gutter: var(--sp-7);
+      --grid-columns: 12;
+      --grid-gap: var(--sp-6);
+    }
+  }
+
+  /* ======================================================================
+     9. CAPAS
+     ====================================================================== */
+  :root {
+    --z-base: 0;
+    --z-raised: 10;
+    --z-sticky: 100;
+    --z-nav: 200;
+    --z-drawer: 300;
+    --z-overlay: 400;
+    --z-modal: 500;
+    --z-toast: 600;
+  }
+
+  /* ======================================================================
+     10. TOKENS DE COMPONENTE
+     Bloques de alto nivel reutilizados por varias pantallas.
+     ====================================================================== */
+  :root {
+    /* Tarjeta de cancha */
+    --card-cancha-radius: var(--r-lg);
+    --card-cancha-border: 1px solid var(--border-subtle);
+    --card-cancha-shadow: var(--sh-sm);
+    --card-cancha-shadow-hover: var(--sh-lg);
+    --card-cancha-media-ratio: 16 / 10;
+    --card-cancha-media-overlay: linear-gradient(
+      180deg,
+      rgb(13 18 17 / 0%) 40%,
+      rgb(13 18 17 / 55%) 100%
+    );
+
+    /* Rejilla de horarios */
+    --slot-height: 44px;
+    --slot-radius: var(--r-sm);
+    --slot-gap: var(--sp-2);
+
+    /* Tabla de datos */
+    --table-header-height: 48px;
+    --table-row-height: 64px;
+
+    /* Barra de navegación móvil */
+    --tabbar-item-radius: var(--r-md);
+  }
+}

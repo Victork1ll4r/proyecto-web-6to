@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-surface-variant":"#3d4a3f","surface-container":"#e8f0e6","outline":"#6c7b6e","surface":"#f4fcf2","neutral-700":"#3B4442","on-secondary-container":"#5d6664","secondary-fixed":"#dbe5e1","primary-900":"#054D31","on-secondary-fixed":"#151d1c","inverse-on-surface":"#ebf3e9","inverse-primary":"#4ce08e","surface-dim":"#d4dcd3","neutral-400":"#9BA5A2","tertiary-container":"#ff757a","on-primary-fixed":"#00210f","on-error":"#ffffff","on-error-container":"#93000a","surface-variant":"#dde5db","neutral-200":"#E1E6E4","neutral-50":"#F5F7F6","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#bfc9c6","sport-padel":"#14B8A6","background":"#f4fcf2","on-secondary-fixed-variant":"#404947","primary-500":"#00B86B","tertiary-fixed-dim":"#ffb3b3","on-tertiary-fixed-variant":"#881c28","surface-bright":"#f4fcf2","inverse-surface":"#2b322c","surface-container-highest":"#dde5db","error-container":"#ffdad6","neutral-900":"#171D1B","sport-futbol":"#00B86B","sport-basquet":"#F5A524","primary":"#006d3d","on-surface":"#161d18","primary-fixed-dim":"#4ce08e","neutral-0":"#FFFFFF","neutral-100":"#EDF0EF","secondary-container":"#dbe5e1","neutral-500":"#6E7A77","neutral-300":"#CBD2D0","error":"#ba1a1a","on-tertiary-fixed":"#400009","sport-voley":"#2563EB","on-primary-container":"#004122","primary-600":"#009A5A","accent-500":"#C8EE4B","surface-container-low":"#eef6ec","primary-fixed":"#6cfda8","primary-700":"#027A49","on-secondary":"#ffffff","primary-300":"#6FDCAC","on-background":"#161d18","neutral-25":"#FBFCFB","surface-tint":"#006d3d","secondary":"#57605e","on-primary-fixed-variant":"#00522d","on-primary":"#ffffff","sport-tenis":"#8B5CF6","primary-container":"#00b86b","primary-50":"#EAFBF3","primary-800":"#04603A","primary-100":"#CFF5E2","outline-variant":"#bbcabc","on-tertiary-container":"#72091a","surface-container-high":"#e2eae1","tertiary-fixed":"#ffdad9","primary-200":"#A3ECC9","on-tertiary":"#ffffff","neutral-950":"#0D1211","tertiary":"#a9353d","neutral-600":"#55605D"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"2rem","space-md":"1rem","space-sm":"0.5rem","space-lg":"1.5rem","space-xl":"2rem","space-2xl":"3rem","margin":"2rem","space-xs":"0.25rem"},"fontFamily":{"body-sm":["Inter"],"label":["Inter"],"body-lg":["Inter"],"display-1":["Sora"],"caption":["Inter"],"h4":["Inter"],"display-2":["Sora"],"h2":["Sora"],"h3":["Sora"],"body":["Inter"],"h1":["Sora"],"overline":["Inter"]},"fontSize":{"body-sm":["14px",{"lineHeight":"20px","letterSpacing":"0","fontWeight":"400"}],"label":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"600"}],"body-lg":["17px",{"lineHeight":"28px","letterSpacing":"0","fontWeight":"400"}],"display-1":["48px",{"lineHeight":"52px","letterSpacing":"-0.022em","fontWeight":"800"}],"caption":["13px",{"lineHeight":"18px","letterSpacing":"0","fontWeight":"400"}],"h4":["17px",{"lineHeight":"24px","letterSpacing":"0","fontWeight":"600"}],"display-2":["40px",{"lineHeight":"44px","letterSpacing":"-0.022em","fontWeight":"700"}],"h2":["24px",{"lineHeight":"30px","letterSpacing":"-0.014em","fontWeight":"700"}],"h3":["20px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"body":["16px",{"lineHeight":"24px","letterSpacing":"0","fontWeight":"400"}],"h1":["32px",{"lineHeight":"38px","letterSpacing":"-0.014em","fontWeight":"700"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.09em","fontWeight":"700"}]}}}};</script></head><body class="bg-neutral-25 font-body text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-neutral-25/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-[72px] w-full px-gutter flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md shrink-0"><img alt="Logo Sistema Canchas" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XMaqn-NJDZevzVmfadkhnuhjs7VX1p5MIfPUXD9_XqOF7DDVDjccwrVc12DaAkK60sYCtvIvUdqWOSjomNTiTUM99FdoDZykNSYB2WOvXzBHE55H_70IOueQQIaHPYpqbfmfPoPXALWZAGfhAY2kWJ8vMfQYTMSFHXick-sZQj180_iwKEgBPcJ8uaxKVslxnP7kqLVmo5RugUWfvTo64xw7rRsQMn-aMKI8gWvKt2py8AOFGrIXQIAbw"/><span class="font-h3 text-h3 text-neutral-900 tracking-tight">Sistema Canchas</span></div><nav class="hidden md:flex items-center gap-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-h4 rounded-lg px-space-md py-space-sm"><a aria-current="page" class="transition-colors bg-primary-container text-on-primary-container font-h4 rounded-lg px-space-md py-space-sm" data-path="explorar" href="#">Explorar</a><a class="font-body text-body text-on-surface-variant hover:text-on-surface px-space-md py-space-sm transition-colors" data-path="horario" href="#">Horario</a><a class="font-body text-body text-on-surface-variant hover:text-on-surface px-space-md py-space-sm transition-colors" data-path="mis-reservas" href="#">Mis reservas</a><a class="font-body text-body text-on-surface-variant hover:text-on-surface px-space-md py-space-sm transition-colors" data-path="panel-admin" href="#">Panel Admin</a></nav><div class="flex items-center gap-space-md shrink-0"><button aria-label="Carrito de reservas" class="p-space-sm rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined block">shopping_bag</span></button><button aria-label="Notificaciones" class="p-space-sm rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined block">notifications</span></button><div class="p-[2px] rounded-full bg-primary-500 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTWD9bonuFh6UshtdA083QBuw87wBrI-YwlXhFc2L6oAiYB7ew7EwvFftk3AlGX6lfmphtX4IlF1T7m9CZsP_DI8Lkm9Ja0K7s0_EBHB_gqKDWA6pOulcSQEfa8POPRjdz_oZJ2r4j_tTAQn4O1-epJbmIqbdLACn1lb2AdVqJkmkHbdrnN38gqzd6JryKtNAsVcUCzwVoLjWNvdkwFfsoj10GPKJZ-8AzfwhNmi-S2IwR0Way1had"/></div></div></div></header><main class="w-full pt-[72px] bg-neutral-25 min-h-[calc(100vh-72px)]"><div class="flex flex-col w-full">
+<!-- Encabezado de página -->
+<section class="w-full px-gutter pt-space-xl pb-space-lg max-w-[1280px] mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="space-y-space-xs max-w-2xl">
+<span class="font-overline text-overline uppercase tracking-wider text-primary-700">Explorar catálogo</span>
+<h1 class="font-h1 text-h1 text-neutral-900 tracking-tight">Encuentra tu cancha</h1>
+<p class="font-body-lg text-body-lg text-neutral-600">Reserva canchas de fútbol, pádel, tenis y básquet por hora en tiempo real.</p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto bg-surface-container px-space-md py-space-xs rounded-full">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-500 animate-pulse"></span>
+<span class="font-body-sm text-body-sm text-neutral-700 font-medium tabular-nums">8 canchas disponibles hoy</span>
+</div>
+</div>
+</section>
+<!-- Barra de búsqueda y filtros Sticky (64px) -->
+<div class="sticky top-[72px] z-40 w-full bg-neutral-25/95 backdrop-blur-md shadow-sm">
+<div class="max-w-[1280px] mx-auto px-gutter h-16 flex items-center justify-between gap-space-md overflow-x-auto no-scrollbar">
+<!-- Input de búsqueda -->
+<div class="relative min-w-[280px] md:w-80 shrink-0">
+<label class="sr-only" for="buscar-canchas">Buscar canchas</label>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-neutral-500">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-11 pl-9 pr-4 rounded-lg bg-neutral-0 text-body-sm text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 shadow-sm" id="buscar-canchas" placeholder="Buscar por nombre, barrio o club..." type="text"/>
+</div>
+<!-- Chips de Deportes -->
+<div aria-label="Filtrar por deporte" class="flex items-center gap-space-xs shrink-0" role="tablist">
+<!-- Todos (Activo) -->
+<button class="h-9 px-4 rounded-full bg-primary-50 text-primary-700 font-body-sm font-semibold flex items-center gap-1.5 transition-colors shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Todos</span>
+</button>
+<!-- Fútbol -->
+<button class="h-9 px-4 rounded-full bg-neutral-0 text-neutral-700 hover:bg-neutral-50 font-body-sm font-medium flex items-center gap-2 transition-colors shadow-xs" type="button">
+<span class="w-2 h-2 rounded-full bg-sport-futbol"></span>
+<span>Fútbol</span>
+</button>
+<!-- Pádel -->
+<button class="h-9 px-4 rounded-full bg-neutral-0 text-neutral-700 hover:bg-neutral-50 font-body-sm font-medium flex items-center gap-2 transition-colors shadow-xs" type="button">
+<span class="w-2 h-2 rounded-full bg-sport-padel"></span>
+<span>Pádel</span>
+</button>
+<!-- Básquet -->
+<button class="h-9 px-4 rounded-full bg-neutral-0 text-neutral-700 hover:bg-neutral-50 font-body-sm font-medium flex items-center gap-2 transition-colors shadow-xs" type="button">
+<span class="w-2 h-2 rounded-full bg-sport-basquet"></span>
+<span>Básquet</span>
+</button>
+<!-- Tenis -->
+<button class="h-9 px-4 rounded-full bg-neutral-0 text-neutral-700 hover:bg-neutral-50 font-body-sm font-medium flex items-center gap-2 transition-colors shadow-xs" type="button">
+<span class="w-2 h-2 rounded-full bg-sport-tenis"></span>
+<span>Tenis</span>
+</button>
+<!-- Vóley -->
+<button class="h-9 px-4 rounded-full bg-neutral-0 text-neutral-700 hover:bg-neutral-50 font-body-sm font-medium flex items-center gap-2 transition-colors shadow-xs" type="button">
+<span class="w-2 h-2 rounded-full bg-sport-voley"></span>
+<span>Vóley</span>
+</button>
+</div>
+<!-- Filtros adicionales & Características -->
+<div class="hidden lg:flex items-center gap-space-xs shrink-0">
+<!-- Dropdown Zona -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-full bg-neutral-0 text-neutral-700 font-body-sm font-medium shadow-xs focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer">
+<option value="">Zona (Todas)</option>
+<option value="norte">Zona Norte</option>
+<option value="centro">Zona Centro</option>
+<option value="sur">Zona Sur</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[18px] text-neutral-500 pointer-events-none">expand_more</span>
+</div>
+<!-- Dropdown Superficie -->
+<div class="relative">
+<select class="appearance-none h-9 pl-3 pr-8 rounded-full bg-neutral-0 text-neutral-700 font-body-sm font-medium shadow-xs focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer">
+<option value="">Superficie</option>
+<option value="sintetico">Césped sintético</option>
+<option value="duela">Duela / Parquet</option>
+<option value="arcilla">Arcilla batida</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[18px] text-neutral-500 pointer-events-none">expand_more</span>
+</div>
+<!-- Chips toggle: Techada -->
+<button class="h-9 px-3.5 rounded-full bg-neutral-0 text-neutral-700 hover:bg-neutral-50 font-body-sm font-medium flex items-center gap-1.5 shadow-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">roofing</span>
+<span>Techada</span>
+</button>
+<!-- Chips toggle: Iluminación -->
+<button class="h-9 px-3.5 rounded-full bg-neutral-0 text-neutral-700 hover:bg-neutral-50 font-body-sm font-medium flex items-center gap-1.5 shadow-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">lightbulb</span>
+<span>Iluminación</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Rejilla Principal de Tarjetas (Catálogo 3 Columnas) -->
+<main class="w-full max-w-[1280px] mx-auto px-gutter py-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- TARJETA 1: Cancha La Bombonera 1 -->
+<article class="bg-neutral-0 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between">
+<div>
+<!-- Imagen 16:10 con overlay degradado -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
+<img class="w-full h-full object-cover" data-alt="Modern outdoor soccer turf field illuminated under twilight skies with vivid artificial green turf, crisp white line markings, surrounded by perimeter netting and contemporary sports facilities in Latin America." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByTfs0TlpHJMv6P3-cuFbFmTt7Nj5Ocsd2LkLczcxoZffZwfLOS1xKORXcFlSg597yDc5JiQQcGkj4lp22sL5aICKQzvbvAelvajQTU5tDODpS0SLgunVzucBp_UL7FHdZp0o66FL9czLMO_v_Evff3wN8RuC7nITzsWoOIBO3BXosNnHrILOp6z7gVlbOHgc-nkGwoyHWVX_84iibvjcwwx0cGVGSuFNnhSbBzeXoxmV20iPw9eYK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent"></div>
+<!-- Badge superior de estado -->
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-label text-label font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Disponible
+              </span>
+</div>
+<!-- Chip de deporte en esquina inferior izquierda -->
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-neutral-0 font-caption text-caption font-semibold">
+<span class="w-2 h-2 rounded-full bg-sport-futbol"></span>
+                Fútbol 7
+              </span>
+</div>
+</div>
+<!-- Contenido de tarjeta -->
+<div class="p-5 flex flex-col gap-3">
+<div>
+<h3 class="font-h3 text-h3 text-neutral-900 tracking-tight">Cancha La Bombonera 1</h3>
+<p class="flex items-center gap-1 text-neutral-600 font-body-sm text-body-sm mt-1">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">location_on</span>
+                Zona Norte · Sede Central
+              </p>
+</div>
+<!-- Tags de características -->
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Césped sintético</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Luz LED</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Techada</span>
+</div>
+<!-- Reseñas -->
+<div class="flex items-center gap-1.5 text-neutral-700 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-sport-basquet" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-neutral-900 tabular-nums">4.9</span>
+<span class="text-neutral-500 tabular-nums">(48 reseñas)</span>
+</div>
+</div>
+</div>
+<!-- Footer de Tarjeta: Precio y CTA -->
+<div class="px-5 pb-5 pt-2 flex flex-col gap-3">
+<div class="flex items-baseline justify-between">
+<span class="text-neutral-500 font-caption text-caption">Precio por turno</span>
+<div class="text-right">
+<span class="font-h3 text-h3 text-neutral-900 font-bold tabular-nums">$14.000</span>
+<span class="text-neutral-600 font-body-sm text-body-sm"> / hora</span>
+</div>
+</div>
+<!-- Botón primario: verde #00B86B con texto oscuro carbón #0D1211, h 44px, r 12px -->
+<button class="w-full h-11 px-5 rounded-xl bg-primary-500 hover:bg-primary-600 text-neutral-950 font-body text-body font-semibold flex items-center justify-center gap-2 transition-colors shadow-xs" type="button">
+<span>Reservar turno</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+</div>
+</article>
+<!-- TARJETA 2: Court Central Pádel A -->
+<article class="bg-neutral-0 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between">
+<div>
+<!-- Imagen 16:10 -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
+<img class="w-full h-full object-cover" data-alt="Indoor padel tennis court with pristine panoramic crystal walls, vibrant blue synthetic turf surface, bright overhead LED linear lighting, and professional mesh net inside a modern sports center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS3UBsg7cz4WUolsehUGW56m1Au8OeXJFLcOd15jZXRiKJ65FtgN_dqvVdhsY3S4c97ORyE7mjW0v2gURpoaCqFXuYYYDRaclSu_ABi3kF6Q04FxsFSBzFSdU045c0q7QYEybOhuPNZ7HUWv82hzCrC8QEoRfJJkZxc_S61czqTsGFfRXQyRR9I_WGfwdaN2M2LMVwTpa7BOaszPpL4BoqGY9fECuuV5a_8f6OpDzIgOpPqJYgdV4o"/>
+<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-label text-label font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Disponible
+              </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-neutral-0 font-caption text-caption font-semibold">
+<span class="w-2 h-2 rounded-full bg-sport-padel"></span>
+                Pádel
+              </span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div>
+<h3 class="font-h3 text-h3 text-neutral-900 tracking-tight">Court Central Pádel A</h3>
+<p class="flex items-center gap-1 text-neutral-600 font-body-sm text-body-sm mt-1">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">location_on</span>
+                Zona Norte · Club Los Pinos
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Cristal panorámico</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Techada</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Luz LED</span>
+</div>
+<div class="flex items-center gap-1.5 text-neutral-700 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-sport-basquet" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-neutral-900 tabular-nums">4.8</span>
+<span class="text-neutral-500 tabular-nums">(42 reseñas)</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex flex-col gap-3">
+<div class="flex items-baseline justify-between">
+<span class="text-neutral-500 font-caption text-caption">Precio por turno</span>
+<div class="text-right">
+<span class="font-h3 text-h3 text-neutral-900 font-bold tabular-nums">$10.000</span>
+<span class="text-neutral-600 font-body-sm text-body-sm"> / hora</span>
+</div>
+</div>
+<button class="w-full h-11 px-5 rounded-xl bg-primary-500 hover:bg-primary-600 text-neutral-950 font-body text-body font-semibold flex items-center justify-center gap-2 transition-colors shadow-xs" type="button">
+<span>Reservar turno</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+</div>
+</article>
+<!-- TARJETA 3: Estadio Techado Básquet -->
+<article class="bg-neutral-0 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between">
+<div>
+<!-- Imagen 16:10 -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
+<img class="w-full h-full object-cover" data-alt="Polished hardwood basketball indoor court with official red and black court court markings, clear acrylic backboards, warm arena lighting and grandstand seating in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7brOEDPbfh04t27bFcnpc3O9-WVKnrRXuWR3mb18mIM4c6S00GezooQ6c4KQWZV7KO1RpNYB8P5rCn2vjE2iwSlS-42VK5UN15u5JvIvzDsgV8mTw2VTgfSO55stWW0EuPbjf7mfxrSS37QcL6MxjoAy3MTBVXQy-fDduyXC6iG3mZa1WskFtseZQaHLZcMCM7L09yvAHiXX08MXJRnKTFAHwl_O3Irjypucl6Zl9-TvRD9l_a9b_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-label text-label font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Disponible
+              </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-neutral-0 font-caption text-caption font-semibold">
+<span class="w-2 h-2 rounded-full bg-sport-basquet"></span>
+                Básquet
+              </span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div>
+<h3 class="font-h3 text-h3 text-neutral-900 tracking-tight">Estadio Techado Básquet</h3>
+<p class="flex items-center gap-1 text-neutral-600 font-body-sm text-body-sm mt-1">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">location_on</span>
+                Zona Centro · Polideportivo Sur
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Parquet profesional</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Techada</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Vestuarios</span>
+</div>
+<div class="flex items-center gap-1.5 text-neutral-700 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-sport-basquet" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-neutral-900 tabular-nums">4.7</span>
+<span class="text-neutral-500 tabular-nums">(31 reseñas)</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex flex-col gap-3">
+<div class="flex items-baseline justify-between">
+<span class="text-neutral-500 font-caption text-caption">Precio por turno</span>
+<div class="text-right">
+<span class="font-h3 text-h3 text-neutral-900 font-bold tabular-nums">$12.000</span>
+<span class="text-neutral-600 font-body-sm text-body-sm"> / hora</span>
+</div>
+</div>
+<button class="w-full h-11 px-5 rounded-xl bg-primary-500 hover:bg-primary-600 text-neutral-950 font-body text-body font-semibold flex items-center justify-center gap-2 transition-colors shadow-xs" type="button">
+<span>Reservar turno</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+</div>
+</article>
+<!-- TARJETA 4: Cancha Tenis Arcilla 2 -->
+<article class="bg-neutral-0 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between">
+<div>
+<!-- Imagen 16:10 -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
+<img class="w-full h-full object-cover" data-alt="Traditional red clay tennis court with crisp white chalk boundary lines, dark green wind screens along the perimeter fencing, bathed in soft afternoon sun." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz3eGusqTupLd-Y7QpQk8lSShZVPBb1RiYjaRXHGFSrILhhfi6WRaumheqGCffDxY_7R0JnSHeEHB5xGTwk0Ivzhb-Awm9chq14wtyFS8H7UKHgzBLHQ8YMbpDqxWCBmK3AOcFK_NOUJTZt2VYjtWgQKr5jpJzvuqnineaC5aNYVMDA7u8GMDBer0QT_7TFKn2UM3f9UEnuWTYqWf579jNRpAi-4uW5Ym5TVBROs2RefWj9ZLKnhIx"/>
+<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-label text-label font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Disponible
+              </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-neutral-0 font-caption text-caption font-semibold">
+<span class="w-2 h-2 rounded-full bg-sport-tenis"></span>
+                Tenis
+              </span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div>
+<h3 class="font-h3 text-h3 text-neutral-900 tracking-tight">Cancha Tenis Arcilla 2</h3>
+<p class="flex items-center gap-1 text-neutral-600 font-body-sm text-body-sm mt-1">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">location_on</span>
+                Zona Sur · Club Campestre
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Arcilla batida</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Al aire libre</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Iluminación</span>
+</div>
+<div class="flex items-center gap-1.5 text-neutral-700 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-sport-basquet" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-neutral-900 tabular-nums">4.9</span>
+<span class="text-neutral-500 tabular-nums">(54 reseñas)</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex flex-col gap-3">
+<div class="flex items-baseline justify-between">
+<span class="text-neutral-500 font-caption text-caption">Precio por turno</span>
+<div class="text-right">
+<span class="font-h3 text-h3 text-neutral-900 font-bold tabular-nums">$11.000</span>
+<span class="text-neutral-600 font-body-sm text-body-sm"> / hora</span>
+</div>
+</div>
+<button class="w-full h-11 px-5 rounded-xl bg-primary-500 hover:bg-primary-600 text-neutral-950 font-body text-body font-semibold flex items-center justify-center gap-2 transition-colors shadow-xs" type="button">
+<span>Reservar turno</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+</div>
+</article>
+<!-- TARJETA 5: Cancha Vóley Playa Arena -->
+<article class="bg-neutral-0 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between">
+<div>
+<!-- Imagen 16:10 -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
+<img class="w-full h-full object-cover" data-alt="Outdoor beach volleyball court filled with fine golden silica sand, tall competition net with yellow antennas, enclosed by pine trees in an urban recreation park." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFRcdCghFEAdTHgHxaLgy1MptEbU5U9SwrdYH03P7xBUY6l3Tck2b_JE4T7U0MjqDq0kRSaZeIw2gzxs3cOCloYH8w0-xXg8O8NEk8KwdAklP3lVCd6hkmba4z2iuKFzGUwndRzKvgYPjFPyUCir1OlVF5DgNCzHoDZHQEPFUtZQ-l7DVBFdXCXppsqSxSd1Z7MfoLL4EMak8iJrrWH1uEGTwXXOXfem3ZX0WfXqR71wsjm8xrvgRj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-label text-label font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Disponible
+              </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-neutral-0 font-caption text-caption font-semibold">
+<span class="w-2 h-2 rounded-full bg-sport-voley"></span>
+                Vóley
+              </span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div>
+<h3 class="font-h3 text-h3 text-neutral-900 tracking-tight">Cancha Vóley Playa Arena</h3>
+<p class="flex items-center gap-1 text-neutral-600 font-body-sm text-body-sm mt-1">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">location_on</span>
+                Zona Centro · Parque Metropolitano
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Arena sílice</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Al aire libre</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Duchas</span>
+</div>
+<div class="flex items-center gap-1.5 text-neutral-700 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-sport-basquet" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-neutral-900 tabular-nums">4.6</span>
+<span class="text-neutral-500 tabular-nums">(19 reseñas)</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex flex-col gap-3">
+<div class="flex items-baseline justify-between">
+<span class="text-neutral-500 font-caption text-caption">Precio por turno</span>
+<div class="text-right">
+<span class="font-h3 text-h3 text-neutral-900 font-bold tabular-nums">$9.000</span>
+<span class="text-neutral-600 font-body-sm text-body-sm"> / hora</span>
+</div>
+</div>
+<button class="w-full h-11 px-5 rounded-xl bg-primary-500 hover:bg-primary-600 text-neutral-950 font-body text-body font-semibold flex items-center justify-center gap-2 transition-colors shadow-xs" type="button">
+<span>Reservar turno</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+</div>
+</article>
+<!-- TARJETA 6: Cancha Fútbol 5 Pro -->
+<article class="bg-neutral-0 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between">
+<div>
+<!-- Imagen 16:10 -->
+<div class="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
+<img class="w-full h-full object-cover" data-alt="Enclosed synthetic 5-a-side soccer field with intense night floodlights, rubber infill synthetic turf, robust perimeter rebound boards, and clear goals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqdSOruPMGiTB4iTM9cAT-LWibAVBRklwe0Z6uURB_9yd2vKnhIugfSzAUyaGeehPq5STXFKXo9ybGpF7BAujn9VaYaiwE37TxHjyZ-i60LINZo71XJmtpRea6QwH8F5aNNiTdaKujxY6SJsLmXN0-5U6Eu3_I8TNlG5Ue1V4TQ-zsjIffaYjaepod_jM9TCkMgC-znkDJ4UpBSiGYyq9ZSFVmUeYrD-y_LqR6jZ1MqDLsmvU4TfP_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-label text-label font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Disponible
+              </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md text-neutral-0 font-caption text-caption font-semibold">
+<span class="w-2 h-2 rounded-full bg-sport-futbol"></span>
+                Fútbol 5
+              </span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div>
+<h3 class="font-h3 text-h3 text-neutral-900 tracking-tight">Cancha Fútbol 5 Pro</h3>
+<p class="flex items-center gap-1 text-neutral-600 font-body-sm text-body-sm mt-1">
+<span class="material-symbols-outlined text-[16px] text-neutral-500">location_on</span>
+                Zona Sur · Arena Gol
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Iluminación LED</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Césped premium</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-caption text-caption">Gradas</span>
+</div>
+<div class="flex items-center gap-1.5 text-neutral-700 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-sport-basquet" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-neutral-900 tabular-nums">4.8</span>
+<span class="text-neutral-500 tabular-nums">(63 reseñas)</span>
+</div>
+</div>
+</div>
+<div class="px-5 pb-5 pt-2 flex flex-col gap-3">
+<div class="flex items-baseline justify-between">
+<span class="text-neutral-500 font-caption text-caption">Precio por turno</span>
+<div class="text-right">
+<span class="font-h3 text-h3 text-neutral-900 font-bold tabular-nums">$12.000</span>
+<span class="text-neutral-600 font-body-sm text-body-sm"> / hora</span>
+</div>
+</div>
+<button class="w-full h-11 px-5 rounded-xl bg-primary-500 hover:bg-primary-600 text-neutral-950 font-body text-body font-semibold flex items-center justify-center gap-2 transition-colors shadow-xs" type="button">
+<span>Reservar turno</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+</div>
+</article>
+</div>
+</main>
+<!-- Paginación Accesible al pie -->
+<nav aria-label="Navegación de páginas" class="w-full max-w-[1280px] mx-auto px-gutter pb-space-2xl pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="text-neutral-600 font-body-sm text-body-sm">
+      Mostrando <span class="font-semibold text-neutral-900 tabular-nums">1</span> a <span class="font-semibold text-neutral-900 tabular-nums">6</span> de <span class="font-semibold text-neutral-900 tabular-nums">8</span> canchas encontradas
+    </div>
+<div class="flex items-center gap-space-xs">
+<!-- Botón Anterior -->
+<button aria-label="Página anterior" class="h-10 px-3.5 rounded-lg bg-neutral-0 text-neutral-400 cursor-not-allowed font-body-sm font-medium flex items-center gap-1 shadow-xs" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+<span class="hidden sm:inline">Anterior</span>
+</button>
+<!-- Números de Página -->
+<button aria-current="page" class="h-10 w-10 rounded-lg bg-primary-500 text-neutral-950 font-body-sm font-semibold flex items-center justify-center shadow-xs" type="button">
+        1
+      </button>
+<button class="h-10 w-10 rounded-lg bg-neutral-0 hover:bg-neutral-50 text-neutral-700 font-body-sm font-medium flex items-center justify-center transition-colors shadow-xs" type="button">
+        2
+      </button>
+<!-- Botón Siguiente -->
+<button aria-label="Página siguiente" class="h-10 px-3.5 rounded-lg bg-neutral-0 hover:bg-neutral-50 text-neutral-700 font-body-sm font-medium flex items-center gap-1 transition-colors shadow-xs" type="button">
+<span class="hidden sm:inline">Siguiente</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</nav>
+</div>
+<script>
+  // Micro-interacción: selección interactiva básica de chips de deportes
+  document.querySelectorAll('[role="tablist"] button').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('[role="tablist"] button').forEach(btn => {
+        btn.classList.remove('bg-primary-50', 'text-primary-700', 'font-semibold');
+        btn.classList.add('bg-neutral-0', 'text-neutral-700', 'font-medium');
+        const check = btn.querySelector('.material-symbols-outlined');
+        if (check && check.textContent.trim() === 'check') {
+          check.remove();
+        }
+      });
+      button.classList.remove('bg-neutral-0', 'text-neutral-700', 'font-medium');
+      button.classList.add('bg-primary-50', 'text-primary-700', 'font-semibold');
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-low text-on-surface-variant py-space-2xl shadow-[0_-1px_8px_rgba(0,0,0,0.02)]"><div class="w-full px-gutter flex flex-col md:flex-row items-center justify-between gap-space-xl"><div class="flex flex-col items-center md:items-start gap-space-xs"><div class="flex items-center gap-space-sm"><img alt="Logo Sistema Canchas" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XMaqn-NJDZevzVmfadkhnuhjs7VX1p5MIfPUXD9_XqOF7DDVDjccwrVc12DaAkK60sYCtvIvUdqWOSjomNTiTUM99FdoDZykNSYB2WOvXzBHE55H_70IOueQQIaHPYpqbfmfPoPXALWZAGfhAY2kWJ8vMfQYTMSFHXick-sZQj180_iwKEgBPcJ8uaxKVslxnP7kqLVmo5RugUWfvTo64xw7rRsQMn-aMKI8gWvKt2py8AOFGrIXQIAbw"/><span class="font-h4 text-h4 text-neutral-900">Sistema Canchas</span></div><p class="font-caption text-caption text-neutral-500">© 2024 Sistema Canchas. Gestión integral y reserva de espacios deportivos.</p></div><div class="flex flex-wrap items-center justify-center gap-space-lg text-on-surface-variant"><a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Fútbol</a><a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Pádel</a><a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Básquetbol</a><a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Tenis</a><a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Soporte y Ayuda</a><a class="font-body-sm text-body-sm hover:text-primary transition-colors" href="#">Términos y Privacidad</a></div></div></footer></body></html>

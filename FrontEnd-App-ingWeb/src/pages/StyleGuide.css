@@ -1,0 +1,433 @@
+/* ==========================================================================
+   Style guide — layout de la página de catálogo de componentes.
+   Los valores vienen de tokens; aquí solo hay estructura y rejillas.
+   ========================================================================== */
+
+.sg {
+  min-height: 100svh;
+  background-color: var(--bg-canvas);
+}
+
+.sg__top {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  height: var(--nav-height-desktop);
+  padding-inline: var(--sp-7);
+  background-color: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sg__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.sg__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-md);
+  background-color: var(--brand);
+  color: var(--text-on-primary);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.03em;
+}
+
+.sg__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sg__brand-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-snug);
+}
+
+.sg__brand-sub {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.sg__layout {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  align-items: start;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+}
+
+.sg__side {
+  position: sticky;
+  top: var(--nav-height-desktop);
+  height: calc(100svh - var(--nav-height-desktop));
+  overflow-y: auto;
+  padding: var(--sp-7) var(--sp-4) var(--sp-7) var(--sp-7);
+  border-right: 1px solid var(--border-subtle);
+}
+
+.sg__side-title {
+  padding: 0 var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+
+.sg__side-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sg__side-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  height: 40px;
+  padding-inline: var(--sp-3);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.sg__side-link:hover {
+  background-color: var(--action-ghost-hover);
+  color: var(--text-primary);
+}
+
+.sg__side-link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sg__main {
+  min-width: 0;
+  padding: var(--sp-8) var(--sp-7) var(--sp-13);
+}
+
+.sg__section + .sg__section {
+  margin-top: var(--sp-11);
+  padding-top: var(--sp-9);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sg__section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+}
+
+.sg__section-head p {
+  max-width: var(--container-prose);
+  color: var(--text-secondary);
+  font-size: var(--fs-body-sm);
+}
+
+.sg__demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-6);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+}
+
+.sg__demo--column {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sg__demo-label {
+  margin-bottom: var(--sp-1);
+}
+
+/* Rejillas del catálogo */
+.sg__grid-2,
+.sg__grid-3,
+.sg__grid-4 {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.sg__grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.sg__grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.sg__grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Muestras de color */
+.sg__swatch {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background-color: var(--bg-surface);
+}
+
+.sg__swatch-chip {
+  height: 56px;
+  background-color: var(--swatch);
+  border-bottom: 1px solid rgb(13 18 17 / 8%);
+}
+
+.sg__swatch-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--sp-3);
+}
+
+.sg__swatch-name {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.sg__swatch-hex {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* Escala tipográfica */
+.sg__type-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: baseline;
+  padding-block: var(--sp-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sg__type-row:last-child {
+  border-bottom: 0;
+}
+
+.sg__type-token {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+}
+
+/* Iconos */
+.sg__icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: var(--sp-3);
+}
+
+.sg__icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-md);
+  background-color: var(--bg-surface);
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--text-tertiary);
+  text-align: center;
+  word-break: break-word;
+}
+
+/* Escala de espaciado y radios */
+.sg__meter {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding-block: var(--sp-2);
+}
+
+.sg__meter-bar {
+  height: 20px;
+  border-radius: var(--r-xs);
+  background-color: var(--brand);
+}
+
+.sg__meter-key {
+  width: 96px;
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+}
+
+.sg__radius-sample {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 56px;
+  background-color: var(--brand-surface);
+  border: 1px solid var(--brand);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  color: var(--brand-ink);
+}
+
+/* Tabla de días */
+.sg__days {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: var(--sp-2);
+}
+
+.sg__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  height: 68px;
+  padding-top: var(--sp-3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  background-color: var(--bg-surface);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.sg__day:hover {
+  border-color: var(--border-strong);
+  background-color: var(--bg-sunken);
+}
+
+.sg__day--on {
+  background-color: var(--action-primary-bg);
+  border-color: var(--action-primary-bg);
+  color: var(--text-on-primary);
+}
+
+.sg__day--full {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sg__day-nombre {
+  font-size: var(--fs-label);
+  color: inherit;
+  opacity: 0.75;
+}
+
+.sg__day-numero {
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.sg__day-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--r-full);
+  background-color: var(--brand);
+}
+
+.sg__day--on .sg__day-dot {
+  background-color: var(--text-on-primary);
+}
+
+/* Resumen de reserva */
+.sg__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  background-color: var(--bg-sunken);
+  font-size: var(--fs-body-sm);
+}
+
+.sg__summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  color: var(--text-secondary);
+}
+
+.sg__summary-row strong {
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Panel lateral de formulario */
+.sg__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  max-width: 420px;
+}
+
+.sg__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+}
+
+.sg__footer {
+  padding: var(--sp-8) var(--sp-7);
+  margin-top: var(--sp-11);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1023px) {
+  .sg__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sg__side {
+    display: none;
+  }
+
+  .sg__top,
+  .sg__main {
+    padding-inline: var(--sp-5);
+  }
+
+  .sg__main {
+    padding-top: var(--sp-6);
+  }
+
+  .sg__pair {
+    grid-template-columns: 1fr;
+  }
+
+  .sg__type-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-1);
+  }
+}

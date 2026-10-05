@@ -1,0 +1,158 @@
+{
+  "$schema": "./stitch-theme.schema.md",
+  "name": "Sistema Canchas — Energía",
+  "version": "1.0.0",
+  "description": "Tema exportable del sistema de diseño. Los valores mapean 1:1 a los campos que Google Stitch expone en su panel de Theme, para transcribirlos una sola vez y mantener consistencia entre todas las pantallas generadas.",
+
+  "platform": {
+    "target": "web",
+    "device": "desktop",
+    "frameWidth": 1440,
+    "mobileFrameWidth": 390,
+    "columns": 12,
+    "gutter": 32,
+    "margin": 80,
+    "spacing": "base-4"
+  },
+
+  "color": {
+    "mode": "light",
+    "primary": "#00B86B",
+    "primaryHover": "#009A5A",
+    "primaryPressed": "#027A49",
+    "primarySurface": "#EAFBF3",
+    "primarySurfaceHover": "#CFF5E2",
+    "primaryBorder": "#A3ECC9",
+    "onPrimary": "#0D1211",
+    "accent": "#AEDA2E",
+    "accentSurface": "#0D1211",
+    "background": "#FBFCFB",
+    "surface": "#FFFFFF",
+    "surfaceMuted": "#F5F7F6",
+    "surfaceInverse": "#0D1211",
+    "border": "#E1E6E4",
+    "borderMuted": "#EDF0EF",
+    "textPrimary": "#171D1B",
+    "textSecondary": "#55605D",
+    "textMuted": "#6E7A77",
+    "textInverse": "#FFFFFF",
+    "error": "#C93A3F",
+    "errorSurface": "#FDECEC",
+    "success": "#027A49",
+    "successSurface": "#EAFBF3",
+    "warning": "#B45309",
+    "warningSurface": "#FEF4E2",
+    "info": "#1D4ED8",
+    "infoSurface": "#EAF1FE",
+    "sports": {
+      "futbol": "#00B86B",
+      "voley": "#2563EB",
+      "basquet": "#F5A524",
+      "tenis": "#8B5CF6",
+      "padel": "#14B8A6"
+    }
+  },
+
+  "typography": {
+    "fontFamily": "Inter",
+    "fontFamilyDisplay": "Sora",
+    "fontFamilyMono": "JetBrains Mono",
+    "baseFontSize": 16,
+    "baseLineHeight": 1.5,
+    "scale": {
+      "display1": { "size": 48, "lineHeight": 52, "weight": 800, "letterSpacing": -0.022 },
+      "display2": { "size": 40, "lineHeight": 44, "weight": 700, "letterSpacing": -0.022 },
+      "h1": { "size": 32, "lineHeight": 38, "weight": 700, "letterSpacing": -0.014 },
+      "h2": { "size": 24, "lineHeight": 30, "weight": 700, "letterSpacing": -0.014 },
+      "h3": { "size": 20, "lineHeight": 26, "weight": 600, "letterSpacing": -0.01 },
+      "h4": { "size": 17, "lineHeight": 24, "weight": 600, "letterSpacing": 0 },
+      "body": { "size": 16, "lineHeight": 24, "weight": 400, "letterSpacing": 0 },
+      "bodySm": { "size": 14, "lineHeight": 20, "weight": 400, "letterSpacing": 0 },
+      "caption": { "size": 13, "lineHeight": 18, "weight": 400, "letterSpacing": 0 },
+      "label": { "size": 12, "lineHeight": 16, "weight": 600, "letterSpacing": 0.06 },
+      "overline": { "size": 11, "lineHeight": 14, "weight": 700, "letterSpacing": 0.09 }
+    }
+  },
+
+  "shape": {
+    "cornerRadiusSmall": 8,
+    "cornerRadiusMedium": 12,
+    "cornerRadiusLarge": 16,
+    "cornerRadiusXLarge": 28,
+    "cornerRadiusPill": 999,
+    "borderWidth": 1
+  },
+
+  "elevation": {
+    "xs": "0 1px 2px rgba(13, 18, 17, 0.06)",
+    "sm": "0 1px 3px rgba(13, 18, 17, 0.08), 0 1px 2px rgba(13, 18, 17, 0.04)",
+    "md": "0 4px 12px rgba(13, 18, 17, 0.08), 0 2px 4px rgba(13, 18, 17, 0.04)",
+    "lg": "0 12px 28px rgba(13, 18, 17, 0.10), 0 4px 8px rgba(13, 18, 17, 0.04)",
+    "xl": "0 24px 48px rgba(13, 18, 17, 0.12)",
+    "note": "Sombras con tinte verde. Nunca negro puro ni gris."
+  },
+
+  "components": {
+    "buttonRadius": 12,
+    "buttonHeight": 44,
+    "buttonHeightLarge": 52,
+    "buttonPaddingX": 20,
+    "buttonFontSize": 15,
+    "inputRadius": 8,
+    "inputHeight": 48,
+    "inputBorderColor": "#E1E6E4",
+    "cardRadius": 16,
+    "cardBorderColor": "#EDF0EF",
+    "cardPadding": 20,
+    "tableRowHeight": 56,
+    "tableHeaderHeight": 44,
+    "slotHeight": 44,
+    "slotRadius": 8,
+    "chipRadius": 999,
+    "chipHeight": 36,
+    "badgeRadius": 999,
+    "badgeHeight": 24,
+    "navHeight": 72,
+    "sidebarWidth": 248,
+    "modalRadius": 16,
+    "modalWidth": 480,
+    "focusRingWidth": 3,
+    "focusRingColor": "rgba(0, 184, 107, 0.30)"
+  },
+
+  "motion": {
+    "durationFast": 140,
+    "durationBase": 200,
+    "durationSlow": 320,
+    "easingStandard": "cubic-bezier(0.22, 1, 0.36, 1)"
+  },
+
+  "iconography": {
+    "family": "Material Symbols Rounded",
+    "sizeSmall": 20,
+    "sizeMedium": 24,
+    "sizeStateEmpty": 40,
+    "weight": 400,
+    "note": "Un solo set en todo el producto. Prohibido usar emoji como ícono."
+  },
+
+  "imagery": {
+    "aspectRatio": "16:10",
+    "aspectRatioMobile": "4:3",
+    "treatment": "Fotografía real de canchas, con overlay degradado oscuro al 55% en la parte inferior para garantizar legibilidad del texto.",
+    "avoid": "Ilustraciones 3D genéricas, stock con personas sonriendo al cámara, fondos blancos sucios"
+  },
+
+  "contentLanguage": "es",
+
+  "guardrails": [
+    "Botón primario verde #00B86B con texto carbón #0D1211, nunca texto blanco",
+    "No usar violeta ni morado en ningún elemento",
+    "No usar emoji como iconos de interfaz",
+    "Un solo botón primario por pantalla",
+    "Etiquetas de campo siempre visibles, nunca solo placeholder",
+    "El estado nunca se comunica solo con color: siempre badge con texto",
+    "Objetivos táctiles de 44x44 px mínimo",
+    "Usar datos reales del dominio (canchas, deportes, zonas), nunca Lorem ipsum"
+  ]
+}

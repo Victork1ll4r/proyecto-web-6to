@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-surface-variant":"#3d4a3f","surface-container":"#e8f0e6","outline":"#6c7b6e","surface":"#f4fcf2","neutral-700":"#3B4442","on-secondary-container":"#5d6664","secondary-fixed":"#dbe5e1","primary-900":"#054D31","on-secondary-fixed":"#151d1c","inverse-on-surface":"#ebf3e9","inverse-primary":"#4ce08e","surface-dim":"#d4dcd3","neutral-400":"#9BA5A2","tertiary-container":"#ff757a","on-primary-fixed":"#00210f","on-error":"#ffffff","on-error-container":"#93000a","surface-variant":"#dde5db","neutral-200":"#E1E6E4","neutral-50":"#F5F7F6","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#bfc9c6","sport-padel":"#14B8A6","background":"#f4fcf2","on-secondary-fixed-variant":"#404947","primary-500":"#00B86B","tertiary-fixed-dim":"#ffb3b3","on-tertiary-fixed-variant":"#881c28","surface-bright":"#f4fcf2","inverse-surface":"#2b322c","surface-container-highest":"#dde5db","error-container":"#ffdad6","neutral-900":"#171D1B","sport-futbol":"#00B86B","sport-basquet":"#F5A524","primary":"#006d3d","on-surface":"#161d18","primary-fixed-dim":"#4ce08e","neutral-0":"#FFFFFF","neutral-100":"#EDF0EF","secondary-container":"#dbe5e1","neutral-500":"#6E7A77","neutral-300":"#CBD2D0","error":"#ba1a1a","on-tertiary-fixed":"#400009","sport-voley":"#2563EB","on-primary-container":"#004122","primary-600":"#009A5A","accent-500":"#C8EE4B","surface-container-low":"#eef6ec","primary-fixed":"#6cfda8","primary-700":"#027A49","on-secondary":"#ffffff","primary-300":"#6FDCAC","on-background":"#161d18","neutral-25":"#FBFCFB","surface-tint":"#006d3d","secondary":"#57605e","on-primary-fixed-variant":"#00522d","on-primary":"#ffffff","sport-tenis":"#8B5CF6","primary-container":"#00b86b","primary-50":"#EAFBF3","primary-800":"#04603A","primary-100":"#CFF5E2","outline-variant":"#bbcabc","on-tertiary-container":"#72091a","surface-container-high":"#e2eae1","tertiary-fixed":"#ffdad9","primary-200":"#A3ECC9","on-tertiary":"#ffffff","neutral-950":"#0D1211","tertiary":"#a9353d","neutral-600":"#55605D"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"2rem","space-md":"1rem","space-sm":"0.5rem","space-lg":"1.5rem","space-xl":"2rem","space-2xl":"3rem","margin":"2rem","space-xs":"0.25rem"},"fontFamily":{"body-sm":["Inter"],"label":["Inter"],"body-lg":["Inter"],"display-1":["Sora"],"caption":["Inter"],"h4":["Inter"],"display-2":["Sora"],"h2":["Sora"],"h3":["Sora"],"body":["Inter"],"h1":["Sora"],"overline":["Inter"]},"fontSize":{"body-sm":["14px",{"lineHeight":"20px","letterSpacing":"0","fontWeight":"400"}],"label":["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"600"}],"body-lg":["17px",{"lineHeight":"28px","letterSpacing":"0","fontWeight":"400"}],"display-1":["48px",{"lineHeight":"52px","letterSpacing":"-0.022em","fontWeight":"800"}],"caption":["13px",{"lineHeight":"18px","letterSpacing":"0","fontWeight":"400"}],"h4":["17px",{"lineHeight":"24px","letterSpacing":"0","fontWeight":"600"}],"display-2":["40px",{"lineHeight":"44px","letterSpacing":"-0.022em","fontWeight":"700"}],"h2":["24px",{"lineHeight":"30px","letterSpacing":"-0.014em","fontWeight":"700"}],"h3":["20px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"body":["16px",{"lineHeight":"24px","letterSpacing":"0","fontWeight":"400"}],"h1":["32px",{"lineHeight":"38px","letterSpacing":"-0.014em","fontWeight":"700"}],"overline":["11px",{"lineHeight":"14px","letterSpacing":"0.09em","fontWeight":"700"}]}}}};</script></head><body class="bg-neutral-25 font-body text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-space-lg pb-space-lg shadow-[1px_0_8px_rgba(0,0,0,0.03)]"><div class="px-space-lg mb-space-xl flex items-center gap-space-sm"><img alt="Logo Sistema Canchas" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XMaqn-NJDZevzVmfadkhnuhjs7VX1p5MIfPUXD9_XqOF7DDVDjccwrVc12DaAkK60sYCtvIvUdqWOSjomNTiTUM99FdoDZykNSYB2WOvXzBHE55H_70IOueQQIaHPYpqbfmfPoPXALWZAGfhAY2kWJ8vMfQYTMSFHXick-sZQj180_iwKEgBPcJ8uaxKVslxnP7kqLVmo5RugUWfvTo64xw7rRsQMn-aMKI8gWvKt2py8AOFGrIXQIAbw"/><span class="font-h3 text-h3 text-neutral-900 tracking-tight">Admin Canchas</span></div><nav class="flex-1 px-space-md flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-h4 rounded-lg"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-h4 rounded-lg" data-path="panel-admin" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-body text-body">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="gestion-canchas" href="#"><span class="material-symbols-outlined text-[20px]">stadium</span><span class="font-body text-body">Espacios y Canchas</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="gestion-reservas" href="#"><span class="material-symbols-outlined text-[20px]">calendar_month</span><span class="font-body text-body">Reservas Globales</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="gestion-tarifas" href="#"><span class="material-symbols-outlined text-[20px]">payments</span><span class="font-body text-body">Tarifas y Pagos</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors mt-auto" data-path="explorar" href="#"><span class="material-symbols-outlined text-[20px]">arrow_back</span><span class="font-body text-body">Vista Cliente</span></a></nav></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 z-40 h-[72px] bg-neutral-25/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-full w-full px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><img alt="Logo Sistema Canchas" class="h-8 w-auto object-contain md:hidden" src="https://lh3.googleusercontent.com/aida/AEtjO1XMaqn-NJDZevzVmfadkhnuhjs7VX1p5MIfPUXD9_XqOF7DDVDjccwrVc12DaAkK60sYCtvIvUdqWOSjomNTiTUM99FdoDZykNSYB2WOvXzBHE55H_70IOueQQIaHPYpqbfmfPoPXALWZAGfhAY2kWJ8vMfQYTMSFHXick-sZQj180_iwKEgBPcJ8uaxKVslxnP7kqLVmo5RugUWfvTo64xw7rRsQMn-aMKI8gWvKt2py8AOFGrIXQIAbw"/><span class="font-label text-label text-neutral-500 uppercase tracking-wider">Centro de Control Operativo</span></div><div class="flex items-center gap-space-md shrink-0"><button aria-label="Buscar" class="p-space-sm rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined block">search</span></button><button aria-label="Notificaciones operativas" class="p-space-sm rounded-full text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined block">notifications</span></button><div class="p-[2px] rounded-full bg-primary-500 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTWD9bonuFh6UshtdA083QBuw87wBrI-YwlXhFc2L6oAiYB7ew7EwvFftk3AlGX6lfmphtX4IlF1T7m9CZsP_DI8Lkm9Ja0K7s0_EBHB_gqKDWA6pOulcSQEfa8POPRjdz_oZJ2r4j_tTAQn4O1-epJbmIqbdLACn1lb2AdVqJkmkHbdrnN38gqzd6JryKtNAsVcUCzwVoLjWNvdkwFfsoj10GPKJZ-8AzfwhNmi-S2IwR0Way1had"/></div></div></div></header><main class="w-full pt-[72px] bg-neutral-25 min-h-[calc(100vh-72px)] px-gutter py-space-lg"><div class="flex flex-col w-full">
+<!-- Encabezado de Página -->
+<header class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md mb-space-xl">
+<div>
+<h1 class="font-h1 text-h1 text-neutral-900 tracking-tight">Resumen General</h1>
+<div class="flex items-center gap-space-xs mt-1 text-neutral-600 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-neutral-500">calendar_today</span>
+<span>Jueves, 08 de Octubre 2026</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-500 mx-1"></span>
+<span class="text-primary-700 font-semibold">Operación normal en tiempo real</span>
+</div>
+</div>
+<!-- Regla de oro: Un solo botón primario (verde #00B86B con texto carbón #0D1211) -->
+<div class="flex items-center gap-space-sm">
+<button class="inline-flex items-center justify-center gap-space-sm h-[44px] px-space-md rounded-xl bg-primary-500 hover:bg-primary-600 text-neutral-950 font-h4 text-h4 transition-colors shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700 cursor-pointer" onclick="alert('Abrir modal: Nueva reserva manual')" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>+ Nueva reserva manual</span>
+</button>
+</div>
+</header>
+<!-- Fila de 4 Tarjetas de Estadísticas / KPIs (§3.13) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- KPI 1: Ingresos -->
+<div class="p-space-lg rounded-xl bg-neutral-0 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-overline text-overline uppercase tracking-wider text-neutral-600">INGRESOS DEL DÍA</span>
+<span class="p-1.5 rounded-lg bg-surface-container text-neutral-700">
+<span class="material-symbols-outlined text-[20px] block">payments</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-display-1 text-display-1 text-neutral-950 [font-variant-numeric:tabular-nums] tracking-tight">
+          $348.000
+        </div>
+<div class="flex items-center gap-1 mt-space-xs font-caption text-caption text-primary-700">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-semibold">+18%</span>
+<span class="text-neutral-500">vs ayer</span>
+</div>
+</div>
+</div>
+<!-- KPI 2: Reservas Activas -->
+<div class="p-space-lg rounded-xl bg-neutral-0 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-overline text-overline uppercase tracking-wider text-neutral-600">RESERVAS ACTIVAS HOY</span>
+<span class="p-1.5 rounded-lg bg-surface-container text-neutral-700">
+<span class="material-symbols-outlined text-[20px] block">event_available</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-display-1 text-display-1 text-neutral-950 [font-variant-numeric:tabular-nums] tracking-tight">
+          24 <span class="font-h3 text-h3 text-neutral-500 font-normal">turnos</span>
+</div>
+<div class="flex items-center gap-1 mt-space-xs font-caption text-caption text-primary-700">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-semibold">+4 turnos</span>
+<span class="text-neutral-500">vs promedio</span>
+</div>
+</div>
+</div>
+<!-- KPI 3: Tasa de Ocupación -->
+<div class="p-space-lg rounded-xl bg-neutral-0 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-overline text-overline uppercase tracking-wider text-neutral-600">TASA DE OCUPACIÓN</span>
+<span class="p-1.5 rounded-lg bg-surface-container text-neutral-700">
+<span class="material-symbols-outlined text-[20px] block">pie_chart</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-display-1 text-display-1 text-neutral-950 [font-variant-numeric:tabular-nums] tracking-tight">
+          82%
+        </div>
+<div class="flex items-center gap-1 mt-space-xs font-caption text-caption text-primary-700">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-semibold">+5%</span>
+<span class="text-neutral-500">semanal</span>
+</div>
+</div>
+</div>
+<!-- KPI 4: Clientes Nuevos -->
+<div class="p-space-lg rounded-xl bg-neutral-0 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-overline text-overline uppercase tracking-wider text-neutral-600">CLIENTES NUEVOS (MES)</span>
+<span class="p-1.5 rounded-lg bg-surface-container text-neutral-700">
+<span class="material-symbols-outlined text-[20px] block">group_add</span>
+</span>
+</div>
+<div class="mt-space-md">
+<div class="font-display-1 text-display-1 text-neutral-950 [font-variant-numeric:tabular-nums] tracking-tight">
+          142
+        </div>
+<div class="flex items-center gap-1 mt-space-xs font-caption text-caption text-primary-700">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-semibold">+12%</span>
+<span class="text-neutral-500">vs mes anterior</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Contenedor Maestro de Gestión de Reservas -->
+<section class="bg-neutral-0 rounded-xl shadow-sm overflow-hidden mb-space-xl">
+<!-- Barra de Herramientas (Toolbar) -->
+<div class="p-space-md lg:p-space-lg flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md bg-neutral-0">
+<!-- Búsqueda y Filtros Rápidos -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm flex-1">
+<!-- Input de Búsqueda -->
+<div class="relative flex-1 max-w-sm">
+<label class="sr-only" for="search-input">Buscar reserva</label>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 text-[20px] pointer-events-none">search</span>
+<input class="w-full h-[44px] pl-10 pr-3 rounded-lg bg-neutral-50 text-neutral-900 placeholder:text-neutral-500 font-body-sm text-body-sm focus:outline-none focus:bg-neutral-0 focus:shadow-[0_0_0_2px_#00B86B]" id="search-input" placeholder="Buscar por cliente o código..." type="text"/>
+</div>
+<!-- Filtro Cancha -->
+<div class="relative min-w-[170px]">
+<select aria-label="Filtrar por Cancha" class="w-full h-[44px] pl-3 pr-8 rounded-lg bg-neutral-50 text-neutral-700 font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-neutral-0 focus:shadow-[0_0_0_2px_#00B86B] cursor-pointer">
+<option value="">Todas las canchas</option>
+<option value="fut-1">Cancha Fútbol 1</option>
+<option value="fut-2">Cancha Fútbol 2</option>
+<option value="pad-2">Pádel Cristal 2</option>
+<option value="bas-t">Básquet Techado</option>
+<option value="ten-1">Tenis Arcilla 1</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none text-[20px]">expand_more</span>
+</div>
+<!-- Filtro Estado -->
+<div class="relative min-w-[150px]">
+<select aria-label="Filtrar por Estado" class="w-full h-[44px] pl-3 pr-8 rounded-lg bg-neutral-50 text-neutral-700 font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-neutral-0 focus:shadow-[0_0_0_2px_#00B86B] cursor-pointer">
+<option value="">Todos los estados</option>
+<option value="confirmada">Confirmada</option>
+<option value="pendiente">Pendiente</option>
+<option value="cancelada">Cancelada</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Selector de fecha y Botón Exportar -->
+<div class="flex items-center gap-space-sm justify-between sm:justify-end">
+<!-- Selector Fecha Rápido -->
+<button class="inline-flex items-center gap-space-xs h-[44px] px-space-md rounded-lg bg-neutral-50 hover:bg-neutral-100 text-neutral-700 font-body-sm text-body-sm transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[18px] text-neutral-500">calendar_month</span>
+<span class="font-medium text-neutral-900">Hoy: 08 Oct 2026</span>
+<span class="material-symbols-outlined text-[18px] text-neutral-500">expand_more</span>
+</button>
+<!-- Botón Exportación CSV/Excel -->
+<button class="inline-flex items-center gap-space-xs h-[44px] px-space-md rounded-lg bg-neutral-50 hover:bg-neutral-100 text-neutral-700 font-body-sm text-body-sm transition-colors cursor-pointer" title="Exportar reservas" type="button">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Exportar</span>
+</button>
+</div>
+</div>
+<!-- Barra de Selección Masiva (Contextual, oculta si no hay checks) -->
+<div class="hidden px-space-lg py-2.5 bg-primary-50 text-neutral-900 flex items-center justify-between" id="bulk-actions">
+<div class="flex items-center gap-space-sm font-body-sm text-body-sm text-neutral-900">
+<span class="font-semibold text-primary-900" id="selected-count">0</span> filas seleccionadas
+      </div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-neutral-0 text-neutral-700 text-caption font-caption hover:bg-neutral-50" type="button">Confirmar seleccionadas</button>
+<button class="px-space-sm py-1 rounded bg-neutral-0 text-error text-caption font-caption hover:bg-error-container" type="button">Cancelar seleccionadas</button>
+</div>
+</div>
+<!-- Tabla Completa de Gestión de Reservas (§3.7) -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="h-[44px] bg-neutral-50 text-neutral-600 font-overline text-overline uppercase tracking-wider">
+<th class="w-12 px-space-md text-center">
+<input aria-label="Seleccionar todas las filas" class="w-4 h-4 rounded text-primary-500 accent-primary-500 cursor-pointer" id="select-all" type="checkbox"/>
+</th>
+<th class="px-space-md font-bold">CÓDIGO</th>
+<th class="px-space-md font-bold">CLIENTE</th>
+<th class="px-space-md font-bold">CANCHA</th>
+<th class="px-space-md font-bold">DEPORTE</th>
+<th class="px-space-md font-bold">HORARIO (24H)</th>
+<th class="px-space-md font-bold text-right">TOTAL</th>
+<th class="px-space-md font-bold text-center">ESTADO</th>
+<th class="px-space-md font-bold text-right">ACCIONES</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-neutral-100 text-neutral-900 font-body-sm text-body-sm">
+<!-- Fila 1: Fútbol 1 / Confirmada -->
+<tr class="h-[56px] hover:bg-neutral-50/60 transition-colors">
+<td class="px-space-md text-center">
+<input aria-label="Seleccionar reserva SC-4A7F2" class="row-checkbox w-4 h-4 rounded text-primary-500 accent-primary-500 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md font-mono text-[13px] font-semibold text-neutral-700">
+              SC-4A7F2
+            </td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-neutral-900">Carlos Gómez</span>
+<span class="text-caption font-caption text-neutral-500">carlos.g@email.com</span>
+</div>
+</td>
+<td class="px-space-md text-neutral-700">
+              Cancha Fútbol 1
+            </td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-surface-container text-neutral-900">
+<span class="w-2 h-2 rounded-full bg-sport-futbol"></span>
+                Fútbol
+              </span>
+</td>
+<td class="px-space-md [font-variant-numeric:tabular-nums] text-neutral-700">
+              18:00 – 19:00
+            </td>
+<td class="px-space-md text-right font-medium [font-variant-numeric:tabular-nums] text-neutral-900">
+              $12.000
+            </td>
+<td class="px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-caption font-caption bg-primary-50 text-primary-700 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Confirmada
+              </span>
+</td>
+<td class="px-space-md text-right">
+<div class="inline-flex items-center gap-1 text-neutral-600">
+<button aria-label="Ver detalle SC-4A7F2" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Ver detalle" type="button">
+<span class="material-symbols-outlined text-[20px] block">visibility</span>
+</button>
+<button aria-label="Editar reserva SC-4A7F2" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Editar" type="button">
+<span class="material-symbols-outlined text-[20px] block">edit</span>
+</button>
+<button aria-label="Cancelar reserva SC-4A7F2" class="p-1.5 rounded-full hover:bg-error-container hover:text-error transition-colors cursor-pointer" title="Cancelar" type="button">
+<span class="material-symbols-outlined text-[20px] block">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Fila 2: Pádel Cristal 2 / Confirmada -->
+<tr class="h-[56px] hover:bg-neutral-50/60 transition-colors">
+<td class="px-space-md text-center">
+<input aria-label="Seleccionar reserva SC-91B24" class="row-checkbox w-4 h-4 rounded text-primary-500 accent-primary-500 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md font-mono text-[13px] font-semibold text-neutral-700">
+              SC-91B24
+            </td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-neutral-900">Mariana Soto</span>
+<span class="text-caption font-caption text-neutral-500">m.soto@email.com</span>
+</div>
+</td>
+<td class="px-space-md text-neutral-700">
+              Pádel Cristal 2
+            </td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-surface-container text-neutral-900">
+<span class="w-2 h-2 rounded-full bg-sport-padel"></span>
+                Pádel
+              </span>
+</td>
+<td class="px-space-md [font-variant-numeric:tabular-nums] text-neutral-700">
+              19:00 – 20:30
+            </td>
+<td class="px-space-md text-right font-medium [font-variant-numeric:tabular-nums] text-neutral-900">
+              $15.000
+            </td>
+<td class="px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-caption font-caption bg-primary-50 text-primary-700 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Confirmada
+              </span>
+</td>
+<td class="px-space-md text-right">
+<div class="inline-flex items-center gap-1 text-neutral-600">
+<button aria-label="Ver detalle SC-91B24" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Ver detalle" type="button">
+<span class="material-symbols-outlined text-[20px] block">visibility</span>
+</button>
+<button aria-label="Editar reserva SC-91B24" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Editar" type="button">
+<span class="material-symbols-outlined text-[20px] block">edit</span>
+</button>
+<button aria-label="Cancelar reserva SC-91B24" class="p-1.5 rounded-full hover:bg-error-container hover:text-error transition-colors cursor-pointer" title="Cancelar" type="button">
+<span class="material-symbols-outlined text-[20px] block">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Fila 3: Básquet / Pendiente -->
+<tr class="h-[56px] hover:bg-neutral-50/60 transition-colors">
+<td class="px-space-md text-center">
+<input aria-label="Seleccionar reserva SC-31X09" class="row-checkbox w-4 h-4 rounded text-primary-500 accent-primary-500 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md font-mono text-[13px] font-semibold text-neutral-700">
+              SC-31X09
+            </td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-neutral-900">Roberto Peña</span>
+<span class="text-caption font-caption text-neutral-500">rpena@email.com</span>
+</div>
+</td>
+<td class="px-space-md text-neutral-700">
+              Básquet Techado
+            </td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-surface-container text-neutral-900">
+<span class="w-2 h-2 rounded-full bg-sport-basquet"></span>
+                Básquet
+              </span>
+</td>
+<td class="px-space-md [font-variant-numeric:tabular-nums] text-neutral-700">
+              17:00 – 18:00
+            </td>
+<td class="px-space-md text-right font-medium [font-variant-numeric:tabular-nums] text-neutral-900">
+              $12.000
+            </td>
+<td class="px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-caption font-caption bg-[#FEF4E2] text-[#B45309] font-semibold">
+<span class="material-symbols-outlined text-[14px]">hourglass_top</span>
+                Pendiente
+              </span>
+</td>
+<td class="px-space-md text-right">
+<div class="inline-flex items-center gap-1 text-neutral-600">
+<button aria-label="Ver detalle SC-31X09" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Ver detalle" type="button">
+<span class="material-symbols-outlined text-[20px] block">visibility</span>
+</button>
+<button aria-label="Editar reserva SC-31X09" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Editar" type="button">
+<span class="material-symbols-outlined text-[20px] block">edit</span>
+</button>
+<button aria-label="Cancelar reserva SC-31X09" class="p-1.5 rounded-full hover:bg-error-container hover:text-error transition-colors cursor-pointer" title="Cancelar" type="button">
+<span class="material-symbols-outlined text-[20px] block">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Fila 4: Tenis Arcilla 1 / Confirmada -->
+<tr class="h-[56px] hover:bg-neutral-50/60 transition-colors">
+<td class="px-space-md text-center">
+<input aria-label="Seleccionar reserva SC-77L55" class="row-checkbox w-4 h-4 rounded text-primary-500 accent-primary-500 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md font-mono text-[13px] font-semibold text-neutral-700">
+              SC-77L55
+            </td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-neutral-900">Lucía Navarro</span>
+<span class="text-caption font-caption text-neutral-500">lucia.n@email.com</span>
+</div>
+</td>
+<td class="px-space-md text-neutral-700">
+              Tenis Arcilla 1
+            </td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-surface-container text-neutral-900">
+<span class="w-2 h-2 rounded-full bg-sport-tenis"></span>
+                Tenis
+              </span>
+</td>
+<td class="px-space-md [font-variant-numeric:tabular-nums] text-neutral-700">
+              20:00 – 21:00
+            </td>
+<td class="px-space-md text-right font-medium [font-variant-numeric:tabular-nums] text-neutral-900">
+              $11.000
+            </td>
+<td class="px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-caption font-caption bg-primary-50 text-primary-700 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Confirmada
+              </span>
+</td>
+<td class="px-space-md text-right">
+<div class="inline-flex items-center gap-1 text-neutral-600">
+<button aria-label="Ver detalle SC-77L55" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Ver detalle" type="button">
+<span class="material-symbols-outlined text-[20px] block">visibility</span>
+</button>
+<button aria-label="Editar reserva SC-77L55" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Editar" type="button">
+<span class="material-symbols-outlined text-[20px] block">edit</span>
+</button>
+<button aria-label="Cancelar reserva SC-77L55" class="p-1.5 rounded-full hover:bg-error-container hover:text-error transition-colors cursor-pointer" title="Cancelar" type="button">
+<span class="material-symbols-outlined text-[20px] block">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Fila 5: Fútbol 2 / Cancelada -->
+<tr class="h-[56px] hover:bg-neutral-50/60 transition-colors bg-neutral-25/50 opacity-80">
+<td class="px-space-md text-center">
+<input aria-label="Seleccionar reserva SC-10M48" class="row-checkbox w-4 h-4 rounded text-primary-500 accent-primary-500 cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-space-md font-mono text-[13px] font-semibold text-neutral-500 line-through">
+              SC-10M48
+            </td>
+<td class="px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-neutral-700">Andrés Rivas</span>
+<span class="text-caption font-caption text-neutral-400">arivas@email.com</span>
+</div>
+</td>
+<td class="px-space-md text-neutral-600">
+              Cancha Fútbol 2
+            </td>
+<td class="px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-caption font-caption bg-surface-container text-neutral-700">
+<span class="w-2 h-2 rounded-full bg-sport-futbol"></span>
+                Fútbol
+              </span>
+</td>
+<td class="px-space-md [font-variant-numeric:tabular-nums] text-neutral-500 line-through">
+              16:00 – 17:00
+            </td>
+<td class="px-space-md text-right font-medium [font-variant-numeric:tabular-nums] text-neutral-600">
+              $12.000
+            </td>
+<td class="px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-caption font-caption bg-neutral-100 text-neutral-600 font-semibold">
+<span class="material-symbols-outlined text-[14px]">block</span>
+                Cancelada
+              </span>
+</td>
+<td class="px-space-md text-right">
+<div class="inline-flex items-center gap-1 text-neutral-400">
+<button aria-label="Ver detalle SC-10M48" class="p-1.5 rounded-full hover:bg-neutral-100 hover:text-neutral-950 transition-colors cursor-pointer" title="Ver detalle" type="button">
+<span class="material-symbols-outlined text-[20px] block">visibility</span>
+</button>
+<button aria-label="Editar deshabilitado" class="p-1.5 rounded-full opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[20px] block">edit</span>
+</button>
+<button aria-label="Cancelar deshabilitado" class="p-1.5 rounded-full opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[20px] block">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Paginación Accesible -->
+<footer class="px-space-lg py-space-md bg-neutral-0 flex flex-col sm:flex-row items-center justify-between gap-space-md border-t border-neutral-100">
+<div class="font-caption text-caption text-neutral-600 [font-variant-numeric:tabular-nums]">
+        Mostrando <span class="font-semibold text-neutral-900">1</span> a <span class="font-semibold text-neutral-900">5</span> de <span class="font-semibold text-neutral-900">24</span> reservas
+      </div>
+<nav aria-label="Paginación de reservas" class="flex items-center gap-space-xs">
+<button aria-label="Página anterior" class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-neutral-50 text-neutral-400 cursor-not-allowed transition-colors" disabled="" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button aria-current="page" class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-primary-50 text-primary-900 font-semibold font-body-sm text-body-sm transition-colors" type="button">
+          1
+        </button>
+<button class="inline-flex items-center justify-center w-9 h-9 rounded-lg hover:bg-neutral-100 text-neutral-700 font-body-sm text-body-sm transition-colors cursor-pointer" type="button">
+          2
+        </button>
+<button class="inline-flex items-center justify-center w-9 h-9 rounded-lg hover:bg-neutral-100 text-neutral-700 font-body-sm text-body-sm transition-colors cursor-pointer" type="button">
+          3
+        </button>
+<span class="px-1 text-neutral-400 font-caption">...</span>
+<button class="inline-flex items-center justify-center w-9 h-9 rounded-lg hover:bg-neutral-100 text-neutral-700 font-body-sm text-body-sm transition-colors cursor-pointer" type="button">
+          5
+        </button>
+<button aria-label="Página siguiente" class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-neutral-50 hover:bg-neutral-100 text-neutral-700 cursor-pointer transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</nav>
+</footer>
+</section>
+<!-- Script interactivo de selección múltiple y feedback accesible -->
+<script>
+    (function initDashboardInteractions() {
+      const selectAll = document.getElementById('select-all');
+      const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+      const bulkBar = document.getElementById('bulk-actions');
+      const selectedCount = document.getElementById('selected-count');
+
+      function updateBulkBar() {
+        const checked = Array.from(rowCheckboxes).filter(cb => cb.checked);
+        const count = checked.length;
+
+        if (count > 0) {
+          bulkBar.classList.remove('hidden');
+          selectedCount.textContent = count;
+        } else {
+          bulkBar.classList.add('hidden');
+        }
+
+        if (selectAll) {
+          selectAll.checked = count === rowCheckboxes.length && rowCheckboxes.length > 0;
+          selectAll.indeterminate = count > 0 && count < rowCheckboxes.length;
+        }
+      }
+
+      if (selectAll) {
+        selectAll.addEventListener('change', () => {
+          rowCheckboxes.forEach(cb => {
+            cb.checked = selectAll.checked;
+          });
+          updateBulkBar();
+        });
+      }
+
+      rowCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateBulkBar);
+      });
+    })();
+  </script>
+</div></main></div></body></html>

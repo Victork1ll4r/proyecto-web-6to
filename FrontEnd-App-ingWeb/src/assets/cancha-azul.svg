@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250" role="img" aria-label="Vista cenital de una cancha techada con piso sintético">
+  <defs>
+    <linearGradient id="cubo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d4f7a" />
+      <stop offset="1" stop-color="#102c47" />
+    </linearGradient>
+    <linearGradient id="foco" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".16" />
+      <stop offset=".6" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#cubo)" />
+  <g stroke="#ffffff" stroke-opacity=".05" stroke-width="2">
+    <line x1="0" y1="62" x2="400" y2="62" />
+    <line x1="0" y1="125" x2="400" y2="125" />
+    <line x1="0" y1="188" x2="400" y2="188" />
+  </g>
+  <rect width="400" height="250" fill="url(#foco)" />
+  <g fill="none" stroke="#ffffff" stroke-opacity=".62" stroke-width="2" stroke-linecap="round">
+    <rect x="18" y="18" width="364" height="214" rx="3" />
+    <line x1="200" y1="18" x2="200" y2="232" />
+    <circle cx="200" cy="125" r="34" />
+    <rect x="18" y="66" width="52" height="118" />
+    <rect x="330" y="66" width="52" height="118" />
+    <rect x="18" y="92" width="22" height="66" />
+    <rect x="360" y="92" width="22" height="66" />
+  </g>
+  <circle cx="200" cy="125" r="3" fill="#ffffff" fill-opacity=".8" />
+</svg>

@@ -1,0 +1,145 @@
+/* ==========================================================================
+   SISTEMA CANCHAS — Base
+   Estilos a nivel de elemento + utilidades. Solo consume tokens (§2 y §3 del
+   sistema de diseño). No hay ningún hex aquí.
+   ========================================================================== */
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    line-height: var(--lh-normal);
+    letter-spacing: var(--tracking-normal);
+    font-weight: var(--fw-regular);
+    color: var(--text-primary);
+    background-color: var(--bg-canvas);
+    transition:
+      background-color var(--dur-base) var(--ease-out),
+      color var(--dur-base) var(--ease-out);
+  }
+
+  /* Tipografía base: Sora para títulos, nunca por debajo de 600 (§2.2) */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--fs-h1);
+    line-height: 1.19;
+    letter-spacing: var(--tracking-snug);
+    font-weight: var(--fw-bold);
+  }
+
+  h2 {
+    font-size: var(--fs-h2);
+    line-height: 1.25;
+    letter-spacing: var(--tracking-snug);
+    font-weight: var(--fw-bold);
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+    line-height: 1.3;
+    letter-spacing: var(--tracking-snug);
+    font-weight: var(--fw-semibold);
+  }
+
+  h4 {
+    font-size: var(--fs-h4);
+    line-height: 1.41;
+    font-weight: var(--fw-semibold);
+  }
+
+  strong,
+  b {
+    font-weight: var(--fw-semibold);
+  }
+
+  small {
+    font-size: var(--fs-caption);
+    line-height: var(--lh-snug);
+  }
+
+  code,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  ::selection {
+    background-color: var(--brand-border);
+    color: var(--text-primary);
+  }
+
+  /* --- Utilidades ------------------------------------------------------- */
+
+  .u-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .u-muted {
+    color: var(--text-secondary);
+  }
+
+  .u-label {
+    font-size: var(--fs-label);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-label);
+    color: var(--text-secondary);
+  }
+
+  .u-overline {
+    font-size: var(--fs-overline);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-overline);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .u-mono {
+    font-family: var(--font-mono);
+  }
+
+  .u-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .u-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .u-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .u-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+  }
+
+  /* Scrollbar discreta en zonas con scroll propio */
+  .u-scroll {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+}
