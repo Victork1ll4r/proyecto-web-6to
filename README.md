@@ -12,7 +12,7 @@
 | **Sistema de diseño** | ✅ Completo (tokens, base, componentes, docs) |
 | **Catálogo ExplorarCanchas** | ✅ Portado desde Stitch + verificado |
 | **Cimentación API + hooks (FASE 0)** | ✅ `api/` (canchas, reservas, clientes, auth), `hooks/useApi`, `lib/format`, `.env` |
-| **Detalle + Reserva** | 📦 Código Stitch listo — pendiente FASE 2 |
+| **Detalle + Reserva (FASE 2)** | ✅ `#/cancha/:id` — galería, ficha, selector de días, `SlotGrid`, modal de confirmación + código `SC-XXXXX` |
 | **Mis Reservas** | 📦 Código Stitch listo — pendiente FASE 3 |
 | **Panel Admin** | 📦 Código Stitch listo — pendiente FASE 4 |
 | **Auth / Perfil** | ❌ No generadas en Stitch — pendiente FASE 5 |
@@ -66,7 +66,7 @@
 | Fase | Pantallas a capturar cuando estén listas |
 |------|------------------------------------------|
 | **FASE 1** (hecha) | `catalogo-desktop.png`, `catalogo-movil.png` |
-| **FASE 2** | `detalle-cancha-desktop.png`, `detalle-cancha-movil.png`, `reserva-modal.png` |
+| **FASE 2** (hecha) | `detalle-cancha-desktop.png`, `detalle-cancha-movil.png`, `reserva-modal.png` |
 | **FASE 3** | `mis-reservas-desktop.png`, `mis-reservas-movil.png` |
 | **FASE 4** | `panel-admin-clientes.png`, `panel-admin-canchas.png`, `panel-admin-reservas.png`, `panel-admin-resumen.png` |
 | **FASE 5** | `login.png`, `registro.png`, `recuperar-clave.png`, `perfil.png` |
@@ -84,11 +84,11 @@ FrontEnd-App-ingWeb/
 │   ├── api/              # Cliente HTTP + endpoints (mock ↔ real por env)
 │   ├── components/
 │   │   ├── ui/           # 12 primitivas (Button, Input, Modal, DataTable…)
-│   │   ├── canchas/      # CanchaCard, CanchaDetail, SlotGrid, ReservaModal
+│   │   ├── canchas/      # GaleriaCancha, CanchaDetail, TarjetaReserva, ReservaModal (FASE 2)
 │   │   ├── reservas/     # ReservaList, ReservaCard, ReservaActions
 │   │   ├── admin/        # ClienteTable, StatsCards, AdminSidebar
 │   │   └── layout/       # Header, Footer, PageShell
-│   ├── hooks/            # useCanchas, useReservas, useAuth, useApi
+│   ├── hooks/            # useApi, useCanchaDetail, useDisponibilidad (+ useReservas, useAuth)
 │   ├── lib/              # mockData, filtroCanchas, cx, format, rutas
 │   ├── pages/            # ExplorarCanchas, DetalleCancha, MisReservas, PanelAdmin, Login, StyleGuide…
 │   ├── styles/
@@ -112,7 +112,8 @@ FrontEnd-App-ingWeb/
 ```bash
 # Desarrollo
 npm run dev              # http://localhost:5173  (catálogo)
-# http://localhost:5173/#/estilo  (style guide)
+# http://localhost:5173/#/estilo       (style guide)
+# http://localhost:5173/#/cancha/1     (detalle + reserva)
 
 # Verificación obligatoria antes de commit
 npx vite build           # Build producción
@@ -120,7 +121,7 @@ node node_modules/eslint/bin/eslint.js src   # Lint 0 errores
 node -e "
 const {transform}=require('lightningcss');
 const fs=require('fs');
-['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css'].forEach(f=>transform({filename:f,code:Buffer.from(fs.readFileSync(f)),minify:true}));
+['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css','src/pages/DetalleCancha.css'].forEach(f=>transform({filename:f,code:Buffer.from(fs.readFileSync(f)),minify:true}));
 console.log('CSS OK');
 "
 
@@ -131,7 +132,7 @@ cp .env.example .env
 # VITE_USE_MOCK=true                    (mock ↔ API real sin tocar la vista)
 
 # Verificación local (script efímero, no versionado: vive en .check/)
-node .check/verificar.mjs               # 57 contratos + SSR
+node .check/verificar.mjs               # 93 contratos + rutas + SSR
 ```
 
 ---
@@ -157,7 +158,7 @@ node .check/verificar.mjs               # 57 contratos + SSR
    git add docs/screenshots/*.png README.md
    git commit -m "docs: capturas entrega inicial — DESIGN_SYSTEM, STITCH_PROMPTS, PORT_STITCH_PLAN, Stitch dashboard + 4 pantallas"
    ```
-4. **Próxima fase:** FASE 0 cerrada → sigue **FASE 2 — Detalle de Cancha + Reserva** (`docs/PORT_STITCH_PLAN.md`).
+4. **Próxima fase:** FASES 0–2 cerradas → sigue **FASE 3 — Mis Reservas** (`docs/PORT_STITCH_PLAN.md`).
 
 ---
 

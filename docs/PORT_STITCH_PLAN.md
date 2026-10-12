@@ -1,8 +1,8 @@
 # Plan de Integración — Páginas Stitch → Frontend + Backend
 
-**Versión:** 1.1  
+**Versión:** 1.2  
 **Fecha:** 2026-10-12  
-**Estado:** FASE 0 completada — FASE 2 en cola
+**Estado:** FASES 0–2 completadas — FASE 3 en cola
 
 ---
 
@@ -11,7 +11,7 @@
 | Pantalla Stitch | Estado | Backend necesario |
 |---|---|---|
 | `explorar_canchas` | ✅ Portada (React + tokens) | `GET /api/canchas` (propuesto) |
-| `detalle_y_reserva_de_cancha` | 📦 Código + PNG | `GET /api/canchas/:id`, `POST /api/reservas` (propuestos) |
+| `detalle_y_reserva_de_cancha` | ✅ Portada (React + tokens, FASE 2) | `GET /api/canchas/:id`, `POST /api/reservas` (propuestos) |
 | `mis_reservas` | 📦 Código + PNG | `GET /api/reservas?cliente=:id` (propuesto) |
 | `panel_de_control_admin` | 📦 Código + PNG | `GET /api/clientes` (real), `GET /api/canchas`, `GET /api/reservas` |
 | `login` / `registro` / `recuperar` / `perfil` / `admin-resumen` | ❌ No generadas | Auth + Cliente (real) |
@@ -46,12 +46,13 @@ FrontEnd-App-ingWeb/
 │   │   └── auth.js             # POST /login, POST /register, POST /recover
 │   ├── components/
 │   │   ├── ui/                 # Primitivas (Button, Input, Card, Modal, etc.) — YA EXISTEN
-│   │   ├── canchas/            # Componentes de dominio cancha
-│   │   │   ├── CanchaCard.jsx
-│   │   │   ├── CanchaGrid.jsx
+│   │   ├── canchas/            # Componentes de dominio cancha (FASE 2)
+│   │   │   ├── GaleriaCancha.jsx
 │   │   │   ├── CanchaDetail.jsx
-│   │   │   ├── SlotGrid.jsx
-│   │   │   └── ReservaModal.jsx
+│   │   │   ├── TarjetaReserva.jsx
+│   │   │   ├── ReservaModal.jsx
+│   │   │   └── index.js
+│   │   │   # CanchaCard y SlotGrid viven en components/ui/ (FASE 1)
 │   │   ├── reservas/           # Componentes de dominio reserva
 │   │   │   ├── ReservaList.jsx
 │   │   │   ├── ReservaCard.jsx
@@ -62,10 +63,12 @@ FrontEnd-App-ingWeb/
 │   │   │   └── AdminSidebar.jsx
 │   │   └── layout/             # Header, Footer, Sidebar, PageShell
 │   ├── hooks/
-│   │   ├── useCanchas.js
+│   │   ├── useApi.js
 │   │   ├── useCanchaDetail.js
-│   │   ├── useReservas.js
-│   │   ├── useAuth.js
+│   │   ├── useDisponibilidad.js
+│   │   ├── useCanchas.js             # pendiente: migrar ExplorarCanchas
+│   │   ├── useReservas.js            # 🔄 FASE 3
+│   │   ├── useAuth.js                # 🔄 FASE 5
 │   │   └── useDebounce.js
 │   ├── lib/
 │   │   ├── mockData.js         # Datos de desarrollo (actualizados con Stitch)
@@ -78,7 +81,7 @@ FrontEnd-App-ingWeb/
 │   ├── pages/
 │   │   ├── ExplorarCanchas.jsx       # ✅ YA PORTADA
 │   │   ├── ExplorarCanchas.css
-│   │   ├── DetalleCancha.jsx         # 🔄 FASE 2
+│   │   ├── DetalleCancha.jsx         # ✅ FASE 2
 │   │   ├── DetalleCancha.css
 │   │   ├── MisReservas.jsx           # 🔄 FASE 3
 │   │   ├── MisReservas.css
@@ -152,7 +155,7 @@ FrontEnd-App-ingWeb/
 
 ---
 
-### FASE 2 — Detalle de Cancha + Reserva (3–4 días)
+### FASE 2 — Detalle de Cancha + Reserva (3–4 días) — ✅ COMPLETADA
 
 **Pantallas Stitch:** `detalle_y_reserva_de_cancha/code.html` + `screen.png`
 
@@ -160,38 +163,49 @@ FrontEnd-App-ingWeb/
 
 | Componente | Responsabilidad | Props clave |
 |---|---|---|
-| `CanchaDetail` | Vista completa: galería, info, horario, acción | `cancha`, `onReservar` |
-| `SlotGrid` | Ya existe — rangos contiguos, selección múltiple | `slots`, `seleccion`, `onChange` |
-| `ReservaModal` | Confirmación: resumen, precio total, formulario datos | `cancha`, `slots`, `onConfirm`, `onCancel` |
-| `GaleríaCancha` | Carousel simple, teclado accesible | `imagenes[]` |
+| `CanchaDetail` | Columna de ficha: galería, título, valoración, dirección, características, descripción, sede | `cancha` |
+| `GaleriaCancha` | Galería con miniaturas (`<button>`, `aria-pressed`), teclado accesible | `imagenes[]`, `nombre`, `deporteLabel`, `dot` |
+| `TarjetaReserva` | Columna de reserva: precio, selector de 7 días, `SlotGrid`, desglose, CTA | `cancha`, `dias`, `dia`, `onDia`, `slots`, `seleccion`, `onSeleccion`, `onReservar` |
+| `ReservaModal` | Confirmación: resumen, precio total, formulario de contacto | `open`, `canchaNombre`, `dia`, `rango`, `horas`, `total`, `onConfirm`, `onCancel` |
+| `SlotGrid` / `SlotLegend` | Ya existen en `components/ui/` — rangos contiguos, selección múltiple | `slots`, `value`, `onChange`, `cols` |
+
+> **Desviación respecto al boceto:** el detalle se partió en `CanchaDetail` (ficha) + `TarjetaReserva` (reserva) en vez de un único `CanchaDetail` con la acción dentro — una responsabilidad por componente (§Principio 1). `CanchaCard` y `SlotGrid` se quedaron en `components/ui/` tal como los dejó la FASE 1; moverlos habría tocado trabajo ya validado. Los nuevos viven en `components/canchas/`.
 
 #### 2.2 Página `DetalleCancha`
 
-- URL: `#/cancha/:id`
-- Usa `useCanchaDetail(id)` → `api/canchas.js` (mock hoy, real mañana)
-- Estados: loading (Skeleton), error, éxito
-- Integra `SlotGrid` + `ReservaModal`
+- URL: `#/cancha/:id` (parámetro resuelto en `lib/rutas.js`, que ahora empareja patrones con `:nombre`)
+- Usa `useCanchaDetail(id)` + `useDisponibilidad(id, fecha)` → `api/canchas.js` (mock hoy, real mañana)
+- Estados: loading (Skeleton), error (`EmptyState` + reintentar), éxito (reserva confirmada con código `SC-XXXXX`)
+- Integra `GaleriaCancha`, `CanchaDetail`, `TarjetaReserva` y `ReservaModal`
+- El catálogo (`ExplorarCanchas`) abre el detalle desde su CTA `onReservar`; no se tocó su interior
 
-#### 2.3 Hook `useCanchaDetail`
+#### 2.3 Hooks
 
 ```js
 export function useCanchaDetail(id) {
-  return useApi(() => api.canchas.getById(id), { mock: USE_MOCK, mockData: CANCHAS.find(c => c.id === +id) })
+  return useApi(() => getCancha(id), { mock: USE_MOCK, mockData: semilla, deps: [id] })
+}
+
+export function useDisponibilidad(canchaId, fecha) {
+  return useApi(() => getDisponibilidad(canchaId, { fecha }), { mock: USE_MOCK, mockData: seed, deps: [canchaId, fecha] })
 }
 ```
 
-#### 2.4 CSS `DetalleCancha.css`
+`useDisponibilidad` se separó de `useCanchaDetail` para que cambiar de día no vuelva a pedir la ficha completa.
 
-- Solo layout y override de tokens; nada de hex.
+#### 2.4 CSS
+
+- `DetalleCancha.css` (layout `.dc__*`) + bloque nuevo en `styles/components.css` (`.c-galeria`, `.c-detalle`, `.c-reserva`, `.c-day`, `.c-resumen`). Nada de hex.
 
 #### Verificación fase 2
 
-- [ ] SSR render sin `undefined`/`NaN`
-- [ ] SlotGrid selecciona rangos contiguos
-- [ ] ReservaModal abre/cierra con foco atrapado, Escape, retorno
-- [ ] Precio total = `precioHora * slots.length` formateado COP
-- [ ] Contratos `Cancha` + `Disponibilidad` respetados
-- [ ] Build + lint + 0 hex fuera de tokens
+- [x] SSR render sin `undefined`/`NaN` (93 checks en total, 36 nuevos)
+- [x] `SlotGrid` selecciona rangos contiguos (heredado de FASE 1)
+- [x] `ReservaModal` reutiliza `Modal` (foco atrapado, Escape, retorno ya cubiertos)
+- [x] Precio total = `precioHora * slots.length` formateado COP
+- [x] Contratos `Cancha` + `CanchaDetalle` + `Disponibilidad` respetados
+- [x] Build + lint + 0 hex fuera de tokens
+
 
 ---
 
@@ -381,6 +395,39 @@ Al cerrar cada fase, **actualizo este archivo** marcando ☐ → ✅ y añado:
 
 ---
 
+## Estado tras Fase 2 — 2026-10-12
+
+### Completado
+- ✅ `src/lib/rutas.js` — el enrutado por hash ahora empareja **patrones con parámetros** (`#/cancha/:id`); `emparejar` devuelve `{ruta, params}`, `navegar` centraliza el cambio, `rutaDeCancha(id)` el formato del enlace.
+- ✅ `src/App.jsx` — resuelve la vista y le pasa parámetros; el catálogo abre el detalle vía `onReservar` → `navegar(rutaDeCancha(id))`, sin tocar `ExplorarCanchas`.
+- ✅ `src/components/canchas/GaleriaCancha.jsx` — galería con miniaturas (`<button>` + `aria-pressed`, teclado nativo).
+- ✅ `src/components/canchas/CanchaDetail.jsx` — ficha: título, valoración, dirección, características, descripción con nota de calzado, normas y sede.
+- ✅ `src/components/canchas/TarjetaReserva.jsx` — precio, selector de 7 días, `SlotGrid` + leyenda, desglose y la única CTA primaria.
+- ✅ `src/components/canchas/ReservaModal.jsx` — confirmación con resumen + formulario de contacto validado; reutiliza `Modal` (foco atrapado, Escape, retorno).
+- ✅ `src/components/canchas/index.js` — barril del dominio.
+- ✅ `src/hooks/useCanchaDetail.js` + `src/hooks/useDisponibilidad.js` — sobre `useApi`, separados para no recargar la ficha al cambiar de día.
+- ✅ `src/pages/DetalleCancha.jsx` + `DetalleCancha.css` — estados de carga/error/éxito, reserva confirmada con código `SC-XXXXX`.
+- ✅ `src/styles/components.css` — bloque nuevo `.c-galeria` · `.c-detalle` · `.c-reserva` · `.c-day` · `.c-resumen`, solo tokens.
+- ✅ `src/lib/mockData.js` — `DETALLES_CANCHA` (ficha por cancha: dirección, capacidad, descripción, amenidades, normas, calzado, sede, imágenes). `getCancha` la mezcla; `getCanchas` sigue ligero.
+- ✅ `src/lib/format.js` — `formatMes` y `proximosDias(n)` (avance en UTC, sin saltos por horario de verano).
+- ✅ `src/api/types.js` — typedefs `CanchaDetalle` y `Amenidad`.
+
+### Bloqueantes / Decisiones
+- `useReservas` **no** se crea aquí: llega en FASE 3, donde tiene consumidor (la lista de mis reservas). El alta desde el detalle llama a `api/reservas.crear` directamente.
+- El `clienteId` de la reserva es `USUARIO_DEMO.id` provisional; la sesión real llega con `useAuth` en FASE 5.
+- El mapa de la sede es un marcador con tokens, no un mapa real: el backend no expone geolocalización y no se quieren dependencias externas.
+- El detalle se dividió en `CanchaDetail` (ficha) + `TarjetaReserva` (reserva) — una responsabilidad por componente. `CanchaCard` y `SlotGrid` se quedan en `components/ui/`.
+- `ExplorarCanchas` **sigue leyendo `CANCHAS` en local**: no se creó `useCanchas` ni se migró el catálogo (la FASE 1 quedó congelada). Pendiente no bloqueante: al tocar el catálogo, envolver `getCanchas` en `useCanchas` y apoyarse en `filtrarCanchas` para conservar el filtrado puro.
+- `src/api/axios.js` sigue sin uso (se conserva; pendiente decidir).
+
+### Métricas
+- Build: 53.34 kB CSS / 297.77 kB JS (gzip: 9.38 / 90.77).
+- Lint: 0 errores.
+- Tests SSR + contratos + rutas + componentes: 93/93 OK (`node .check/verificar.mjs`).
+- Hex fuera de tokens: 0 · Violeta detectado: 0.
+
+---
+
 ## Riesgos y mitigaciones
 
 | Riesgo | Probabilidad | Impacto | Mitigación |
@@ -423,6 +470,7 @@ const {renderToString} = require('react-dom/server');
 
 ## Próximo paso inmediato
 
-FASE 0 cerrada ✅. Siguiente: **FASE 2 — Detalle de Cancha + Reserva**, que estrena
-los endpoints de `api/canchas.js`, `api/reservas.js` y las utilidades de `lib/format.js`,
-y añade los hooks de dominio `useCanchaDetail` y `useReservas`.
+FASE 2 cerrada ✅. Siguiente: **FASE 3 — Mis Reservas**, que estrena el hook
+`useReservas` sobre `api/reservas.js` (mock con estado ya listo), los componentes
+`reservas/` y la ruta `#/mis-reservas` — reutilizando el enrutado con parámetros
+que dejó esta fase.
