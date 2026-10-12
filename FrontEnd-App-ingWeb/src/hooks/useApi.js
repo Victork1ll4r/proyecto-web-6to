@@ -11,9 +11,16 @@ import { esAborto } from '../api/client.js'
  *   - `mockData` siembra el dato inicial. Sirve para pintar de inmediato y
  *     para renderizar sin DOM (SSR), donde los efectos no se ejecutan.
  *   - `mock: true` con `mockData` evita la petición por completo: el dato
- *     sembrado es el definitivo. Es el modo "sin backend".
+ *     sembrado es el definitivo. Es el modo "sin backend" (detalle de una
+ *     cancha, que no cambia sola).
  *   - `mock: false` (por defecto) siempre llama a `peticion`; será la capa
  *     `src/api/` quien devuelva mock o red según `VITE_USE_MOCK`.
+ *   - `mock: false` **con** `mockData` es el modo *semilla*: se pinta el dato
+ *     de inmediato y además se pide, de modo que `refetch()` refleja cambios
+ *     (p. ej. una reserva cancelada sobre el mock con estado).
+ *
+ * En modo semilla el `loading` nunca pisa contenido ya visible: solo se
+ * enciende si todavía no hay nada que mostrar.
  *
  * El `setState` dentro del efecto va en el encadenado de la promesa, nunca de
  * forma síncrona en el cuerpo: así se evita el render en cascada que señala
@@ -33,8 +40,10 @@ export function useApi(peticion, { mock = false, mockData, deps = [], enabled = 
   const mockDataRef = useRef(mockData)
   const [recarga, setRecarga] = useState(0)
 
-  /** El mock sembrado gana solo si además hay dato. */
-  const sembrado = mock && mockData !== undefined
+  /** Modo estático: la semilla es el dato definitivo y no se pide nada. */
+  const estatico = mock && mockData !== undefined
+  /** Modo semilla: se pinta de inmediato, pero la petición sigue su curso. */
+  const sembrado = mockData !== undefined
 
   const [estado, setEstado] = useState(() => ({
     data: sembrado ? mockData : null,
@@ -60,7 +69,9 @@ export function useApi(peticion, { mock = false, mockData, deps = [], enabled = 
     Promise.resolve()
       .then(() => {
         if (!vigente) return undefined
-        setEstado((prev) => ({ ...prev, loading: true, error: null }))
+        /* Solo se muestra el esqueleto si no hay nada que enseñar: con semilla
+           el contenido ya está en pantalla y la recarga ocurre por detrás. */
+        setEstado((prev) => ({ ...prev, loading: prev.data === null, error: null }))
         return peticionRef.current?.({ signal: controlador.signal })
       })
       .then((data) => {
@@ -83,9 +94,11 @@ export function useApi(peticion, { mock = false, mockData, deps = [], enabled = 
   const refetch = useCallback(() => setRecarga((n) => n + 1), [])
 
   /* El dato y el loading sembrados se derivan del render, no del efecto, para
-     que el primer render (y el SSR, sin efectos) ya los tenga. */
-  const data = sembrado ? mockData : estado.data
-  const loading = !enabled ? false : sembrado ? false : estado.loading
+     que el primer render (y el SSR, sin efectos) ya los tenga. En modo estático
+     el dato vive en las props; en modo semilla, en el estado (que la petición
+     actualiza). */
+  const data = estatico ? mockData : estado.data
+  const loading = !enabled ? false : estatico ? false : estado.loading
   const error = enabled ? estado.error : null
 
   return { data, loading, error, refetch }

@@ -1,0 +1,349 @@
+/* ==========================================================================
+   MisReservas — historial y gestión de turnos (§4.4, FASE 3).
+
+   Solo estructura y rejillas. La tarjeta del turno vive en components.css
+   (.c-turno) y los modales son componentes de ui/. Aquí no hay ningún hex.
+   ========================================================================== */
+
+.mr {
+  min-height: 100svh;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding: var(--sp-5) var(--gutter) var(--sp-13);
+}
+
+/* --------------------------------------------------------------------------
+   Miga de pan
+   -------------------------------------------------------------------------- */
+
+.mr__migas {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+.mr__miga {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.mr__miga:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.mr__migas .c-icon {
+  color: var(--text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   Encabezado
+   -------------------------------------------------------------------------- */
+
+.mr__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+  margin-block: var(--sp-6);
+}
+
+.mr__headtext {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  max-width: var(--container-prose);
+}
+
+.mr__headtext p {
+  font-size: var(--fs-body-lg);
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Pestañas por estado
+   -------------------------------------------------------------------------- */
+
+.mr__tabs {
+  display: flex;
+  gap: var(--sp-1);
+  margin-bottom: var(--sp-5);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+
+.mr__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font: inherit;
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.mr__tab:hover {
+  color: var(--text-primary);
+}
+
+.mr__tab--on {
+  color: var(--brand-strong);
+  border-bottom-color: var(--brand);
+}
+
+.mr__tabcount {
+  padding: 1px var(--sp-2);
+  border-radius: var(--r-full);
+  background-color: var(--bg-sunken);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  color: var(--text-secondary);
+}
+
+.mr__tab--on .mr__tabcount {
+  background-color: var(--brand-surface);
+  color: var(--brand-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Filtro por deporte
+   -------------------------------------------------------------------------- */
+
+.mr__filtros {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-6);
+}
+
+.mr__filtrolabel {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Rejilla: listado + panel lateral
+   -------------------------------------------------------------------------- */
+
+.mr__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: var(--sp-8);
+  align-items: start;
+}
+
+.mr__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  min-width: 0;
+}
+
+.mr__count {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+.mr__count .c-icon {
+  color: var(--text-tertiary);
+}
+
+.mr__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mr__item {
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Paginación
+   -------------------------------------------------------------------------- */
+
+.mr__pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-2);
+}
+
+.mr__pagerinfo {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Panel lateral
+   -------------------------------------------------------------------------- */
+
+.mr__aside {
+  position: sticky;
+  top: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.mr__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-xl);
+  background-color: var(--bg-surface);
+}
+
+.mr__panelhead {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-h4);
+}
+
+.mr__panelhead .c-icon {
+  color: var(--brand-strong);
+}
+
+.mr__paneltext {
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+.mr__paneltext strong {
+  color: var(--text-primary);
+}
+
+.mr__panelist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mr__panelitem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+.mr__panelitem .c-icon {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--text-tertiary);
+}
+
+.mr__panelitem--ok .c-icon {
+  color: var(--feedback-success-fg);
+}
+
+.mr__panelcontacto {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: var(--fw-semibold);
+  color: var(--text-link);
+}
+
+/* Panel de llamada a la acción, sobre fondo inverso. */
+
+.mr__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  border-radius: var(--r-xl);
+  background-color: var(--bg-inverse);
+  color: var(--text-on-inverse);
+}
+
+.mr__cta .c-icon {
+  color: var(--accent);
+}
+
+.mr__cta h2 {
+  font-size: var(--fs-h3);
+  color: var(--text-on-inverse);
+}
+
+.mr__cta p {
+  font-size: var(--fs-body-sm);
+  opacity: 0.85;
+}
+
+.mr__cta .c-btn {
+  margin-top: var(--sp-2);
+}
+
+/* --------------------------------------------------------------------------
+   Aviso flotante
+   -------------------------------------------------------------------------- */
+
+.mr__aviso {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--sp-5);
+  z-index: var(--z-toast);
+}
+
+/* --------------------------------------------------------------------------
+   Adaptación
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .mr__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-6);
+  }
+
+  /* Deja de ser pegajoso: en vertical taparía media pantalla. */
+  .mr__aside {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .mr {
+    padding-block: var(--sp-4) var(--sp-10);
+  }
+
+  .mr__head {
+    align-items: stretch;
+    margin-block: var(--sp-5);
+  }
+
+  .mr__aviso {
+    left: var(--gutter);
+    right: var(--gutter);
+  }
+}

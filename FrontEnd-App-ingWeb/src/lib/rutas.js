@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
  *   #/                 catálogo de canchas
  *   #/estilo           catálogo de componentes (validador del diseño)
  *   #/cancha/:id       detalle y reserva de una cancha
+ *   #/mis-reservas     historial y gestión de turnos del usuario
  *
  * Los patrones admiten un segmento con `:nombre`, que se recoge en `params`.
  * Cuando llegue el enrutador real, solo se sustituye este archivo.
@@ -19,6 +20,7 @@ export const RUTAS = {
   '/': { titulo: 'Explorar canchas' },
   '/estilo': { titulo: 'Style guide' },
   '/cancha/:id': { titulo: 'Detalle de cancha' },
+  '/mis-reservas': { titulo: 'Mis reservas' },
 }
 
 /** Ruta de respaldo cuando el hash no coincide con ningún patrón. */
@@ -71,6 +73,11 @@ export function rutaActual() {
 /** Ruta del detalle de una cancha. Centraliza el formato del enlace. */
 export function rutaDeCancha(id) {
   return `/cancha/${encodeURIComponent(id)}`
+}
+
+/** Ruta del historial de reservas del usuario. */
+export function rutaDeMisReservas() {
+  return '/mis-reservas'
 }
 
 /** Cambia el hash y deja que `hashchange` actualice la vista. Sin DOM, no-op. */

@@ -1927,4 +1927,279 @@
     flex-direction: column;
     gap: var(--sp-4);
   }
+
+  /* ======================================================================
+     Turno — tarjeta del historial de reservas (§4.4, FASE 3)
+
+     Es el ticket de "Mis reservas": bloque de fecha a la izquierda y el
+     detalle a la derecha. No hay hex: el verde del bloque de fecha sale de
+     la escala primaria del tema.
+     ====================================================================== */
+  .c-turno {
+    display: flex;
+    gap: var(--sp-5);
+    padding: var(--sp-5);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-xl);
+    background-color: var(--bg-surface);
+    box-shadow: var(--sh-sm);
+    transition:
+      box-shadow var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out);
+  }
+
+  .c-turno:hover {
+    border-color: var(--border-default);
+    box-shadow: var(--sh-md);
+  }
+
+  /* Un turno cancelado queda en segundo plano, sin desaparecer. */
+  .c-turno--canceladas {
+    opacity: 0.7;
+  }
+
+  .c-turno--esqueleto:hover {
+    border-color: var(--border-subtle);
+    box-shadow: var(--sh-sm);
+  }
+
+  /* --- Bloque de fecha --- */
+
+  .c-turno__fecha {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 96px;
+    padding: var(--sp-4) var(--sp-2);
+    border-radius: var(--r-lg);
+    background-color: var(--c-primary-50);
+    color: var(--c-primary-700);
+    text-align: center;
+  }
+
+  .c-turno__fechadia {
+    font-size: var(--fs-caption);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .c-turno__fechanum {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-bold);
+    line-height: 1;
+  }
+
+  .c-turno__fechames {
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .c-turno__fecharel {
+    margin-top: var(--sp-2);
+    padding: 3px var(--sp-2);
+    border-radius: var(--r-full);
+    background-color: var(--bg-surface);
+    font-size: var(--fs-caption);
+    font-weight: var(--fw-semibold);
+    white-space: nowrap;
+  }
+
+  /* --- Cuerpo --- */
+
+  .c-turno__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--sp-2);
+    min-width: 0;
+  }
+
+  .c-turno__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+  }
+
+  .c-turno__id {
+    font-size: var(--fs-caption);
+    color: var(--text-tertiary);
+  }
+
+  .c-turno__id b {
+    color: var(--text-secondary);
+    font-weight: var(--fw-semibold);
+  }
+
+  .c-turno__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-bold);
+  }
+
+  .c-turno__lugar {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--fs-body-sm);
+    color: var(--text-secondary);
+  }
+
+  .c-turno__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2) var(--sp-5);
+    flex-wrap: wrap;
+    margin-top: var(--sp-1);
+  }
+
+  .c-turno__dato {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--fs-body-sm);
+    color: var(--text-secondary);
+  }
+
+  .c-turno__dato .c-icon {
+    color: var(--text-tertiary);
+  }
+
+  /* --- Pie: total y acciones --- */
+
+  .c-turno__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+    margin-top: var(--sp-2);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .c-turno__total {
+    font-size: var(--fs-body-sm);
+  }
+
+  .c-turno__total strong {
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
+    font-weight: var(--fw-bold);
+  }
+
+  .c-turno__acciones {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+
+  /* Cancelar es una acción destructiva: se tiñe al pasar por encima. */
+  .c-turno__cancelar {
+    color: var(--feedback-danger-fg);
+  }
+
+  .c-turno__cancelar:hover {
+    background-color: var(--feedback-danger-bg);
+  }
+
+  .c-turno__calificada {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--feedback-success-fg);
+  }
+
+  /* En vertical el bloque de fecha se tumba a una fila y el pie se apila. */
+  @media (max-width: 767px) {
+    .c-turno {
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+
+    .c-turno__fecha {
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: flex-start;
+      gap: var(--sp-2);
+      width: auto;
+      padding: var(--sp-2) var(--sp-3);
+    }
+
+    .c-turno__fecharel {
+      margin-top: 0;
+      margin-left: auto;
+    }
+
+    .c-turno__foot {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .c-turno__acciones {
+      justify-content: flex-end;
+    }
+  }
+
+  /* ======================================================================
+     Calificación — estrellas del modal de reseña (FASE 3)
+     ====================================================================== */
+  .c-estrellas {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    flex-wrap: wrap;
+    margin-bottom: var(--sp-5);
+  }
+
+  .c-estrella {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: var(--r-full);
+    background: none;
+    color: var(--c-neutral-300);
+    cursor: pointer;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .c-estrella:hover {
+    background-color: var(--bg-sunken);
+  }
+
+  .c-estrella--on {
+    color: var(--c-warning-500);
+  }
+
+  .c-estrellas__texto {
+    margin-left: var(--sp-2);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-secondary);
+  }
+
+  /* --- Texto del modal de cancelación ------------------------------------ */
+
+  .c-cancelar__texto {
+    margin-bottom: var(--sp-5);
+    color: var(--text-secondary);
+  }
+
+  .c-cancelar__texto strong {
+    color: var(--text-primary);
+  }
 }

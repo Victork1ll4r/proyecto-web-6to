@@ -77,7 +77,7 @@ export function Modal({
 
   if (!open) return null
 
-  return createPortal(
+  const dialogo = (
     <div
       className="c-modal__overlay"
       onMouseDown={(event) => {
@@ -115,7 +115,13 @@ export function Modal({
 
         {footer ? <div className="c-modal__foot">{footer}</div> : null}
       </div>
-    </div>,
-    document.body,
+    </div>
   )
+
+  /* Sin DOM (prerender / SSR) no hay `document.body` donde abrir el portal: se
+     pinta el diálogo en su sitio para que la vista se pueda renderizar igual.
+     En el navegador siempre se abre en el portal. */
+  if (typeof document === 'undefined') return dialogo
+
+  return createPortal(dialogo, document.body)
 }

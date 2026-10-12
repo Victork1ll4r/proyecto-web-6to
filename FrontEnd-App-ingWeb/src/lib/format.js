@@ -101,16 +101,90 @@ export function formatFecha(iso) {
 }
 
 /**
- * Fecha larga para encabezados: `"2026-10-09"` → `"Sábado 9 de octubre"`.
- * Se calcula el día de la semana con `Date.UTC` para no depender de la zona.
+ * Día de la semana de una fecha ISO: `"2026-10-14"` → `"Miércoles"`.
+ * Se calcula con `Date.UTC` para no depender de la zona horaria.
+ * @param {string} iso
+ */
+export function formatDiaSemana(iso) {
+  const partes = descomponerFecha(iso)
+  if (!partes) return ''
+  const indice = new Date(Date.UTC(partes.anio, partes.mes, partes.dia)).getUTCDay()
+  const dia = DIAS[indice]
+  return `${dia[0].toUpperCase()}${dia.slice(1)}`
+}
+
+/**
+ * Fecha larga para encabezados: `"2026-10-09"` → `"Viernes 9 de octubre"`.
  * @param {string} iso
  */
 export function formatFechaLarga(iso) {
   const partes = descomponerFecha(iso)
   if (!partes) return String(iso ?? '')
+  return `${formatDiaSemana(iso)} ${partes.dia} de ${MESES[partes.mes]}`
+}
+
+/**
+ * Mes en tres letras y mayúsculas, para el bloque de fecha de la tarjeta:
+ * `"2026-10-14"` → `"OCT"`.
+ * @param {string} iso
+ */
+export function formatMesCorto(iso) {
+  const partes = descomponerFecha(iso)
+  return partes ? MESES[partes.mes].slice(0, 3).toUpperCase() : ''
+}
+
+/**
+ * Día del mes sin ceros a la izquierda: `"2026-10-05"` → `"5"`.
+ * @param {string} iso
+ */
+export function formatDiaNumero(iso) {
+  const partes = descomponerFecha(iso)
+  return partes ? String(partes.dia) : ''
+}
+
+/**
+ * Días completos entre dos fechas ISO (`hasta - desde`). Negativo si `hasta`
+ * es anterior. Se hace en UTC para que el cambio de horario no descuadre.
+ * @param {string} desde
+ * @param {string} hasta
+ */
+export function diasEntre(desde, hasta) {
+  const a = descomponerFecha(desde)
+  const b = descomponerFecha(hasta)
+  if (!a || !b) return 0
+  const ms = Date.UTC(b.anio, b.mes, b.dia) - Date.UTC(a.anio, a.mes, a.dia)
+  return Math.round(ms / 86400000)
+}
+
+/**
+ * Etiqueta de cercanía para la tarjeta: `"Hoy"`, `"Mañana"`, `"En 3 días"`,
+ * `"Fin de semana"` o `"Finalizada"`. Cadena vacía si no hay nada que decir.
+ * @param {string} iso
+ * @param {Date} [hoy]
+ */
+export function etiquetaRelativa(iso, hoy = new Date()) {
+  const diferencia = diasEntre(fechaISO(hoy), iso)
+  if (diferencia < 0) return 'Finalizada'
+  if (diferencia === 0) return 'Hoy'
+  if (diferencia === 1) return 'Mañana'
+  if (diferencia <= 7) return `En ${diferencia} días`
+
+  const partes = descomponerFecha(iso)
+  if (!partes) return ''
   const indice = new Date(Date.UTC(partes.anio, partes.mes, partes.dia)).getUTCDay()
-  const dia = DIAS[indice]
-  return `${dia[0].toUpperCase()}${dia.slice(1)} ${partes.dia} de ${MESES[partes.mes]}`
+  return indice === 0 || indice === 6 ? 'Fin de semana' : ''
+}
+
+/**
+ * Duración en horas entre dos horas del día: `("18:00", "20:00")` → `2`.
+ * @param {string} inicio
+ * @param {string} fin
+ */
+export function horasEntre(inicio, fin) {
+  const [hi, mi] = formatHora(inicio).split(':').map(Number)
+  const [hf, mf] = formatHora(fin).split(':').map(Number)
+  const minutos = hf * 60 + mf - (hi * 60 + mi)
+  return Math.max(0, minutos) / 60
 }
 
 /**

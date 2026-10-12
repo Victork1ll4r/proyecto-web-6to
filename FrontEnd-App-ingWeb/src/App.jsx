@@ -1,5 +1,6 @@
 import { ExplorarCanchas } from './pages/ExplorarCanchas.jsx'
 import { DetalleCancha } from './pages/DetalleCancha.jsx'
+import { MisReservas } from './pages/MisReservas.jsx'
 import { StyleGuide } from './pages/StyleGuide.jsx'
 import { navegar, rutaDeCancha, useRuta } from './lib/rutas.js'
 
@@ -15,6 +16,15 @@ export default function App() {
 
   if (ruta === '/cancha/:id') {
     return <DetalleCancha id={params.id} onVolver={() => navegar('/')} />
+  }
+
+  if (ruta === '/mis-reservas') {
+    return (
+      <MisReservas
+        onVerCancha={(canchaId) => navegar(rutaDeCancha(canchaId))}
+        onExplorar={() => navegar('/')}
+      />
+    )
   }
 
   if (ruta === '/estilo') return <StyleGuide />
