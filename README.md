@@ -13,7 +13,7 @@
 | **Catálogo ExplorarCanchas** | ✅ Portado desde Stitch + verificado |
 | **Cimentación API + hooks (FASE 0)** | ✅ `api/` (canchas, reservas, clientes, auth), `hooks/useApi`, `lib/format`, `.env` |
 | **Detalle + Reserva (FASE 2)** | ✅ `#/cancha/:id` — galería, ficha, selector de días, `SlotGrid`, modal de confirmación + código `SC-XXXXX` |
-| **Mis Reservas** | 📦 Código Stitch listo — pendiente FASE 3 |
+| **Mis Reservas (FASE 3)** | ✅ `#/mis-reservas` — filtros por estado y deporte, tarjetas de turno, cancelar (si >24 h), calificar, exportar comprobantes |
 | **Panel Admin** | 📦 Código Stitch listo — pendiente FASE 4 |
 | **Auth / Perfil** | ❌ No generadas en Stitch — pendiente FASE 5 |
 | **Backend real** | Solo `/api/clientes` (user) y `/api/auth` (auth); canchas y reservas siguen en mock |
@@ -34,7 +34,7 @@
 
 ---
 
-### 2. Google Stitch — Pantallas generadas (4/5 en el repo)
+### 2. Google Stitch — Pantallas generadas (5/5 en el repo)
 
 | Vista en Stitch | Captura |
 |-----------------|---------|
@@ -44,8 +44,7 @@
 | **Mis reservas** — código + preview | ![Stitch Mis Reservas](docs/screenshots/stitch-mis-reservas.png) |
 | **Panel de control admin** — código + preview | ![Stitch Admin](docs/screenshots/stitch-admin.png) |
 
-> ✅ `stitch-explorar`, `stitch-detalle`, `stitch-mis-reservas` y `stitch-admin` están en `docs/screenshots/`. Los tres últimos se tomaron del `screen.png` que exporta cada carpeta de `stitch_design_system_generator/`.
-> **Pendiente:** `stitch-dashboard.png` — vista general del proyecto en [Google Stitch](https://stitch.withgoogle.com) con las 4 pantallas en la barra lateral.
+> ✅ Las cinco están en `docs/screenshots/`. `stitch-explorar`, `stitch-detalle`, `stitch-mis-reservas` y `stitch-admin` se tomaron del `screen.png` que exporta cada carpeta de `stitch_design_system_generator/`; `stitch-dashboard` es la vista general del proyecto en [Google Stitch](https://stitch.withgoogle.com).
 
 ---
 
@@ -59,7 +58,7 @@
 
 ---
 
-### 4. App portada a React (FASE 1 + FASE 2) — ✅ en el repo
+### 4. App portada a React (FASE 1 + FASE 2 + FASE 3) — ✅ en el repo
 
 Capturas generadas con Brave en headless contra `npm run dev` (ancho ≤ 1600 px, tema claro).
 
@@ -67,10 +66,15 @@ Capturas generadas con Brave en headless contra `npm run dev` (ancho ≤ 1600 px
 |-------|-------------------|-------------|
 | **Catálogo de canchas** (`#/`) | ![Catálogo desktop](docs/screenshots/catalogo-desktop.png) | ![Catálogo móvil](docs/screenshots/catalogo-movil.png) |
 | **Detalle y reserva** (`#/cancha/1`) | ![Detalle desktop](docs/screenshots/detalle-cancha-desktop.png) | ![Detalle móvil](docs/screenshots/detalle-cancha-movil.png) |
+| **Mis reservas** (`#/mis-reservas`) | ![Mis reservas desktop](docs/screenshots/mis-reservas-desktop.png) | ![Mis reservas móvil](docs/screenshots/mis-reservas-movil.png) |
 
 **Modal de confirmación** (`#/cancha/1` → elegir un turno → **Confirmar y pagar reserva**):
 
 ![Reserva modal](docs/screenshots/reserva-modal.png)
+
+**Modal de cancelación** (`#/mis-reservas` → **Cancelar turno**):
+
+![Cancelar reserva modal](docs/screenshots/mis-reservas-cancelar.png)
 
 ---
 
@@ -78,7 +82,6 @@ Capturas generadas con Brave en headless contra `npm run dev` (ancho ≤ 1600 px
 
 | Fase | Pantallas a capturar cuando estén listas |
 |------|------------------------------------------|
-| **FASE 3** | `mis-reservas-desktop.png`, `mis-reservas-movil.png` |
 | **FASE 4** | `panel-admin-clientes.png`, `panel-admin-canchas.png`, `panel-admin-reservas.png`, `panel-admin-resumen.png` |
 | **FASE 5** | `login.png`, `registro.png`, `recuperar-clave.png`, `perfil.png` |
 | **FASE 6** | `admin-resumen-final.png`, `style-guide-completo.png` |
@@ -96,18 +99,18 @@ FrontEnd-App-ingWeb/
 │   ├── components/
 │   │   ├── ui/           # 12 primitivas (Button, Input, Modal, DataTable…)
 │   │   ├── canchas/      # GaleriaCancha, CanchaDetail, TarjetaReserva, ReservaModal (FASE 2)
-│   │   ├── reservas/     # ReservaList, ReservaCard, ReservaActions
+│   │   ├── reservas/     # ReservaList, ReservaCard, ReservaActions, Cancelar/CalificarReservaModal (FASE 3)
 │   │   ├── admin/        # ClienteTable, StatsCards, AdminSidebar
 │   │   └── layout/       # Header, Footer, PageShell
 │   ├── hooks/            # useApi, useCanchaDetail, useDisponibilidad (+ useReservas, useAuth)
-│   ├── lib/              # mockData, filtroCanchas, cx, format, rutas
+│   ├── lib/              # mockData, filtroCanchas, filtroReservas, comprobante, cx, format, rutas
 │   ├── pages/            # ExplorarCanchas, DetalleCancha, MisReservas, PanelAdmin, Login, StyleGuide…
 │   ├── styles/
 │   │   ├── tokens.css    # 201 tokens — FUENTE ÚNICA DE VERDAD
 │   │   ├── base.css
 │   │   ├── components.css
 │   │   └── pages/        # CSS por página
-│   ├── App.jsx           # Hash routing (#/ #/estilo #/cancha/:id …)
+│   ├── App.jsx           # Hash routing (#/ #/estilo #/cancha/:id #/mis-reservas …)
 │   └── main.jsx
 ├── docs/
 │   ├── design/           # DESIGN_SYSTEM.md, STITCH_PROMPTS.md, stitch-theme.json
@@ -125,6 +128,7 @@ FrontEnd-App-ingWeb/
 npm run dev              # http://localhost:5173  (catálogo)
 # http://localhost:5173/#/estilo       (style guide)
 # http://localhost:5173/#/cancha/1     (detalle + reserva)
+# http://localhost:5173/#/mis-reservas (mis reservas)
 
 # Verificación obligatoria antes de commit
 npx vite build           # Build producción
@@ -132,7 +136,7 @@ node node_modules/eslint/bin/eslint.js src   # Lint 0 errores
 node -e "
 const {transform}=require('lightningcss');
 const fs=require('fs');
-['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css','src/pages/DetalleCancha.css'].forEach(f=>transform({filename:f,code:Buffer.from(fs.readFileSync(f)),minify:true}));
+['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css','src/pages/DetalleCancha.css','src/pages/MisReservas.css'].forEach(f=>transform({filename:f,code:Buffer.from(fs.readFileSync(f)),minify:true}));
 console.log('CSS OK');
 "
 
@@ -143,7 +147,7 @@ cp .env.example .env
 # VITE_USE_MOCK=true                    (mock ↔ API real sin tocar la vista)
 
 # Verificación local (script efímero, no versionado: vive en .check/)
-node .check/verificar.mjs               # 93 contratos + rutas + SSR
+node .check/verificar.mjs               # 165 contratos + rutas + SSR
 ```
 
 ---
@@ -162,12 +166,12 @@ node .check/verificar.mjs               # 93 contratos + rutas + SSR
 
 ## Cómo continuar
 
-1. **Capturas:** hechas las de FASE 1 + FASE 2 (app) y las de Stitch. Solo falta `stitch-dashboard.png` (vista general del proyecto en Stitch).
-2. **Próxima fase:** FASES 0–2 cerradas → sigue **FASE 3 — Mis Reservas** (`docs/PORT_STITCH_PLAN.md`).
+1. **Capturas:** hechas las de FASE 1 + FASE 2 + FASE 3 (app) y las 5 de Stitch. No queda ninguna pendiente de fases cerradas.
+2. **Próxima fase:** FASES 0–3 cerradas → sigue **FASE 4 — Panel Admin** (`docs/PORT_STITCH_PLAN.md`).
 3. **Commit atómico:**
    ```bash
-   git add docs/screenshots/*.png README.md
-   git commit -m "docs: capturas de la app (FASE 1–2) y de Stitch"
+   git add FrontEnd-App-ingWeb/src docs/PORT_STITCH_PLAN.md README.md
+   git commit -m "feat(mis-reservas): historial, filtros, cancelar, calificar y comprobantes (FASE 3)"
    ```
 
 ---

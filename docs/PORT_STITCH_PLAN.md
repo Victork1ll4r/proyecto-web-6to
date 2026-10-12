@@ -1,8 +1,8 @@
 # Plan de Integración — Páginas Stitch → Frontend + Backend
 
-**Versión:** 1.2  
+**Versión:** 1.3  
 **Fecha:** 2026-10-12  
-**Estado:** FASES 0–2 completadas — FASE 3 en cola
+**Estado:** FASES 0–3 completadas — FASE 4 en cola
 
 ---
 
@@ -12,7 +12,7 @@
 |---|---|---|
 | `explorar_canchas` | ✅ Portada (React + tokens) | `GET /api/canchas` (propuesto) |
 | `detalle_y_reserva_de_cancha` | ✅ Portada (React + tokens, FASE 2) | `GET /api/canchas/:id`, `POST /api/reservas` (propuestos) |
-| `mis_reservas` | 📦 Código + PNG | `GET /api/reservas?cliente=:id` (propuesto) |
+| `mis_reservas` | ✅ Portada (React + tokens, FASE 3) | `GET /api/reservas?cliente=:id` (propuesto) |
 | `panel_de_control_admin` | 📦 Código + PNG | `GET /api/clientes` (real), `GET /api/canchas`, `GET /api/reservas` |
 | `login` / `registro` / `recuperar` / `perfil` / `admin-resumen` | ❌ No generadas | Auth + Cliente (real) |
 
@@ -53,10 +53,13 @@ FrontEnd-App-ingWeb/
 │   │   │   ├── ReservaModal.jsx
 │   │   │   └── index.js
 │   │   │   # CanchaCard y SlotGrid viven en components/ui/ (FASE 1)
-│   │   ├── reservas/           # Componentes de dominio reserva
+│   │   ├── reservas/           # Componentes de dominio reserva (FASE 3)
 │   │   │   ├── ReservaList.jsx
 │   │   │   ├── ReservaCard.jsx
-│   │   │   └── ReservaActions.jsx
+│   │   │   ├── ReservaActions.jsx
+│   │   │   ├── CancelarReservaModal.jsx
+│   │   │   ├── CalificarReservaModal.jsx
+│   │   │   └── index.js
 │   │   ├── admin/              # Componentes de dominio admin
 │   │   │   ├── ClienteTable.jsx
 │   │   │   ├── StatsCards.jsx
@@ -67,7 +70,7 @@ FrontEnd-App-ingWeb/
 │   │   ├── useCanchaDetail.js
 │   │   ├── useDisponibilidad.js
 │   │   ├── useCanchas.js             # pendiente: migrar ExplorarCanchas
-│   │   ├── useReservas.js            # 🔄 FASE 3
+│   │   ├── useReservas.js            # ✅ FASE 3
 │   │   ├── useAuth.js                # 🔄 FASE 5
 │   │   └── useDebounce.js
 │   ├── lib/
@@ -76,6 +79,8 @@ FrontEnd-App-ingWeb/
 │   │   ├── cx.js               # Utilidades (ya existe)
 │   │   ├── deportes.js         # Catálogo de deportes (ya existe)
 │   │   ├── format.js           # Moneda, fecha, hora (nuevo)
+│   │   ├── filtroReservas.js   # Lógica pura de grupos/filtros de reservas (FASE 3)
+│   │   ├── comprobante.js      # Exportación a CSV de comprobantes (FASE 3)
 │   │   ├── rutas.js            # Hash routing (ya existe)
 │   │   └── validators.js       # Validaciones de formulario
 │   ├── pages/
@@ -83,7 +88,7 @@ FrontEnd-App-ingWeb/
 │   │   ├── ExplorarCanchas.css
 │   │   ├── DetalleCancha.jsx         # ✅ FASE 2
 │   │   ├── DetalleCancha.css
-│   │   ├── MisReservas.jsx           # 🔄 FASE 3
+│   │   ├── MisReservas.jsx           # ✅ FASE 3
 │   │   ├── MisReservas.css
 │   │   ├── PanelAdmin.jsx            # 🔄 FASE 4
 │   │   ├── PanelAdmin.css
@@ -217,33 +222,52 @@ export function useDisponibilidad(canchaId, fecha) {
 
 | Componente | Responsabilidad |
 |---|---|
-| `ReservaList` | Tabla/Lista responsive con estados (próxima, pasada, cancelada) |
-| `ReservaCard` | Tarjeta individual: cancha, fecha, hora, estado, acciones |
+| `ReservaList` | Lista responsive con estados (próxima, pasada, cancelada) |
+| `ReservaCard` | Tarjeta individual: fecha en bloque, cancha, hora, estado, total y acciones |
 | `ReservaActions` | Botones: ver detalle, cancelar (si >24h), calificar (si pasada) |
+| `CancelarReservaModal` | Confirmación con devolución estimada y resumen del turno |
+| `CalificarReservaModal` | Estrellas (1–5) + comentario opcional |
 
 #### 3.2 Página `MisReservas`
 
 - URL: `#/mis-reservas` (requiere auth — fase 5)
 - Hook `useReservas({ clienteId, estado })`
-- Filtros: próximas / pasadas / todas
-- EmptyState si no hay reservas
+- Pestañas: **Próximas · Pasadas · Canceladas · Todas** (arranca en Próximas) con contador
+- Filtro por deporte (chips)
+- Paginación (se oculta si hay una sola página)
+- `EmptyState` por pestaña; distinto si el vacío es por el filtro de deporte
+- Exportación de comprobantes a CSV (`lib/comprobante.js`)
+- `clienteId` sale de `USUARIO_DEMO` hasta que exista `useAuth` (fase 5)
 
 #### 3.3 Hook `useReservas`
 
 ```js
-export function useReservas({ clienteId, estado }) {
-  return useApi(() => api.reservas.list({ clienteId, estado }), { mock: USE_MOCK, mockData: MOCK_RESERVAS })
+export function useReservas({ clienteId, estado } = {}) {
+  const definido = clienteId !== undefined && clienteId !== null
+  // Semilla en modo mock: pinta de inmediato y sigue pidiendo, para que
+  // `refetch()` refleje cambios (por ejemplo, tras cancelar).
+  const semilla = useMemo(() => (USE_MOCK && definido ? RESERVAS.filter(...) : undefined), [...])
+  return useApi(() => api.reservas.list({ clienteId, estado }), {
+    enabled: definido,
+    mockData: semilla,
+  })
 }
 ```
 
+> **Desviaciones del diseño de Stitch, conscientes:** la política de cancelación
+> es de **24 h** (como el detalle de cancha y `puedeCancelar`), no de 6 h; no se
+> portan "Invitar amigos" (necesita compartir) ni "Escribir por WhatsApp"
+> (canal de soporte inexistente). El resto del aside (política, atención, CTA)
+> sí se conserva.
+
 #### Verificación fase 3
 
-- [ ] SSR render de lista vacía y con 3+ reservas
-- [ ] Filtro por estado funciona
-- [ ] Acción "cancelar" abre modal confirmación
-- [ ] Formato fecha `DD/MM/YYYY`, hora `HH:MM – HH:MM`, precio COP
-- [ ] Código reserva `SC-XXXXX` visible
-- [ ] Build + lint
+- [x] SSR render de lista vacía y con 3+ reservas
+- [x] Filtro por estado y por deporte funciona
+- [x] Acción "cancelar" abre modal de confirmación (con devolución)
+- [x] Formato fecha `DD/MM/YYYY`, hora `HH:MM – HH:MM`, precio COP
+- [x] Código reserva `SC-XXXXX` visible
+- [x] Build + lint + 0 hex + CSS válido (165 checks en total, 72 nuevos)
 
 ---
 
@@ -428,6 +452,37 @@ Al cerrar cada fase, **actualizo este archivo** marcando ☐ → ✅ y añado:
 
 ---
 
+## Estado tras Fase 3 — 2026-10-12
+
+### Completado
+- ✅ `src/hooks/useApi.js` — nuevo **modo semilla**: `mockData` sin `mock` pinta el dato de inmediato (y en SSR) y **además** hace la petición, para que `refetch()` refleje cambios; `loading` solo se enciende si no hay nada que mostrar.
+- ✅ `src/lib/format.js` — `formatDiaSemana`, `formatMesCorto`, `formatDiaNumero`, `diasEntre`, `etiquetaRelativa` (Hoy / Mañana / En N días / Fin de semana / Finalizada) y `horasEntre`; `formatFechaLarga` reusa `formatDiaSemana`.
+- ✅ `src/lib/filtroReservas.js` — lógica pura: `GRUPOS`, `ETIQUETA_GRUPO`, `clasificar`, `enriquecer`, `filtrar`, `contar`, `horasHasta`, `puedeCancelar` (>24 h), `puedeCalificar`.
+- ✅ `src/lib/comprobante.js` — `reservasACSV` (puro, escapa comas/comillas) y `descargarTexto` (guarda sin DOM para SSR).
+- ✅ `src/hooks/useReservas.js` — `useReservas({ clienteId, estado })` sobre `useApi`, con semilla filtrada por cliente en modo mock.
+- ✅ `src/components/reservas/` — `ReservaList`, `ReservaCard` (bloque de fecha + cuerpo + pie), `ReservaActions`, `CancelarReservaModal`, `CalificarReservaModal` e `index.js`.
+- ✅ `src/pages/MisReservas.jsx` + `MisReservas.css` — hero, 4 pestañas con contador, filtro por deporte, paginación, aside (política / atención / CTA), modales, aviso flotante y `EmptyState` (por pestaña o por filtro); prop `clienteId` (por defecto `USUARIO_DEMO.id`).
+- ✅ `src/styles/components.css` — bloque `.c-turno` (con modificador `--canceladas` y adaptación móvil) + `.c-estrellas`/`.c-estrella` + `.c-cancelar__texto`; solo tokens.
+- ✅ `src/components/ui/Modal.jsx` — guarda de SSR: sin `document` pinta el diálogo en su sitio en vez de reventar en el portal.
+- ✅ `src/lib/rutas.js` + `src/App.jsx` — ruta `#/mis-reservas` y `rutaDeMisReservas()`; `App` la cablea con `onVerCancha` → detalle y `onExplorar` → catálogo.
+- ✅ Capturas `mis-reservas-desktop.png`, `mis-reservas-movil.png` y `mis-reservas-cancelar.png`.
+
+### Bloqueantes / Decisiones
+- **Política de cancelación = 24 h**, no las 6 h del texto de Stitch: manda la coherencia con el detalle de cancha (FASE 2) y con `puedeCancelar`.
+- **Omitidos** del diseño de Stitch: "Invitar amigos" (requiere compartir) y "Escribir por WhatsApp" (canal de soporte inexistente). Sí se conservan la política, "Atención al deportista" y el CTA, que navega al catálogo.
+- **Calificar** no tiene endpoint: el estado vive en la página (un `Set` de ids) y no sobrevive a la recarga. Cuando exista `POST /api/reservas/:id/calificacion`, pasa a `useApi`.
+- **"Descargar comprobantes"** se implementa como exportación **CSV** real de lo que se está viendo (`lib/comprobante.js`), no como PDF: no hay generación de documentos ni dependencias para ello.
+- La página no tiene enlace en la UI (no hay cabecera global): se entra por `#/mis-reservas`, como a `#/estilo`. Pendiente cuando exista armazón.
+- `src/api/axios.js` sigue sin uso (se conserva; pendiente decidir).
+
+### Métricas
+- Build: 61.47 kB CSS / 315.34 kB JS (gzip: 10.38 / 95.81).
+- Lint: 0 errores.
+- Tests SSR + contratos + rutas + componentes: 165/165 OK (`node .check/verificar.mjs`).
+- Hex fuera de tokens: 0 · Violeta detectado: 0.
+
+---
+
 ## Riesgos y mitigaciones
 
 | Riesgo | Probabilidad | Impacto | Mitigación |
@@ -453,7 +508,7 @@ node node_modules/eslint/bin/eslint.js src
 node -e "
 const {transform} = require('lightningcss');
 const fs = require('fs');
-for (const f of ['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css']) {
+for (const f of ['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css','src/pages/DetalleCancha.css','src/pages/MisReservas.css']) {
   transform({filename: f, code: Buffer.from(fs.readFileSync(f)), minify: true});
 }
 console.log('CSS OK');
@@ -470,7 +525,9 @@ const {renderToString} = require('react-dom/server');
 
 ## Próximo paso inmediato
 
-FASE 2 cerrada ✅. Siguiente: **FASE 3 — Mis Reservas**, que estrena el hook
-`useReservas` sobre `api/reservas.js` (mock con estado ya listo), los componentes
-`reservas/` y la ruta `#/mis-reservas` — reutilizando el enrutado con parámetros
-que dejó esta fase.
+FASE 3 cerrada ✅. Siguiente: **FASE 4 — Panel de Control Admin**
+(`#/admin`), que estrena los componentes `admin/` (`ClienteTable`,
+`StatsCards`, `AdminSidebar`, `CanchaAdminTable`, `ReservaAdminTable`) reusando
+`DataTable` (FASE 1) y el patrón de hooks de las fases anteriores. Cuando toque
+el catálogo, sigue pendiente envolver `getCanchas` en `useCanchas` y migrar
+`ExplorarCanchas`.
