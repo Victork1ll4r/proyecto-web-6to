@@ -1,5 +1,5 @@
 import { USE_MOCK, demoraMock, noEncontrado, query, request } from './client.js'
-import { CANCHAS, HORARIOS } from '../lib/mockData.js'
+import { CANCHAS, DETALLES_CANCHA, HORARIOS } from '../lib/mockData.js'
 import { filtrarCanchas } from '../lib/filtroCanchas.js'
 import { fechaISO } from '../lib/format.js'
 
@@ -46,15 +46,18 @@ export function getCanchas(criterios = {}) {
 }
 
 /**
- * Detalle de una cancha.
+ * Detalle de una cancha: la tarjeta más su ficha ampliada.
+ *
+ * El listado no carga descripción, amenidades ni normas; solo el detalle. Es
+ * la misma división que hará `GET /canchas` frente a `GET /canchas/:id`.
  * @param {number|string} id
- * @returns {Promise<import('./types.js').Cancha>}
+ * @returns {Promise<import('./types.js').CanchaDetalle>}
  */
 export async function getCancha(id) {
   if (USE_MOCK) {
     const cancha = CANCHAS.find((c) => c.id === Number(id))
     if (!cancha) throw noEncontrado('cancha')
-    return demoraMock(cancha)
+    return demoraMock({ ...cancha, ...DETALLES_CANCHA[cancha.id] })
   }
   return request(`/api/canchas/${encodeURIComponent(id)}`)
 }

@@ -136,3 +136,43 @@ export function generarCodigoReserva() {
   }
   return `SC-${sufijo}`
 }
+
+/**
+ * Nombre del mes de una fecha ISO: `"2026-10-14"` → `"Octubre 2026"`.
+ * @param {string} iso
+ */
+export function formatMes(iso) {
+  const partes = descomponerFecha(iso)
+  if (!partes) return ''
+  const mes = MESES[partes.mes]
+  return `${mes[0].toUpperCase()}${mes.slice(1)} ${partes.anio}`
+}
+
+/**
+ * Próximos `cantidad` días desde hoy, para el selector de fecha del detalle.
+ *
+ * Se avanza en UTC sobre la fecha local del punto de partida: así el cambio de
+ * horario de verano no duplica ni salta un día.
+ *
+ * @param {number} [cantidad]
+ * @param {Date} [desde]
+ * @returns {Array<{iso: string, diaCorto: string, numero: string, esHoy: boolean}>}
+ */
+export function proximosDias(cantidad = 7, desde = new Date()) {
+  const base = Date.UTC(desde.getFullYear(), desde.getMonth(), desde.getDate())
+
+  return Array.from({ length: cantidad }, (_, i) => {
+    const fecha = new Date(base + i * 86400000)
+    const anio = fecha.getUTCFullYear()
+    const mes = fecha.getUTCMonth()
+    const dia = fecha.getUTCDate()
+    const nombreDia = DIAS[fecha.getUTCDay()]
+
+    return {
+      iso: `${anio}-${String(mes + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`,
+      diaCorto: `${nombreDia[0].toUpperCase()}${nombreDia.slice(1, 3)}`,
+      numero: String(dia),
+      esHoy: i === 0,
+    }
+  })
+}

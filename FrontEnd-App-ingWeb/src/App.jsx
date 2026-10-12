@@ -1,21 +1,23 @@
 import { ExplorarCanchas } from './pages/ExplorarCanchas.jsx'
+import { DetalleCancha } from './pages/DetalleCancha.jsx'
 import { StyleGuide } from './pages/StyleGuide.jsx'
-import { useRuta } from './lib/rutas.js'
+import { navegar, rutaDeCancha, useRuta } from './lib/rutas.js'
 
 /**
  * Punto de entrada de la aplicación.
  *
  * El mapa ruta → vista vive en lib/rutas.js; aquí solo se resuelve cuál se
- * muestra. Cada vista es responsable de sus propios datos y estilos.
+ * muestra y se le pasan los parámetros de la URL. Cada vista es responsable
+ * de sus propios datos y estilos.
  */
-const VISTAS = {
-  '/': ExplorarCanchas,
-  '/estilo': StyleGuide,
-}
-
 export default function App() {
-  const ruta = useRuta()
-  const Vista = VISTAS[ruta]
+  const { ruta, params } = useRuta()
 
-  return <Vista />
+  if (ruta === '/cancha/:id') {
+    return <DetalleCancha id={params.id} onVolver={() => navegar('/')} />
+  }
+
+  if (ruta === '/estilo') return <StyleGuide />
+
+  return <ExplorarCanchas onReservar={(cancha) => navegar(rutaDeCancha(cancha.id))} />
 }

@@ -93,6 +93,164 @@ export const CANCHAS = [
   },
 ]
 
+/**
+ * Ficha ampliada de cada cancha, para el detalle (FASE 2).
+ *
+ * El catálogo solo necesita la tarjeta —nombre, precio, foto—; el detalle
+ * pide además descripción, características, normas y sede. Se mantiene
+ * separado de `CANCHAS` para que `GET /canchas` (listado) siga siendo ligero y
+ * solo `GET /canchas/:id` cargue la ficha completa, igual que hará el backend.
+ */
+const NORMAS = [
+  'Llega 15 minutos antes para el registro y la entrega del balón en administración.',
+  'Prohibido fumar, vapear o consumir bebidas alcohólicas dentro de la zona de juego.',
+  'Hay hidratación y bebidas isotónicas en la cafetería de la sede.',
+]
+
+/** Ficha por id de cancha. */
+export const DETALLES_CANCHA = {
+  1: {
+    direccion: 'Cra 45 # 12-30',
+    capacidad: 14,
+    descripcion:
+      'Césped sintético de fibra monofilamento de 50 mm sobre base elástica que reduce el impacto en rodilla y tobillo. Techada y ventilada, con luminarias de 600 lux para jugar de noche sin sombras.',
+    amenidades: [
+      { icon: 'grass', label: 'Césped sintético' },
+      { icon: 'roofing', label: 'Techada' },
+      { icon: 'lightbulb', label: 'Luz LED' },
+      { icon: 'shower', label: 'Vestuarios con duchas' },
+      { icon: 'local_parking', label: 'Parqueadero' },
+    ],
+    normas: NORMAS,
+    calzado: {
+      titulo: 'Calzado obligatorio: botines de turf',
+      texto:
+        'Solo se permite suela multitaco de goma suave o zapatillas de sala. Quedan prohibidos los tapones de aluminio y la suela rígida de campo natural.',
+    },
+    sedeInfo: {
+      nombre: 'Complejo Deportivo Los Andes — Sede Norte',
+      texto:
+        'Acceso vehicular por la Cra 45 con portería vigilada y parqueadero para 40 vehículos sin costo para usuarios con reserva activa.',
+    },
+    imagenes: [verde, azul, arcilla],
+  },
+  2: {
+    direccion: 'Calle 92 # 15-04',
+    capacidad: 4,
+    descripcion:
+      'Pista de pádel de cristal panorámico que deja pasar la luz de la tarde sin deslumbrar. Muros de 10 mm con relleno amortiguado y césped monofilamento de 12 mm, apto para juego de ataque.',
+    amenidades: [
+      { icon: 'sports_tennis', label: 'Cristal panorámico' },
+      { icon: 'roofing', label: 'Techada' },
+      { icon: 'lightbulb', label: 'Luz LED' },
+      { icon: 'lock', label: 'Casilleros' },
+    ],
+    normas: NORMAS,
+    calzado: {
+      titulo: 'Calzado obligatorio: tenis de pádel',
+      texto:
+        'Suela de goma no marcante, tipo *herringbone*, para no dañar el césped ni los muros. No se permite calzado de running ni suela negra.',
+    },
+    sedeInfo: {
+      nombre: 'Club Los Pinos — Sede Norte',
+      texto:
+        'Ingreso a pie por la recepción del club; hay parqueadero compartido con el restaurante a 50 metros.',
+    },
+    imagenes: [azul, arcilla, verde],
+  },
+  3: {
+    direccion: 'Av. Circunvalar # 8-21',
+    capacidad: 10,
+    descripcion:
+      'Cancha techada con duela de arce y pintura antideslizante de cuatro capas. Aros profesionales con resorte y reglamento FIBA, además de marcación para fútbol de salón.',
+    amenidades: [
+      { icon: 'sports_basketball', label: 'Parquet profesional' },
+      { icon: 'roofing', label: 'Techada' },
+      { icon: 'shower', label: 'Vestuarios' },
+      { icon: 'groups', label: 'Gradas' },
+    ],
+    normas: NORMAS,
+    calzado: {
+      titulo: 'Calzado obligatorio: calzado de sala',
+      texto:
+        'Suela de goma no marcante que no arrastre suciedad a la duela. Cambia de calzado en la entrada: la arena de la calle raya el piso.',
+    },
+    sedeInfo: {
+      nombre: 'Polideportivo Sur — Centro',
+      texto:
+        'Entrada por la puerta 3, junto a la piscina. Hay bahía de parqueo para bicicletas con vigilancia.',
+    },
+    imagenes: [verde, arcilla, azul],
+  },
+  4: {
+    direccion: 'Km 2 vía La Calera',
+    capacidad: 4,
+    descripcion:
+      'Cancha de arcilla batida al aire libre, regada y cepillada antes de cada turno. El drenaje perimetral permite jugar a los pocos minutos de una lluvia ligera.',
+    amenidades: [
+      { icon: 'grass', label: 'Arcilla batida' },
+      { icon: 'lightbulb', label: 'Iluminación' },
+      { icon: 'sports_tennis', label: 'Alquiler de raquetas' },
+      { icon: 'restaurant', label: 'Cafetería' },
+    ],
+    normas: NORMAS,
+    calzado: {
+      titulo: 'Calzado obligatorio: tenis de arcilla',
+      texto:
+        'Suela de goma con dibujo profundo para arcilla. El calzado de superficie dura compacta la arena y deja surcos en la cancha.',
+    },
+    sedeInfo: {
+      nombre: 'Club Campestre — Sede Sur',
+      texto:
+        'Portería sobre la vía La Calera; anúnciate como visitante en la caseta y sigue la señalización hacia las canchas 1 a 4.',
+    },
+    imagenes: [arcilla, verde, azul],
+  },
+  5: {
+    direccion: 'Calle 63 # 24-11',
+    capacidad: 4,
+    descripcion:
+      'Cancha de arena de sílice cribada, drenada y de 40 cm de profundidad para amortiguar la caída. Redes de altura reglamentaria y línea de ataque marcada con cinta tensada.',
+    amenidades: [
+      { icon: 'sports_volleyball', label: 'Arena de sílice' },
+      { icon: 'shower', label: 'Duchas' },
+      { icon: 'lightbulb', label: 'Iluminación' },
+      { icon: 'local_drink', label: 'Hidratación' },
+    ],
+    normas: NORMAS,
+    sedeInfo: {
+      nombre: 'Parque Metropolitano — Centro',
+      texto:
+        'Las canchas están al fondo del parque, detrás de la pista de atletismo. Acceso a pie por la entrada 2.',
+    },
+    imagenes: [arcilla, azul, verde],
+  },
+  6: {
+    direccion: 'Av. Las Américas # 51-40',
+    capacidad: 10,
+    descripcion:
+      'Césped premium de 55 mm con relleno de caucho termoplástico y riego antipolvo programado. Gradas para 60 espectadores y marcador electrónico para torneos internos.',
+    amenidades: [
+      { icon: 'grass', label: 'Césped premium' },
+      { icon: 'lightbulb', label: 'Iluminación LED' },
+      { icon: 'groups', label: 'Gradas' },
+      { icon: 'scoreboard', label: 'Marcador' },
+    ],
+    normas: NORMAS,
+    calzado: {
+      titulo: 'Calzado obligatorio: botines de turf',
+      texto:
+        'Suela multitaco de goma blanda. La suela de tapones metálicos queda prohibida por el desgaste que produce en el relleno.',
+    },
+    sedeInfo: {
+      nombre: 'Arena Gol — Sede Sur',
+      texto:
+        'Parqueadero propio con capacidad para 25 vehículos y zona de espera cubierta junto a la gradería.',
+    },
+    imagenes: [verde, arcilla, azul],
+  },
+}
+
 /** Zonas del filtro desplegable. */
 export const ZONAS = [
   { value: '', label: 'Zona (Todas)' },

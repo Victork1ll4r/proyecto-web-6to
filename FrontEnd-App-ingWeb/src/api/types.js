@@ -30,6 +30,28 @@
  */
 
 /**
+ * Cancha con su ficha ampliada, tal como la devuelve `GET /canchas/:id`.
+ * El listado del catálogo solo usa `Cancha`; el detalle necesita lo demás.
+ * @typedef {Cancha & {
+ *   direccion: string,
+ *   capacidad: number,
+ *   descripcion: string,
+ *   amenidades: Amenidad[],
+ *   normas: string[],
+ *   calzado?: {titulo: string, texto: string},
+ *   sedeInfo: {nombre: string, texto: string},
+ *   imagenes: string[],
+ * }} CanchaDetalle
+ */
+
+/**
+ * Característica de una cancha, con su icono de Material Symbols Rounded.
+ * @typedef {object} Amenidad
+ * @property {string} icon
+ * @property {string} label
+ */
+
+/**
  * Franja de una jornada.
  * @typedef {object} Slot
  * @property {string} hora               formato 24 h "18:00"
