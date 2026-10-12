@@ -20,9 +20,9 @@
 
 ---
 
-## Capturas de lo entregado hoy
+## Capturas
 
-### 1. Documentación generada (`.md`)
+### 1. Documentación generada (`.md`) — ✅ en el repo
 
 | Documento | Captura |
 |-----------|---------|
@@ -30,11 +30,11 @@
 | **STITCH_PROMPTS.md** — 10 prompts (P1–P10) para generar pantallas en Google Stitch | ![STITCH_PROMPTS](docs/screenshots/stitch-prompts-md.png) |
 | **PORT_STITCH_PLAN.md** — Plan de integración 6 fases, ~14–18 días | ![PORT_STITCH_PLAN](docs/screenshots/port-stitch-plan-md.png) |
 
-> **Acción requerida:** Abre cada `.md` en tu editor/visor (VS Code, GitHub, Obsidian) y haz captura de la vista renderizada. Guarda en `docs/screenshots/` con los nombres de arriba.
+> ✅ Las tres están en `docs/screenshots/`.
 
 ---
 
-### 2. Google Stitch — Pantallas generadas
+### 2. Google Stitch — Pantallas generadas (4/5 en el repo)
 
 | Vista en Stitch | Captura |
 |-----------------|---------|
@@ -44,10 +44,8 @@
 | **Mis reservas** — código + preview | ![Stitch Mis Reservas](docs/screenshots/stitch-mis-reservas.png) |
 | **Panel de control admin** — código + preview | ![Stitch Admin](docs/screenshots/stitch-admin.png) |
 
-> **Acción requerida:** En Google Stitch, abre el proyecto "Sistema Canchas", haz captura de:
-> 1. La vista general del proyecto (las 4 pantallas en la sidebar)
-> 2. Cada pantalla individual con su preview visible
-> Guarda en `docs/screenshots/` con los nombres de arriba.
+> ✅ `stitch-explorar`, `stitch-detalle`, `stitch-mis-reservas` y `stitch-admin` están en `docs/screenshots/`. Los tres últimos se tomaron del `screen.png` que exporta cada carpeta de `stitch_design_system_generator/`.
+> **Pendiente:** `stitch-dashboard.png` — vista general del proyecto en [Google Stitch](https://stitch.withgoogle.com) con las 4 pantallas en la barra lateral.
 
 ---
 
@@ -57,7 +55,22 @@
 |----------|---------|
 | **PORT_STITCH_PLAN.md** renderizado (tabla de fases, principios, riesgos) | ![Plan Trabajo](docs/screenshots/plan-trabajo.png) |
 
-> **Acción requerida:** Captura del `PORT_STITCH_PLAN.md` abierto en GitHub o VS Code (vista renderizada, no código).
+> ✅ Está en `docs/screenshots/plan-trabajo.png`.
+
+---
+
+### 4. App portada a React (FASE 1 + FASE 2) — ✅ en el repo
+
+Capturas generadas con Brave en headless contra `npm run dev` (ancho ≤ 1600 px, tema claro).
+
+| Vista | Escritorio (1440) | Móvil (390) |
+|-------|-------------------|-------------|
+| **Catálogo de canchas** (`#/`) | ![Catálogo desktop](docs/screenshots/catalogo-desktop.png) | ![Catálogo móvil](docs/screenshots/catalogo-movil.png) |
+| **Detalle y reserva** (`#/cancha/1`) | ![Detalle desktop](docs/screenshots/detalle-cancha-desktop.png) | ![Detalle móvil](docs/screenshots/detalle-cancha-movil.png) |
+
+**Modal de confirmación** (`#/cancha/1` → elegir un turno → **Confirmar y pagar reserva**):
+
+![Reserva modal](docs/screenshots/reserva-modal.png)
 
 ---
 
@@ -65,8 +78,6 @@
 
 | Fase | Pantallas a capturar cuando estén listas |
 |------|------------------------------------------|
-| **FASE 1** (hecha) | `catalogo-desktop.png`, `catalogo-movil.png` |
-| **FASE 2** (hecha) | `detalle-cancha-desktop.png`, `detalle-cancha-movil.png`, `reserva-modal.png` |
 | **FASE 3** | `mis-reservas-desktop.png`, `mis-reservas-movil.png` |
 | **FASE 4** | `panel-admin-clientes.png`, `panel-admin-canchas.png`, `panel-admin-reservas.png`, `panel-admin-resumen.png` |
 | **FASE 5** | `login.png`, `registro.png`, `recuperar-clave.png`, `perfil.png` |
@@ -151,14 +162,13 @@ node .check/verificar.mjs               # 93 contratos + rutas + SSR
 
 ## Cómo continuar
 
-1. **Añade las 9 capturas de hoy** en `docs/screenshots/` (ver tabla arriba).
-2. **Actualiza este README** confirmando que están (cambia `![...](...)` por rutas reales).
+1. **Capturas:** hechas las de FASE 1 + FASE 2 (app) y las de Stitch. Solo falta `stitch-dashboard.png` (vista general del proyecto en Stitch).
+2. **Próxima fase:** FASES 0–2 cerradas → sigue **FASE 3 — Mis Reservas** (`docs/PORT_STITCH_PLAN.md`).
 3. **Commit atómico:**
    ```bash
    git add docs/screenshots/*.png README.md
-   git commit -m "docs: capturas entrega inicial — DESIGN_SYSTEM, STITCH_PROMPTS, PORT_STITCH_PLAN, Stitch dashboard + 4 pantallas"
+   git commit -m "docs: capturas de la app (FASE 1–2) y de Stitch"
    ```
-4. **Próxima fase:** FASES 0–2 cerradas → sigue **FASE 3 — Mis Reservas** (`docs/PORT_STITCH_PLAN.md`).
 
 ---
 
