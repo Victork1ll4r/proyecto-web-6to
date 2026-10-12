@@ -5,17 +5,18 @@
 
 ---
 
-## Estado actual (commit `080c87e`)
+## Estado actual
 
 | Área | Estado |
 |------|--------|
 | **Sistema de diseño** | ✅ Completo (tokens, base, componentes, docs) |
 | **Catálogo ExplorarCanchas** | ✅ Portado desde Stitch + verificado |
+| **Cimentación API + hooks (FASE 0)** | ✅ `api/` (canchas, reservas, clientes, auth), `hooks/useApi`, `lib/format`, `.env` |
 | **Detalle + Reserva** | 📦 Código Stitch listo — pendiente FASE 2 |
 | **Mis Reservas** | 📦 Código Stitch listo — pendiente FASE 3 |
 | **Panel Admin** | 📦 Código Stitch listo — pendiente FASE 4 |
 | **Auth / Perfil** | ❌ No generadas en Stitch — pendiente FASE 5 |
-| **Backend real** | Solo `GET /api/clientes` — contratos propuestos en `docs/design/DESIGN_SYSTEM.md §6` |
+| **Backend real** | Solo `/api/clientes` (user) y `/api/auth` (auth); canchas y reservas siguen en mock |
 
 ---
 
@@ -125,8 +126,12 @@ console.log('CSS OK');
 
 # Variables de entorno
 cp .env.example .env
-# VITE_API_BASE=http://localhost:8080
-# VITE_USE_MOCK=true
+# VITE_API_BASE=http://localhost:8080   (user-service)
+# VITE_AUTH_BASE=http://localhost:8081  (auth-service)
+# VITE_USE_MOCK=true                    (mock ↔ API real sin tocar la vista)
+
+# Verificación local (script efímero, no versionado: vive en .check/)
+node .check/verificar.mjs               # 57 contratos + SSR
 ```
 
 ---
@@ -152,7 +157,7 @@ cp .env.example .env
    git add docs/screenshots/*.png README.md
    git commit -m "docs: capturas entrega inicial — DESIGN_SYSTEM, STITCH_PROMPTS, PORT_STITCH_PLAN, Stitch dashboard + 4 pantallas"
    ```
-4. **Próxima fase:** Revisa `docs/PORT_STITCH_PLAN.md` → decide si arrancamos **FASE 0** (mock API) o **FASE 2** (backend ya listo).
+4. **Próxima fase:** FASE 0 cerrada → sigue **FASE 2 — Detalle de Cancha + Reserva** (`docs/PORT_STITCH_PLAN.md`).
 
 ---
 

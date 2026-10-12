@@ -1,8 +1,8 @@
 # Plan de Integración — Páginas Stitch → Frontend + Backend
 
-**Versión:** 1.0  
-**Fecha:** 2026-10-05  
-**Estado:** Pendiente de aprobación
+**Versión:** 1.1  
+**Fecha:** 2026-10-12  
+**Estado:** FASE 0 completada — FASE 2 en cola
 
 ---
 
@@ -120,15 +120,16 @@ FrontEnd-App-ingWeb/
 
 | Tarea | Archivos | Done |
 |---|---|---|
-| Cliente HTTP tipado (`api/client.js`) | `src/api/client.js` | ☐ |
-| Endpoints Cancha (mock + types) | `src/api/canchas.js` | ☐ |
-| Endpoints Reserva (mock + types) | `src/api/reservas.js` | ☐ |
-| Endpoints Auth (mock + types) | `src/api/auth.js` | ☐ |
-| Contratos JSDoc `Cancha`, `Reserva`, `Disponibilidad`, `Cliente` | `src/api/types.js` | ☐ |
-| Hook genérico `useApi` (loading/error/data + mock toggle) | `src/hooks/useApi.js` | ☐ |
-| Utilidades de formato (COP, hora 24h, código `SC-XXXXX`) | `src/lib/format.js` | ☐ |
-| Variables de entorno `.env` (`VITE_API_BASE`, `VITE_USE_MOCK`) | `.env`, `.env.example` | ☐ |
-| **Verificación:** build + lint + test SSR de hooks puros | | ☐ |
+| Cliente HTTP tipado (`api/client.js`) | `src/api/client.js` | ✅ |
+| Endpoints Cancha (mock + types) | `src/api/canchas.js` | ✅ |
+| Endpoints Reserva (mock + types) | `src/api/reservas.js` | ✅ |
+| Endpoints Cliente (real, con `password` depurado) | `src/api/clientes.js` | ✅ |
+| Endpoints Auth (mock + types) | `src/api/auth.js` | ✅ |
+| Contratos JSDoc `Cancha`, `Reserva`, `Disponibilidad`, `Cliente` | `src/api/types.js` | ✅ |
+| Hook genérico `useApi` (loading/error/data + mock toggle) | `src/hooks/useApi.js` | ✅ |
+| Utilidades de formato (COP, hora 24h, código `SC-XXXXX`) | `src/lib/format.js` | ✅ |
+| Variables de entorno `.env` (`VITE_API_BASE`, `VITE_AUTH_BASE`, `VITE_USE_MOCK`) | `.env`, `.env.example` | ✅ |
+| **Verificación:** build + lint + test SSR de hooks puros | `.check/verificar.mjs` | ✅ (57 checks) |
 
 **Criterio de salida:** `npm run build` ✅, `eslint` ✅, hooks testeables sin DOM.
 
@@ -352,6 +353,34 @@ Al cerrar cada fase, **actualizo este archivo** marcando ☐ → ✅ y añado:
 
 ---
 
+## Estado tras Fase 0 — 2026-10-12
+
+### Completado
+- ✅ `src/api/client.js` — wrapper de `fetch` con bases por servicio, `ApiError` con copy en tuteo y `USE_MOCK` por entorno.
+- ✅ `src/api/canchas.js` — `getCanchas` / `getCancha` / `getDisponibilidad`, con mock y `criteriosAQuery` listo para el endpoint real.
+- ✅ `src/api/reservas.js` — `list` / `getReserva` / `crear` / `cancelar`; el mock es **con estado** (crear y cancelar se reflejan en el siguiente `list`).
+- ✅ `src/api/clientes.js` — endpoints reales de user-service; `sinPassword()` depura el campo antes de que salga del módulo.
+- ✅ `src/api/auth.js` — `login` / `register` / `recover` + persistencia de sesión segura sin DOM (`SESION_KEY`).
+- ✅ `src/api/types.js` — contratos JSDoc (`Cancha`, `Slot`, `Disponibilidad`, `Reserva`, `Cliente`, `Sesion`) y guardas `esCancha` / `esReserva` / `esEstadoReserva`.
+- ✅ `src/hooks/useApi.js` — `data` / `loading` / `error` / `refetch`, cancelación con `AbortController` y siembra de mock para SSR.
+- ✅ `src/lib/format.js` — moneda COP, hora 24 h, rango `18:00 – 19:00`, `horaFin`, fecha `DD/MM/YYYY` y larga, código `SC-XXXXX`.
+- ✅ `src/lib/mockData.js` — 5 `RESERVAS` (confirmada / pendiente / completada / cancelada) y `USUARIO_DEMO`.
+- ✅ `.env` + `.env.example` — `VITE_API_BASE`, `VITE_AUTH_BASE`, `VITE_USE_MOCK`.
+
+### Bloqueantes / Decisiones
+- El cliente HTTP va sobre `fetch` (plan §FASE 0), así que `src/api/axios.js` queda sin uso por ahora. Se conserva a la espera de decidir si se elimina.
+- Los hooks de dominio (`useCanchas`, `useCanchaDetail`, `useReservas`) **no** se crean en FASE 0: pertenecen a FASE 2/3, donde ya tienen consumidor. `useApi` es la única pieza de la fase.
+- `ExplorarCanchas` (FASE 1) no se toca: sigue leyendo `CANCHAS` en local. Se migrará a `useCanchas` al abrir FASE 2.
+- `recover()` no tiene endpoint: contra el backend real responderá 404 hasta que se implemente.
+
+### Métricas
+- Build: 43.29 kB CSS / 272.04 kB JS (gzip: 8.15 / 83.14), sin cambios de tamaño (código aún sin consumir).
+- Lint: 0 errores.
+- Tests SSR + contratos: 57/57 OK (`node .check/verificar.mjs`).
+- Hex fuera de tokens: 0 · Violeta detectado: 0.
+
+---
+
 ## Riesgos y mitigaciones
 
 | Riesgo | Probabilidad | Impacto | Mitigación |
@@ -394,6 +423,6 @@ const {renderToString} = require('react-dom/server');
 
 ## Próximo paso inmediato
 
-**Aprobación del plan** → Iniciar **FASE 0** (cimentación API + hooks) si el backend va a tardar, o **FASE 2** directo si los endpoints ya están listos.
-
-¿Aprobamos y arrancamos con FASE 0?
+FASE 0 cerrada ✅. Siguiente: **FASE 2 — Detalle de Cancha + Reserva**, que estrena
+los endpoints de `api/canchas.js`, `api/reservas.js` y las utilidades de `lib/format.js`,
+y añade los hooks de dominio `useCanchaDetail` y `useReservas`.

@@ -110,6 +110,87 @@ export const CLIENTES = [
   { id: 6, nombre: 'Valentina Cruz', email: 'vale.cruz@correo.com', telefono: '301 777 4433', registro: '28/01/2026', reservas: 9, activo: true },
 ]
 
+/**
+ * Reservas de desarrollo (contrato `Reserva` — DESIGN_SYSTEM §6).
+ *
+ * Mezcla estados y fechas a propósito: dos próximas, una pendiente, una
+ * completada y una cancelada, para poder validar los filtros de "Mis reservas"
+ * y las acciones (cancelar solo si faltan más de 24 h, calificar si pasó).
+ * `total` = `precioHora` de la cancha × horas.
+ */
+export const RESERVAS = [
+  {
+    id: 1,
+    canchaId: 1,
+    clienteId: 4,
+    fecha: '2026-10-14',
+    horaInicio: '18:00',
+    horaFin: '20:00',
+    estado: 'confirmada',
+    total: 28000,
+    codigo: 'SC-4A7F2',
+    creadaEn: '2026-10-05T14:20:00',
+  },
+  {
+    id: 2,
+    canchaId: 2,
+    clienteId: 4,
+    fecha: '2026-10-16',
+    horaInicio: '07:00',
+    horaFin: '08:00',
+    estado: 'confirmada',
+    total: 10000,
+    codigo: 'SC-9K3MB',
+    creadaEn: '2026-10-06T09:05:00',
+  },
+  {
+    id: 3,
+    canchaId: 6,
+    clienteId: 4,
+    fecha: '2026-10-18',
+    horaInicio: '20:00',
+    horaFin: '22:00',
+    estado: 'pendiente',
+    total: 24000,
+    codigo: 'SC-2QP7D',
+    creadaEn: '2026-10-11T17:42:00',
+  },
+  {
+    id: 4,
+    canchaId: 4,
+    clienteId: 4,
+    fecha: '2026-09-27',
+    horaInicio: '10:00',
+    horaFin: '11:00',
+    estado: 'completada',
+    total: 11000,
+    codigo: 'SC-7TR4H',
+    creadaEn: '2026-09-20T08:15:00',
+  },
+  {
+    id: 5,
+    canchaId: 5,
+    clienteId: 4,
+    fecha: '2026-10-09',
+    horaInicio: '16:00',
+    horaFin: '17:00',
+    estado: 'cancelada',
+    total: 9000,
+    codigo: 'SC-5XW8N',
+    creadaEn: '2026-10-02T11:30:00',
+  },
+]
+
+/** Cliente de desarrollo con el que se simula una sesión en `api/auth.js`. */
+export const USUARIO_DEMO = {
+  id: 4,
+  nombre: 'Ana Sofía Gómez',
+  email: 'ana.gomez@correo.com',
+  telefono: '300 888 1122',
+  fechaRegistro: '2025-11-15',
+  activo: true,
+}
+
 export const HORARIOS = [
   '06:00', '07:00', '08:00', '09:00', '10:00', '11:00',
   '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
