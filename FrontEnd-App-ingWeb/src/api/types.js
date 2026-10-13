@@ -100,11 +100,28 @@
  */
 
 /**
+ * Cómo dar de alta o editar una cancha desde el panel admin. El `id` lo decide
+ * el servidor (o el mock); el resto son campos del formulario.
+ * @typedef {object} CanchaNueva
+ * @property {string} nombre
+ * @property {string} deporte            clave de `lib/deportes.js`
+ * @property {string} [deporteLabel]
+ * @property {string} zona
+ * @property {string} sede
+ * @property {string[]} [tags]
+ * @property {number} precioHora         pesos por hora, entero
+ * @property {number} [puntuacion]       0–5
+ * @property {number} [resenas]
+ * @property {'disponible'|'ocupado'|'mantenimiento'} [estado]
+ */
+
+/**
  * Cliente tal como lo devuelve user-service. Ojo: el backend incluye
  * `password` en claro; `api/clientes.js` lo elimina antes de que el dato
  * llegue a cualquier componente (DESIGN_SYSTEM §6).
  * @typedef {object} Cliente
  * @property {number} id
+ * @property {string} [codigo]           "CL-0004" (vista admin)
  * @property {string} nombre
  * @property {string} [apellido]
  * @property {string} email

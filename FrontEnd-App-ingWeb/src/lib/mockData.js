@@ -260,21 +260,32 @@ export const ZONAS = [
 ]
 
 export const CLIENTES = [
-  { id: 1, nombre: 'Juan Pérez', email: 'juan.perez@correo.com', telefono: '300 123 4567', registro: '12/04/2026', reservas: 18, activo: true },
-  { id: 2, nombre: 'Laura Méndez', email: 'laura.mendez@correo.com', telefono: '311 222 3344', registro: '03/02/2026', reservas: 27, activo: true },
-  { id: 3, nombre: 'Carlos Rivas', email: 'carlos.rivas@correo.com', telefono: '320 555 6677', registro: '22/07/2025', reservas: 4, activo: false },
-  { id: 4, nombre: 'Ana Sofía Gómez', email: 'ana.gomez@correo.com', telefono: '300 888 1122', registro: '15/11/2025', reservas: 31, activo: true },
-  { id: 5, nombre: 'Diego Torres', email: 'diego.torres@correo.com', telefono: '315 444 9900', registro: '09/09/2025', reservas: 11, activo: true },
-  { id: 6, nombre: 'Valentina Cruz', email: 'vale.cruz@correo.com', telefono: '301 777 4433', registro: '28/01/2026', reservas: 9, activo: true },
+  { id: 1, codigo: 'CL-0001', nombre: 'Juan Pérez', email: 'juan.perez@correo.com', telefono: '300 123 4567', registro: '12/04/2026', reservas: 18, activo: true },
+  { id: 2, codigo: 'CL-0002', nombre: 'Laura Méndez', email: 'laura.mendez@correo.com', telefono: '311 222 3344', registro: '03/02/2026', reservas: 27, activo: true },
+  { id: 3, codigo: 'CL-0003', nombre: 'Carlos Rivas', email: 'carlos.rivas@correo.com', telefono: '320 555 6677', registro: '22/07/2025', reservas: 4, activo: false },
+  { id: 4, codigo: 'CL-0004', nombre: 'Ana Sofía Gómez', email: 'ana.gomez@correo.com', telefono: '300 888 1122', registro: '15/11/2025', reservas: 31, activo: true },
+  { id: 5, codigo: 'CL-0005', nombre: 'Diego Torres', email: 'diego.torres@correo.com', telefono: '315 444 9900', registro: '09/09/2025', reservas: 11, activo: true },
+  { id: 6, codigo: 'CL-0006', nombre: 'Valentina Cruz', email: 'vale.cruz@correo.com', telefono: '301 777 4433', registro: '28/01/2026', reservas: 9, activo: true },
 ]
+
+/**
+ * Día de referencia del panel de administración.
+ *
+ * El mock tiene fechas fijas, así que el panel no puede depender del reloj del
+ * sistema: las métricas ("reservas del mes", "próximos turnos") se calculan
+ * contra este día. Coincide con la fecha del entorno y con la de las capturas.
+ */
+export const HOY_DEMO = '2026-10-12'
 
 /**
  * Reservas de desarrollo (contrato `Reserva` — DESIGN_SYSTEM §6).
  *
- * Mezcla estados y fechas a propósito: dos próximas, una pendiente, una
- * completada y una cancelada, para poder validar los filtros de "Mis reservas"
- * y las acciones (cancelar solo si faltan más de 24 h, calificar si pasó).
- * `total` = `precioHora` de la cancha × horas.
+ * Es la lista **global**: la vista del cliente filtra por `clienteId` y el panel
+ * admin la muestra entera. Las cinco primeras son del cliente de la sesión
+ * (`USUARIO_DEMO`, id 4) y sostienen "Mis reservas": tres próximas, una pasada
+ * y una cancelada. Las siguientes reparten el resto de clientes entre
+ * septiembre y octubre de 2026 para que el panel tenga volumen y comparación
+ * mes a mes. `total` = `precioHora` de la cancha × horas.
  */
 export const RESERVAS = [
   {
@@ -336,6 +347,192 @@ export const RESERVAS = [
     total: 9000,
     codigo: 'SC-5XW8N',
     creadaEn: '2026-10-02T11:30:00',
+  },
+
+  /* --- Otros clientes: septiembre y octubre de 2026 (panel admin) ---------- */
+
+  // Septiembre 2026 — mes anterior, para comparar.
+  {
+    id: 6,
+    canchaId: 2,
+    clienteId: 1,
+    fecha: '2026-09-05',
+    horaInicio: '09:00',
+    horaFin: '10:00',
+    estado: 'completada',
+    total: 10000,
+    codigo: 'SC-P2M4A',
+    creadaEn: '2026-08-30T10:12:00',
+  },
+  {
+    id: 7,
+    canchaId: 3,
+    clienteId: 2,
+    fecha: '2026-09-12',
+    horaInicio: '20:00',
+    horaFin: '22:00',
+    estado: 'completada',
+    total: 24000,
+    codigo: 'SC-R7K1B',
+    creadaEn: '2026-09-04T16:40:00',
+  },
+  {
+    id: 8,
+    canchaId: 1,
+    clienteId: 5,
+    fecha: '2026-09-18',
+    horaInicio: '18:00',
+    horaFin: '19:00',
+    estado: 'completada',
+    total: 14000,
+    codigo: 'SC-T5N8C',
+    creadaEn: '2026-09-11T08:25:00',
+  },
+  {
+    id: 9,
+    canchaId: 6,
+    clienteId: 3,
+    fecha: '2026-09-24',
+    horaInicio: '21:00',
+    horaFin: '22:00',
+    estado: 'cancelada',
+    total: 12000,
+    codigo: 'SC-W3J6D',
+    creadaEn: '2026-09-19T19:02:00',
+  },
+  {
+    id: 10,
+    canchaId: 4,
+    clienteId: 6,
+    fecha: '2026-09-29',
+    horaInicio: '10:00',
+    horaFin: '11:00',
+    estado: 'completada',
+    total: 11000,
+    codigo: 'SC-Y9F2E',
+    creadaEn: '2026-09-22T07:48:00',
+  },
+
+  // Octubre 2026 — mes en curso, con turnos de hoy y próximos.
+  {
+    id: 11,
+    canchaId: 1,
+    clienteId: 2,
+    fecha: '2026-10-02',
+    horaInicio: '19:00',
+    horaFin: '20:00',
+    estado: 'completada',
+    total: 14000,
+    codigo: 'SC-A4H7F',
+    creadaEn: '2026-09-28T12:10:00',
+  },
+  {
+    id: 12,
+    canchaId: 2,
+    clienteId: 6,
+    fecha: '2026-10-05',
+    horaInicio: '08:00',
+    horaFin: '09:00',
+    estado: 'completada',
+    total: 10000,
+    codigo: 'SC-B8L3G',
+    creadaEn: '2026-10-01T09:33:00',
+  },
+  {
+    id: 13,
+    canchaId: 3,
+    clienteId: 1,
+    fecha: '2026-10-07',
+    horaInicio: '20:00',
+    horaFin: '21:00',
+    estado: 'completada',
+    total: 12000,
+    codigo: 'SC-C2P9H',
+    creadaEn: '2026-10-03T15:05:00',
+  },
+  {
+    id: 14,
+    canchaId: 6,
+    clienteId: 5,
+    fecha: '2026-10-10',
+    horaInicio: '21:00',
+    horaFin: '23:00',
+    estado: 'completada',
+    total: 24000,
+    codigo: 'SC-D6Q4J',
+    creadaEn: '2026-10-06T18:20:00',
+  },
+  {
+    id: 15,
+    canchaId: 2,
+    clienteId: 3,
+    fecha: '2026-10-11',
+    horaInicio: '18:00',
+    horaFin: '19:00',
+    estado: 'cancelada',
+    total: 10000,
+    codigo: 'SC-E1R8K',
+    creadaEn: '2026-10-04T11:15:00',
+  },
+  {
+    id: 16,
+    canchaId: 4,
+    clienteId: 1,
+    fecha: '2026-10-12',
+    horaInicio: '16:00',
+    horaFin: '17:00',
+    estado: 'confirmada',
+    total: 11000,
+    codigo: 'SC-F5S2L',
+    creadaEn: '2026-10-08T13:40:00',
+  },
+  {
+    id: 17,
+    canchaId: 5,
+    clienteId: 2,
+    fecha: '2026-10-12',
+    horaInicio: '18:00',
+    horaFin: '19:00',
+    estado: 'pendiente',
+    total: 9000,
+    codigo: 'SC-G9T6M',
+    creadaEn: '2026-10-11T20:05:00',
+  },
+  {
+    id: 18,
+    canchaId: 1,
+    clienteId: 6,
+    fecha: '2026-10-13',
+    horaInicio: '19:00',
+    horaFin: '21:00',
+    estado: 'confirmada',
+    total: 28000,
+    codigo: 'SC-H3U1N',
+    creadaEn: '2026-10-09T10:30:00',
+  },
+  {
+    id: 19,
+    canchaId: 3,
+    clienteId: 5,
+    fecha: '2026-10-15',
+    horaInicio: '17:00',
+    horaFin: '18:00',
+    estado: 'confirmada',
+    total: 12000,
+    codigo: 'SC-J7V5P',
+    creadaEn: '2026-10-10T14:55:00',
+  },
+  {
+    id: 20,
+    canchaId: 6,
+    clienteId: 3,
+    fecha: '2026-10-20',
+    horaInicio: '20:00',
+    horaFin: '22:00',
+    estado: 'confirmada',
+    total: 24000,
+    codigo: 'SC-K1W9Q',
+    creadaEn: '2026-10-12T08:10:00',
   },
 ]
 

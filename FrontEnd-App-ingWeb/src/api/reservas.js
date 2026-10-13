@@ -118,3 +118,33 @@ export function cancelar(id) {
 
   return request(`/api/reservas/${encodeURIComponent(id)}`, { method: 'DELETE' })
 }
+
+/** Estados a los que el panel admin puede mover una reserva. */
+const ESTADOS_ADMIN = ['confirmada', 'pendiente', 'cancelada']
+
+/**
+ * Cambia el estado de una reserva. Lo usa el panel admin para confirmar o
+ * cancelar en bloque; el cliente no lo llama (él usa `cancelar`).
+ * @param {number|string} id
+ * @param {string} estado
+ * @returns {Promise<import('./types.js').Reserva>}
+ */
+export function actualizarEstado(id, estado) {
+  if (!ESTADOS_ADMIN.includes(estado)) {
+    return Promise.reject(
+      new ApiError('Ese estado no es válido para una reserva.', { status: 400 }),
+    )
+  }
+
+  if (USE_MOCK) {
+    const reserva = mockReservas.find((r) => r.id === Number(id))
+    if (!reserva) return Promise.reject(noEncontrado('reserva'))
+    reserva.estado = estado
+    return demoraMock(reserva)
+  }
+
+  return request(`/api/reservas/${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    body: { estado },
+  })
+}

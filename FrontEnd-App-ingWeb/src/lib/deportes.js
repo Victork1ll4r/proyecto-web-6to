@@ -25,3 +25,13 @@ export const ESTADOS_RESERVA = {
   cancelada: { label: 'Cancelada', tone: 'neutral' },
   rechazada: { label: 'Rechazada', tone: 'danger' },
 }
+
+/** Estados de cancha y su tono de badge (vista admin). */
+export const ESTADOS_CANCHA = {
+  disponible: { label: 'Disponible', tone: 'disponible' },
+  ocupado: { label: 'Ocupada', tone: 'ocupado' },
+  mantenimiento: { label: 'En mantenimiento', tone: 'pendiente' },
+}
+
+/** Deportes en el orden en que se ofrecen en los formularios. */
+export const DEPORTES_CLAVES = ['futbol', 'padel', 'basquet', 'tenis', 'voley']
