@@ -1,6 +1,7 @@
 import { ExplorarCanchas } from './pages/ExplorarCanchas.jsx'
 import { DetalleCancha } from './pages/DetalleCancha.jsx'
 import { MisReservas } from './pages/MisReservas.jsx'
+import { PanelAdmin } from './pages/PanelAdmin.jsx'
 import { StyleGuide } from './pages/StyleGuide.jsx'
 import { navegar, rutaDeCancha, useRuta } from './lib/rutas.js'
 
@@ -28,6 +29,8 @@ export default function App() {
   }
 
   if (ruta === '/estilo') return <StyleGuide />
+
+  if (ruta === '/admin') return <PanelAdmin onVerCancha={(canchaId) => navegar(rutaDeCancha(canchaId))} />
 
   return <ExplorarCanchas onReservar={(cancha) => navegar(rutaDeCancha(cancha.id))} />
 }

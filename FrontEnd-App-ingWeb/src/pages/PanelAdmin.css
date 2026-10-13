@@ -1,0 +1,335 @@
+/* ==========================================================================
+   PanelAdmin — panel de control del administrador (§4.6, FASE 4).
+
+   Solo estructura y rejillas. La barra lateral vive en components.css
+   (.c-sidebar) y las tablas/modales son componentes de ui/. Aquí no hay hex.
+   ========================================================================== */
+
+.pa {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100svh;
+  background-color: var(--bg-canvas);
+}
+
+/* --------------------------------------------------------------------------
+   Columna de contenido
+   -------------------------------------------------------------------------- */
+
+.pa__contenido {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pa__top {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+  min-height: var(--nav-height-desktop);
+  padding: var(--sp-3) var(--sp-6);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pa__top-overline {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.pa__top-titulo {
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+}
+
+.pa__top-derecha {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.pa__top-fecha {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+.pa__main {
+  flex: 1;
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+/* --------------------------------------------------------------------------
+   Métricas
+   -------------------------------------------------------------------------- */
+
+.pa__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--sp-4);
+}
+
+/* --------------------------------------------------------------------------
+   Bloque (tarjeta de sección): cabecera + barra de herramientas + tabla
+   -------------------------------------------------------------------------- */
+
+.pa__bloque {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.pa__bloque-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.pa__bloque-titulo {
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+}
+
+.pa__bloque-descripcion {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+}
+
+.pa__toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.pa__toolbar-buscar {
+  flex: 1 1 260px;
+  min-width: 220px;
+}
+
+.pa__toolbar-select {
+  flex: 0 0 auto;
+  min-width: 190px;
+}
+
+/* --------------------------------------------------------------------------
+   Celdas y detalles
+   -------------------------------------------------------------------------- */
+
+.pa__celda-fuerte {
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  line-height: var(--lh-snug);
+}
+
+.pa__celda-suave {
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+  max-width: 22ch;
+}
+
+.pa__valoracion {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  color: var(--text-primary);
+}
+
+.pa__valoracion .c-icon {
+  color: var(--c-warning-500);
+}
+
+/* --------------------------------------------------------------------------
+   Ficha del cliente (modal de detalle)
+   -------------------------------------------------------------------------- */
+
+.pa__ficha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.pa__ficha-cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.pa__ficha-nombre {
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--sp-2);
+}
+
+.pa__ficha-datos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+}
+
+.pa__ficha-datos dt {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-1);
+}
+
+.pa__ficha-datos dd {
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------------
+   Formularios de los modales
+   -------------------------------------------------------------------------- */
+
+.pa__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.pa__form-fila {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+}
+
+.pa__resumen-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  background-color: var(--bg-sunken);
+  border: 1px solid var(--border-subtle);
+}
+
+.pa__resumen-valor {
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Esqueleto y aviso flotante
+   -------------------------------------------------------------------------- */
+
+.pa__esqueleto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.pa__toast {
+  position: fixed;
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  z-index: var(--z-toast);
+  max-width: min(420px, calc(100vw - 2 * var(--sp-4)));
+}
+
+/* --------------------------------------------------------------------------
+   Adaptación: una columna por debajo de 1024 px (§2.4, §3.7)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .pa {
+    grid-template-columns: 1fr;
+  }
+
+  .pa__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* La barra lateral pasa a banda superior desplazable. */
+  .c-sidebar {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp-4);
+    width: 100%;
+    padding: var(--sp-3) var(--sp-4);
+    border-right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .c-sidebar__brand,
+  .c-sidebar__pie {
+    flex: none;
+  }
+
+  .c-sidebar__rol,
+  .c-sidebar__usuario {
+    display: none;
+  }
+
+  .c-sidebar__nav {
+    flex-direction: row;
+    gap: var(--sp-1);
+  }
+
+  .c-sidebar__pie {
+    margin-top: 0;
+    margin-left: auto;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767px) {
+  .pa__top,
+  .pa__main {
+    padding-inline: var(--sp-4);
+  }
+
+  .pa__top-derecha {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .pa__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .pa__ficha-datos,
+  .pa__form-fila {
+    grid-template-columns: 1fr;
+  }
+
+  .pa__toolbar-select,
+  .pa__toolbar-buscar {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .pa__toast {
+    right: var(--sp-4);
+    left: var(--sp-4);
+    bottom: var(--sp-4);
+    max-width: none;
+  }
+}

@@ -990,6 +990,25 @@
     display: inline-flex;
     align-items: center;
     gap: var(--sp-1);
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .c-table__sort:hover {
+    color: var(--text-primary);
+  }
+
+  .c-table__sort:focus-visible {
+    outline: none;
+    border-radius: var(--r-sm);
+    box-shadow: var(--focus-ring);
   }
 
   .c-table__cell-person {
@@ -2201,5 +2220,263 @@
 
   .c-cancelar__texto strong {
     color: var(--text-primary);
+  }
+
+  /* ======================================================================
+     Barra lateral del panel admin (§2.4, §4.6)
+     Escritorio: columna de 248 px. Móvil (<1024 px): banda horizontal
+     desplazable con la misma navegación.
+     ====================================================================== */
+  .c-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
+    width: var(--sidebar-width);
+    padding: var(--sp-5) var(--sp-4);
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    overflow-y: auto;
+  }
+
+  .c-sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding-inline: var(--sp-2);
+  }
+
+  .c-sidebar__logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--r-sm);
+    background-color: var(--brand-surface);
+    color: var(--brand-ink);
+  }
+
+  .c-sidebar__nombre {
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-snug);
+  }
+
+  .c-sidebar__rol {
+    font-size: var(--fs-caption);
+    color: var(--text-secondary);
+  }
+
+  .c-sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  .c-sidebar__enlace {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    width: 100%;
+    min-height: var(--target-min);
+    padding: var(--sp-2) var(--sp-3);
+    border: 0;
+    border-radius: var(--r-sm);
+    background: none;
+    font: inherit;
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-secondary);
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .c-sidebar__enlace:hover {
+    background-color: var(--action-ghost-hover);
+    color: var(--text-primary);
+  }
+
+  .c-sidebar__enlace[aria-current='page'] {
+    background-color: var(--brand-surface);
+    color: var(--brand-ink);
+  }
+
+  .c-sidebar__enlace:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .c-sidebar__cuenta {
+    margin-left: auto;
+    font-size: var(--fs-caption);
+    font-weight: var(--fw-bold);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+  }
+
+  .c-sidebar__enlace[aria-current='page'] .c-sidebar__cuenta {
+    color: var(--brand-ink);
+  }
+
+  .c-sidebar__pie {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .c-sidebar__usuario {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding-top: var(--sp-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .c-sidebar__usuario-texto {
+    min-width: 0;
+  }
+
+  .c-sidebar__usuario-nombre {
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-snug);
+  }
+
+  .c-sidebar__usuario-mail {
+    font-size: var(--fs-caption);
+    color: var(--text-secondary);
+  }
+
+  /* ======================================================================
+     Paginador de tabla (§3.7)
+     ====================================================================== */
+  .c-paginador {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+    padding: var(--sp-3) var(--sp-4);
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--fs-body-sm);
+  }
+
+  .c-paginador__resumen {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .c-paginador__botones {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+  .c-paginador__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--target-min);
+    height: var(--target-min);
+    padding-inline: var(--sp-2);
+    border: 1px solid transparent;
+    border-radius: var(--r-sm);
+    background: none;
+    font: inherit;
+    font-size: var(--fs-body-sm);
+    font-weight: var(--fw-medium);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .c-paginador__btn:hover:not(:disabled) {
+    background-color: var(--action-ghost-hover);
+    color: var(--text-primary);
+  }
+
+  .c-paginador__btn--activo {
+    background-color: var(--brand-surface);
+    border-color: var(--brand-border);
+    color: var(--brand-ink);
+    font-weight: var(--fw-bold);
+  }
+
+  .c-paginador__btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .c-paginador__btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* ======================================================================
+     Tabla apilada <1024 px (§3.7)
+     Cada fila pasa a tarjeta; el encabezado de la columna, vía `data-label`,
+     se convierte en la etiqueta de cada celda.
+     ====================================================================== */
+  @media (max-width: 1023px) {
+    .c-table--stack thead {
+      display: none;
+    }
+
+    .c-table--stack,
+    .c-table--stack tbody,
+    .c-table--stack tr,
+    .c-table--stack td {
+      display: block;
+      width: 100%;
+    }
+
+    .c-table--stack tbody tr {
+      padding: var(--sp-3) var(--sp-4);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .c-table--stack tbody tr:first-child {
+      border-top: 0;
+    }
+
+    .c-table--stack tbody td {
+      height: auto;
+      padding-inline: 0;
+      padding-block: var(--sp-1);
+      border-top: 0;
+    }
+
+    .c-table--stack tbody td[data-label] {
+      display: grid;
+      grid-template-columns: minmax(104px, 38%) 1fr;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+
+    .c-table--stack tbody td[data-label]::before {
+      content: attr(data-label);
+      font-size: var(--fs-overline);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--tracking-overline);
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .c-table--stack .c-table__num {
+      text-align: left;
+    }
+
+    .c-table--stack .c-table__actions {
+      justify-content: flex-start;
+    }
   }
 }

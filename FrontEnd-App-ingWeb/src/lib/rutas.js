@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
  *   #/estilo           catálogo de componentes (validador del diseño)
  *   #/cancha/:id       detalle y reserva de una cancha
  *   #/mis-reservas     historial y gestión de turnos del usuario
+ *   #/admin            panel de control (administración)
  *
  * Los patrones admiten un segmento con `:nombre`, que se recoge en `params`.
  * Cuando llegue el enrutador real, solo se sustituye este archivo.
@@ -21,6 +22,7 @@ export const RUTAS = {
   '/estilo': { titulo: 'Style guide' },
   '/cancha/:id': { titulo: 'Detalle de cancha' },
   '/mis-reservas': { titulo: 'Mis reservas' },
+  '/admin': { titulo: 'Panel de administración' },
 }
 
 /** Ruta de respaldo cuando el hash no coincide con ningún patrón. */
@@ -78,6 +80,11 @@ export function rutaDeCancha(id) {
 /** Ruta del historial de reservas del usuario. */
 export function rutaDeMisReservas() {
   return '/mis-reservas'
+}
+
+/** Ruta del panel de administración. */
+export function rutaDeAdmin() {
+  return '/admin'
 }
 
 /** Cambia el hash y deja que `hashchange` actualice la vista. Sin DOM, no-op. */
