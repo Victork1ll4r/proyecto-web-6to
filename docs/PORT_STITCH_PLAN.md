@@ -1,8 +1,8 @@
 # Plan de Integración — Páginas Stitch → Frontend + Backend
 
-**Versión:** 1.3  
-**Fecha:** 2026-10-12  
-**Estado:** FASES 0–3 completadas — FASE 4 en cola
+**Versión:** 1.4  
+**Fecha:** 2026-10-13  
+**Estado:** FASES 0–4 completadas — FASE 5 en cola
 
 ---
 
@@ -13,7 +13,7 @@
 | `explorar_canchas` | ✅ Portada (React + tokens) | `GET /api/canchas` (propuesto) |
 | `detalle_y_reserva_de_cancha` | ✅ Portada (React + tokens, FASE 2) | `GET /api/canchas/:id`, `POST /api/reservas` (propuestos) |
 | `mis_reservas` | ✅ Portada (React + tokens, FASE 3) | `GET /api/reservas?cliente=:id` (propuesto) |
-| `panel_de_control_admin` | 📦 Código + PNG | `GET /api/clientes` (real), `GET /api/canchas`, `GET /api/reservas` |
+| `panel_de_control_admin` | ✅ Portada (React + tokens, FASE 4) | `GET /api/clientes` (real), `GET /api/canchas`, `GET /api/reservas` |
 | `login` / `registro` / `recuperar` / `perfil` / `admin-resumen` | ❌ No generadas | Auth + Cliente (real) |
 
 **Backend real hoy:** solo `GET /api/clientes` (y Auth expone password en claro — ver `docs/design/DESIGN_SYSTEM.md §6`).  
@@ -60,10 +60,17 @@ FrontEnd-App-ingWeb/
 │   │   │   ├── CancelarReservaModal.jsx
 │   │   │   ├── CalificarReservaModal.jsx
 │   │   │   └── index.js
-│   │   ├── admin/              # Componentes de dominio admin
-│   │   │   ├── ClienteTable.jsx
+│   │   ├── admin/              # Componentes de dominio admin (FASE 4)
+│   │   │   ├── AdminSidebar.jsx
 │   │   │   ├── StatsCards.jsx
-│   │   │   └── AdminSidebar.jsx
+│   │   │   ├── ClienteTable.jsx
+│   │   │   ├── ClienteDetalleModal.jsx
+│   │   │   ├── CanchaAdminTable.jsx
+│   │   │   ├── CanchaForm.jsx
+│   │   │   ├── ReservaAdminTable.jsx
+│   │   │   ├── ReservaManualModal.jsx
+│   │   │   ├── ConfirmarModal.jsx
+│   │   │   └── index.js
 │   │   └── layout/             # Header, Footer, Sidebar, PageShell
 │   ├── hooks/
 │   │   ├── useApi.js
@@ -71,6 +78,9 @@ FrontEnd-App-ingWeb/
 │   │   ├── useDisponibilidad.js
 │   │   ├── useCanchas.js             # pendiente: migrar ExplorarCanchas
 │   │   ├── useReservas.js            # ✅ FASE 3
+│   │   ├── useClientes.js            # ✅ FASE 4
+│   │   ├── useCanchasAdmin.js        # ✅ FASE 4
+│   │   ├── useReservasAdmin.js       # ✅ FASE 4
 │   │   ├── useAuth.js                # 🔄 FASE 5
 │   │   └── useDebounce.js
 │   ├── lib/
@@ -81,6 +91,10 @@ FrontEnd-App-ingWeb/
 │   │   ├── format.js           # Moneda, fecha, hora (nuevo)
 │   │   ├── filtroReservas.js   # Lógica pura de grupos/filtros de reservas (FASE 3)
 │   │   ├── comprobante.js      # Exportación a CSV de comprobantes (FASE 3)
+│   │   ├── metricasAdmin.js    # Métricas puras del panel admin (FASE 4)
+│   │   ├── orden.js            # Comparación para ordenar tablas (FASE 4)
+│   │   ├── exportar.js         # CSV genérico + descarga (FASE 4)
+│   │   ├── exportarTablas.js   # CSV de clientes y reservas del panel (FASE 4)
 │   │   ├── rutas.js            # Hash routing (ya existe)
 │   │   └── validators.js       # Validaciones de formulario
 │   ├── pages/
@@ -90,7 +104,7 @@ FrontEnd-App-ingWeb/
 │   │   ├── DetalleCancha.css
 │   │   ├── MisReservas.jsx           # ✅ FASE 3
 │   │   ├── MisReservas.css
-│   │   ├── PanelAdmin.jsx            # 🔄 FASE 4
+│   │   ├── PanelAdmin.jsx            # ✅ FASE 4
 │   │   ├── PanelAdmin.css
 │   │   ├── Login.jsx                 # 🔄 FASE 5
 │   │   ├── Registro.jsx
@@ -271,7 +285,7 @@ export function useReservas({ clienteId, estado } = {}) {
 
 ---
 
-### FASE 4 — Panel de Control Admin (3–4 días)
+### FASE 4 — Panel de Control Admin (3–4 días) — ✅ COMPLETADA
 
 **Pantalla Stitch:** `panel_de_control_admin/code.html` + `screen.png`
 
@@ -279,29 +293,42 @@ export function useReservas({ clienteId, estado } = {}) {
 
 | Componente | Responsabilidad |
 |---|---|
-| `ClienteTable` | DataTable existente + columnas: código, nombre, email, teléfono, estado, acciones |
-| `StatsCards` | 4 tarjetas: usuarios, canchas, reservas mes, ingresos mes |
-| `AdminSidebar` | Navegación: Clientes / Canchas / Reservas / Resumen |
-| `CanchaAdminTable` | CRUD canchas (crear/editar/borrar) — usa `CanchaForm` modal |
-| `ReservaAdminTable` | Vista global de todas las reservas con filtros |
+| `AdminSidebar` | Navegación: Resumen / Clientes / Canchas / Reservas + cuenta por sección |
+| `StatsCards` | 4 tarjetas: clientes, canchas, reservas del mes, ingresos del mes (con delta mes a mes) |
+| `ClienteTable` | `DataTable` + columnas: código, cliente (avatar + correo), teléfono, registro, estado, acciones; búsqueda, filtro por estado, paginación, selección + CSV, ficha |
+| `ClienteDetalleModal` | Ficha de solo lectura + salto a las reservas del cliente |
+| `CanchaAdminTable` | CRUD de canchas: ver en catálogo, editar y borrar; búsqueda + filtros por deporte y estado |
+| `CanchaForm` | Modal de alta/edición con validación (nombre, deporte, zona, sede, precio, estado) |
+| `ReservaAdminTable` | Vista global de reservas: filtros, paginación, selección + confirmar/cancelar en bloque, CSV |
+| `ReservaManualModal` | Alta manual de un turno (cliente, cancha, fecha, horario; total calculado) |
+| `ConfirmarModal` | Confirmación genérica de acciones irreversibles (borrado de cancha) |
 
 #### 4.2 Página `PanelAdmin`
 
 - URL: `#/admin` (requiere rol admin — fase 5)
-- Layout: sidebar fija + contenido
-- Tabs: Clientes | Canchas | Reservas | Resumen
+- Layout: sidebar fija (248 px, banda horizontal <1024 px) + topbar (72 px) + contenido
+- Secciones: **Resumen · Clientes · Canchas · Reservas** (estado local, sin recargar)
 
 #### 4.3 Hooks `useClientes`, `useCanchasAdmin`, `useReservasAdmin`
 
-Todos sobre `api/clientes.js`, `api/canchas.js`, `api/reservas.js`.
+Todos sobre `api/clientes.js`, `api/canchas.js`, `api/reservas.js`, con semilla de
+mock para SSR. `api/canchas.js` pasa a ser **con estado** (crear/editar/borrar
+mueven una copia en memoria); `api/reservas.js` gana `actualizarEstado(id, estado)`.
+
+#### 4.4 Primitivas nuevas en `ui/`
+
+- `DataTable` gana ordenación real (`col.sortable`, `col.sorter`), paginación
+  (`pageSize`) y modo apilado (`stack`, `data-label` <1024 px).
+- `Paginador` — navegación de páginas de tabla, controlada.
 
 #### Verificación fase 4
 
-- [ ] ClienteTable: paginación, ordenación, selección múltiple, barra masiva (ya existe en DataTable)
-- [ ] StatsCards consumen endpoints reales/mock
-- [ ] CanchaAdminTable: modal crear/editar con validación
-- [ ] Sin colores violeta, iconos Rounded
-- [ ] Build + lint
+- [x] ClienteTable: paginación, ordenación, selección múltiple y barra masiva
+- [x] StatsCards consumen datos (mock) con delta mes vs mes y formato COP
+- [x] CanchaAdminTable: modal crear/editar con validación + borrado confirmado
+- [x] ReservaAdminTable: filtros, paginación, confirmar/cancelar en bloque y CSV
+- [x] Sin colores violeta, iconos Rounded, 0 hex fuera de `tokens.css`
+- [x] Build + lint + CSS válido (lightningcss) + 251 checks SSR/en vivo
 
 ---
 
@@ -483,6 +510,44 @@ Al cerrar cada fase, **actualizo este archivo** marcando ☐ → ✅ y añado:
 
 ---
 
+## Estado tras Fase 4 — 2026-10-13
+
+### Completado
+- ✅ `src/lib/mockData.js` — `RESERVAS` pasa a ser **global** (20 turnos: septiembre y octubre de 2026, de los 6 clientes) para que el panel tenga mes actual y mes anterior; se añade `HOY_DEMO = '2026-10-12'` como día de referencia (el panel no depende del reloj) y `codigo` (`CL-0001`…) a cada cliente.
+- ✅ `src/api/types.js` — `Cliente.codigo` y nuevo contrato `CanchaNueva`.
+- ✅ `src/lib/deportes.js` — `ESTADOS_CANCHA` (disponible / ocupado / mantenimiento) y `DEPORTES_CLAVES`.
+- ✅ `src/api/canchas.js` — **con estado**: copia mutable + `_reiniciarMock()`; `crear` / `actualizar` / `eliminar` con validación (`normalizar` + `ApiError 400/404`).
+- ✅ `src/api/reservas.js` — `actualizarEstado(id, estado)` para la gestión del panel.
+- ✅ `src/lib/metricasAdmin.js` — `mesDe`, `mesAnterior`, `variacion`, `calcularResumen` y `proximosTurnos` (puras; el "ahora" es un parámetro).
+- ✅ `src/lib/orden.js` — `comparar` para ordenar tablas (números, texto en español, vacíos al final).
+- ✅ `src/lib/exportar.js` + `exportarTablas.js` — CSV genérico y las columnas de clientes/reservas; `comprobante.js` ahora los reutiliza.
+- ✅ `src/hooks/useClientes.js`, `useCanchasAdmin.js`, `useReservasAdmin.js` — semilla de mock para SSR.
+- ✅ `src/components/ui/DataTable.jsx` — ordenación real, paginación (`pageSize`) y modo apilado (`stack`); `comparar` sale a `lib/orden.js`; `bulkBar` recibe los ids seleccionados.
+- ✅ `src/components/ui/Paginador.jsx` — primitiva de paginación controlada.
+- ✅ `src/components/admin/` — `AdminSidebar`, `StatsCards`, `ClienteTable`, `ClienteDetalleModal`, `CanchaAdminTable`, `CanchaForm`, `ReservaAdminTable`, `ReservaManualModal`, `ConfirmarModal` e `index.js`.
+- ✅ `src/pages/PanelAdmin.jsx` + `PanelAdmin.css` — armazón sidebar + topbar, 4 secciones, modales, aviso flotante; única pieza que habla con `src/api/` (los componentes suben sus intenciones).
+- ✅ `src/styles/components.css` — `.c-sidebar` (columna 248 px → banda horizontal <1024 px), `.c-paginador` y `.c-table--stack` (filas a tarjetas <1024 px con `data-label`); `.c-table__sort` pasa a botón.
+- ✅ `src/lib/rutas.js` + `src/App.jsx` — ruta `#/admin` y `rutaDeAdmin()`.
+- ✅ Capturas `admin-resumen-desktop`, `admin-resumen-movil`, `admin-clientes`, `admin-ficha-cliente`, `admin-canchas`, `admin-nueva-cancha`, `admin-reservas` y `admin-nueva-reserva`.
+
+### Bloqueantes / Decisiones
+- **Reconciliación con Stitch:** el plan fija 4 secciones (Resumen · Clientes · Canchas · Reservas) y Stitch muestra un único "Resumen General" con barra lateral. Manda el plan. La sección "Tarifas y Pagos" de Stitch **se omite**: no está en el plan y no hay datos ni endpoint.
+- **Métricas = las del plan** (clientes, canchas, reservas del mes, ingresos del mes). Los deltas comparan octubre con septiembre de 2026 respecto a `HOY_DEMO`, no al reloj.
+- **"Nueva reserva manual"** (secretaría) y **"Nueva cancha"** son las acciones primarias; el alta manual calcula el total con el precio/hora de la cancha.
+- **Editar clientes** no se ofrece: el user-service no expone `PUT`; la ficha es de solo lectura con salto a sus reservas.
+- Un turno cancelado/confirmado desde el panel se refleja al instante porque el mock de reservas es con estado y `refetch()` vuelve a pedir.
+- `src/api/axios.js` sigue sin uso (se conserva; pendiente decidir).
+- Pendientes no bloqueantes: crear `useCanchas` y migrar `ExplorarCanchas`; mover "Calificar" (FASE 3) a API cuando exista `POST /api/reservas/:id/calificacion`.
+
+### Métricas
+- Build: 70.10 kB CSS / 349.10 kB JS (gzip: 11.48 / 104.33).
+- Lint: 0 errores.
+- Tests SSR + contratos + rutas + componentes: **251/251 OK** (`node .check/verificar.mjs`, +86 de FASE 4).
+- Inspección en vivo (Brave headless + CDP, `.check/admin-live.mjs`): navegación, filtros, modales, selección masiva y apilado móvil, **0 errores de consola y 0 desborde**.
+- Hex fuera de tokens: 0 · Violeta detectado: 0 · CSS válido (lightningcss).
+
+---
+
 ## Riesgos y mitigaciones
 
 | Riesgo | Probabilidad | Impacto | Mitigación |
@@ -508,7 +573,7 @@ node node_modules/eslint/bin/eslint.js src
 node -e "
 const {transform} = require('lightningcss');
 const fs = require('fs');
-for (const f of ['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css','src/pages/DetalleCancha.css','src/pages/MisReservas.css']) {
+for (const f of ['src/index.css','src/styles/tokens.css','src/styles/base.css','src/styles/components.css','src/pages/StyleGuide.css','src/pages/ExplorarCanchas.css','src/pages/DetalleCancha.css','src/pages/MisReservas.css','src/pages/PanelAdmin.css']) {
   transform({filename: f, code: Buffer.from(fs.readFileSync(f)), minify: true});
 }
 console.log('CSS OK');
@@ -525,9 +590,9 @@ const {renderToString} = require('react-dom/server');
 
 ## Próximo paso inmediato
 
-FASE 3 cerrada ✅. Siguiente: **FASE 4 — Panel de Control Admin**
-(`#/admin`), que estrena los componentes `admin/` (`ClienteTable`,
-`StatsCards`, `AdminSidebar`, `CanchaAdminTable`, `ReservaAdminTable`) reusando
-`DataTable` (FASE 1) y el patrón de hooks de las fases anteriores. Cuando toque
-el catálogo, sigue pendiente envolver `getCanchas` en `useCanchas` y migrar
-`ExplorarCanchas`.
+FASE 4 cerrada ✅. Siguiente: **FASE 5 — Autenticación y Perfil**
+(`#/login`, `#/registro`, `#/recuperar`, `#/perfil`) con `useAuth`, guard de rutas
+y acceso admin por rol. Antes, pendientes menores no bloqueantes: decidir si se
+elimina `src/api/axios.js`, envolver `getCanchas` en `useCanchas` y migrar
+`ExplorarCanchas`, y mover "Calificar" (FASE 3) a API cuando exista
+`POST /api/reservas/:id/calificacion`.
